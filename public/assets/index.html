@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <link rel="stylesheet" type="text/css" href="./css/style(2).css">
+    <link rel="stylesheet" type="text/css" href="./css/slider_css.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-inverse navbar-fixed-top navbar-collapse" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                        aria-controls="navbar">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html">Hi-Fi</a>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="index.html"> 
+                                <span class="glyphicon glyphicon-home" >
+                                </span> Home
+                            </a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
+                                <span class="glyphicon glyphicon-facetime-video" >
+                                </span> Produkter
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="sub/products.html"> 
+                                        Alle produkter
+                                    </a>
+                                </li>
+                                <li class="dropdown-submenu open">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
+                                        Afspillere
+                                        <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="sub/afspillere/dvd_afspillere.html"> DVD Afspillere
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="sub/afspillere/cd_afspillere.html"> CD Afspillere
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="sub/afspillere/plade_afspillere.html"> Pladespillere
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-submenu closed">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Forstærkere
+                                        <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="sub/forstaerkere/effekt_forstaerkere.html"> Effektforstærkere
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="sub/forstaerkere/for_forstaerkere.html"> Forforstærkere
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="sub/forstaerkere/interne_forstaerkere.html"> Interne forstærkere
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="sub/forstaerkere/roer_forstaerkere.html"> Rørforstærkere
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="sub/hoejtalere/hoejtalere.html"> Højtalere
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="container">
+        <row>
+            <div class="col-xs-12">
+                <input id="searchbar" type="text" placeholder="Search..." />
+            </div>
+        </row>
+        <row>
+            <div id="myCarousel" class="carousel slide col-xs-10 col-xs-offset-1" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active">
+                        <img class="first-slide" alt="First slide"/>
+                        <div class="container">
+                            <div class="carousel-caption">
+                                <h1 id="firstH">Example headline.</h1>
+                                <p id="firstP">Note: If you're viewing this page via a <code>file://</code> URL, the "next" and "previous"
+                                    Glyphicon buttons on the left and right might not load/display properly due to web browser
+                                    security rules.
+                                </p>
+                                <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img class="second-slide"alt="Second slide">
+                        <div class="container">
+                            <div class="carousel-caption">
+                                <h1 id="secondH">Another example headline.</h1>
+                                <p id="secondP">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida
+                                    at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                                </p>
+                                <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img class="third-slide" alt="Third slide">
+                        <div class="container">
+                            <div class="carousel-caption">
+                                <h1 id="thirdH">One more for good measure.</h1>
+                                <p id="thirdP">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida
+                                    at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                                </p>
+                                <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                          <span class="sr-only">Previous</span>
+                        </a>
+                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                          <span class="sr-only">Next</span>
+                        </a>
+            </div>
+        </row>
+        <row>
+            <div class="pop_article col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1 col-md-4 col-md-offset-2">
+                <div class="col-xs-2">
+                    <img id="one" src="img/cd_afspillere/creek_classic_cd.jpg" />
+                </div>
+                <div class="col-xs-6">
+                    <h4 id="firstH4" class="col-xs-12">Creek Classic CD Afspiller</h4>
+                    <h6 id="firstH6" class="col-xs-12">Stærk ydelse for prisen</h6>
+                </div>
+                <div class="col-xs-2">
+                </div>
+                <div class="col-xs-2">
+                    <p id="popP1" class="col-xs-12">500 kr</p>
+                    <a class="col-xs-12">Læg i kurv</a>
+                </div>
+            </div>
+            </div>
+
+            <div class="pop_article col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-0 col-sm-offset-right-1 col-md-4 col-md-offset-right-2">
+                <div class="col-xs-2">
+                    <img  id="two" src="img/cd_afspillere/creek_classic_cd.jpg" />
+                </div>
+                <div class="col-xs-6">
+                    <h4 id="secondH4" class="col-xs-12">Creek Classic CD Afspiller</h4>
+                    <h6 id="secondH6" class="col-xs-12">Stærk ydelse for prisen</h6>
+                </div>
+                <div class="col-xs-2">
+                </div>
+                <div class="col-xs-2">
+                    <p id="popP2" class="col-xs-12">500 kr</p>
+                    <a class="col-xs-12">Læg i kurv</a>
+                </div>
+            </div>
+            </div>
+
+            <div class="pop_article col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1 col-md-4 col-md-offset-2">
+                <div class="col-xs-2">
+                    <img  id="three" src="img/cd_afspillere/creek_classic_cd.jpg" />
+                </div>
+                <div class="col-xs-6">
+                    <h4 id="thirdH4" class="col-xs-12">Creek Classic CD Afspiller</h4>
+                    <h6 id="thirdH6" class="col-xs-12">Stærk ydelse for prisen</h6>
+                </div>
+                <div class="col-xs-2">
+                </div>
+                <div class="col-xs-2">
+                    <p id="popP3" class="col-xs-12">500 kr</p>
+                    <a class="col-xs-12">Læg i kurv</a>
+                </div>
+            </div>
+            </div>
+
+            <div class="pop_article col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-0 col-sm-offset-right-1 col-md-4 col-md-offset-right-2">
+                <div class="col-xs-2">
+                    <img id="four" src="img/cd_afspillere/creek_classic_cd.jpg" />
+                </div>
+                <div class="col-xs-6">
+                    <h4 id="fourthH4" class="col-xs-12">Creek Classic CD Afspiller</h4>
+                    <h6 id="fourthH6" class="col-xs-12">Stærk ydelse for prisen</h6>
+                </div>
+                <div class="col-xs-2">
+                </div>
+                <div class="col-xs-2">
+                    <p id="popP4" class="col-xs-12">500 kr</p>
+                    <a class="col-xs-12">Læg i kurv</a>
+                </div>
+            </div>
+        </row>
+        <row>
+            <div id="special_offer" class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2">
+                <row>
+                    <div class="col-xs-12">
+                        <img id="offer" src="img/cd_afspillere/creek_Destiny_CD.jpg" alt="advertisement_picture" class="img-responsive">
+                    </div>
+                    <div class="col-xs-12">
+                        <h2 id=specialh2>
+                            Super Eksklusivt Tilbud! Kommer aldrig igen !
+                        </h2>
+                        <h4 id="specialh4">Kæmpe lagerudsalg foregår lige nu! I denne forbindelse laves Hi-Fi der vanvittige tilbud! ... </h4>
+                        <a>Se alle tilbuddene her...</a>
+                    </div>
+                </row>
+            </div>
+        </row>
+        <row>
+            <div class="security col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2">
+                <row>
+                    <div class="col-xs-12">
+                        <h2>Handl trygt hos Hi-Fi ! </h2>
+                        <h4>Hi-Fi's online shop er beskyttet og godkendt af flere forsikringsselskaber, et udvalg af hvilke vi
+                            er stolte af at præsentere her ! </h4>
+                    </div>
+                </row>
+                <row>
+                    <div class="col-xs-12">
+                        <row>
+                            <div class="col-xs-4">
+                                <img src="img/cd_afspillere/creek_classic_cd.jpg" class="round_img img-responsive" alt="Sponsor">
+                            </div>
+
+                            <div class="col-xs-4">
+                                <img src="img/cd_afspillere/creek_classic_cd.jpg" class="round_img img-responsive" alt="Sponsor">
+                            </div>
+
+                            <div class="col-xs-4">
+                                <img src="img/cd_afspillere/creek_classic_cd.jpg" class="round_img img-responsive" alt="Sponsor">
+                            </div>
+                        </row>
+                    </div>
+                </row>
+            </div>
+        </row>
+        <row id="footer">
+            <div id="contact_info" class="col-xs-10 col-xs-offset-1">
+                <row>
+                    <div class="col-xs-12 col-sm-4">
+                        <p>
+                            <i class="fa fa-map-marker" aria-hidden="true"></i>
+                            <strong>Adresse: </strong>GadeNavn 123 4567 ByNavn
+                        </p>
+                    </div>
+                    <div class="col-xs-12 col-sm-4">
+                        <p>
+                            <i class="fa fa-at" aria-hidden="true"></i>
+                            <strong>E-mail adresse: </strong>email@example.com
+                        </p>
+                    </div>
+                    <div class="col-xs-12 col-sm-4">
+                        <p>
+                            <i class="fa fa-phone" aria-hidden="true"></i>
+                            <strong>Tlf. nummer: </strong> 1234 5678
+                        </p>
+                    </div>
+                    <div class="col-xs-12">
+                        <button id="contact_button" type="button" onclick="window.open('forms/kontaktform.html', '_blank', 'height=500', 'width=200')">Kontakt os</button>
+                    </div>
+                    <div class="col-xs-12">
+                        <hr/>
+                    </div>
+                </row>
+            </div>
+            <div id="social_media" class="col-xs-10 col-xs-offset-1">
+                <row>
+                    <div class="col-xs-12  col-sm-6 col-md-4 ">
+                        <a>
+                            <i class="fa fa-facebook"> Facebook</i>
+                        </a>
+                    </div>
+                    <div class="col-xs-12  col-sm-6  col-md-4">
+                        <a>
+                            <i class="fa fa-pinterest"> Pinterest</i>
+                        </a>
+                    </div>
+                    <div class="col-xs-12 col-sm-6  col-md-4">
+                        <a>
+                            <i class="fa fa-instagram"> Instagram</i>
+                        </a>
+                    </div>
+                    <div class="col-xs-12 col-sm-6  col-md-4">
+                        <a>
+                            <i class="fa fa-twitter"> Twitter</i>
+                        </a>
+                    </div>
+                    <div class="col-xs-12  col-sm-6  col-md-4 ">
+                        <a>
+                            <i class="fa fa-flickr"> FLickr</i>
+                        </a>
+                    </div>
+                </row>
+            </div>
+            <div id="tm" class="col-xs-10 col-xs-offset-1">
+                <hr/>
+                <i class="fa fa-copyright" aria-hidden="true"> Copyright Hi-Fi Klubben 2002
+                    <i class="fa fa-trademark" aria-hidden="true"></i>
+                </i>
+            </div>
+        </row>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="./js/script.js"></script> />
+    <script src="./js/products.js"></script> />
+</body>
+
+</html>

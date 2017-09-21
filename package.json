@@ -1,0 +1,23 @@
+{
+  "name": "hi_fi_client",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexanderFaisst/Hi-Fi.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlexanderFaisst/Hi-Fi/issues"
+  },
+  "homepage": "https://github.com/AlexanderFaisst/Hi-Fi#readme",
+  "dependencies": {
+    "browser-sync": "^2.18.13",
+    "nodemon": "^1.12.1"
+  }
+}

@@ -1,0 +1,150 @@
+.col-xs-1, .col-xs-2, .col-xs-12, .col-xs-6, .col-sm-6, .col-md-3 {
+    margin:0;
+    padding:0;
+}
+
+body {
+    background-color: rgba(128, 128, 128, 0.2);
+    margin-top: 55px;
+    min-width: 120px;
+}
+
+.pop_article {
+    color: rgba(34, 34, 34, 1);
+    outline: 3px solid rgba(34, 34, 34, 1);
+    background-color: rgba(34, 34, 34, 0.3);
+    padding: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.pop_article a {
+    color: white;
+    background-color: orange;
+    border: 2px solid gray;
+    border-radius: 5px;
+    padding: 5px;
+    font-weight: bold;
+    font-size: 50%;
+}
+
+.pop_article a:hover {
+    background-color: rgba(255, 128, 0, 0.4);
+    cursor: pointer;
+}
+
+.pop_article img {
+    width: 100%;
+    padding: 5px;
+}
+
+
+#special_offer {
+    background-color: rgba(256,128,0,0.1);
+    margin-top: 30px;
+    padding: 20px;
+    box-shadow: 0 0 25px orange;
+}
+
+#social_media {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#contact_info {
+    text-align: center;
+    padding: 10px;
+}
+
+#social_media a {
+    text-decoration: none;
+    color: white;
+}
+
+.fa {
+    padding: 5px;
+    font-size: 150%;
+    background-color: orange;
+    border-radius: 5px;
+}
+
+#social_media .fa {
+    background-color: #00D0FF;
+}
+
+#social_media div {
+    margin: 5px;
+    font-size: 75%;
+    width: auto;
+}
+
+#tm, #social_media div {
+    text-align: center;
+}
+
+#tm {
+    padding: 10px;
+    padding-bottom: 20px;
+    font-size: 75%;
+}
+
+#footer div {
+    background-color: rgba(34,34,34,1);
+    color: white;
+}
+
+.fa-trademark {
+    font-size: 75%;
+    vertical-align: super;
+}
+
+.round_img {
+    border-radius: 50%;
+}
+
+.security {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 10px;
+    box-shadow: 0 0 25px #00D0FF;
+    background-color: rgba(0,208, 255, 0.1);
+}
+
+.security div {
+    padding: 15px;
+}
+
+#navbar a, .navbar-header button{
+    color: white;
+}
+
+.navbar-header button {
+    background-color: orange;
+}
+
+.navbar-header .navbar-brand {
+    font-weight: bold;
+    color: white;
+}
+
+#navbar .glyphicon {
+    color: orange;
+}
+
+#contact_button {
+    padding: 5px;
+    width: 150px;
+    background-color: orange;
+    border-radius: 10px;
+}
+
+input[type=text] {
+    position: fixed;
+    z-index: 500;
+    margin-top: 50px;
+}
+
+.carousel-caption h1, .carousel-caption a {
+    font-size: 125%;
+}

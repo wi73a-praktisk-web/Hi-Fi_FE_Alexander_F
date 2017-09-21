@@ -1,0 +1,9 @@
+#form_div {
+	display: flex;
+	flex-direction: column;
+	width: 30%;
+}
+
+input, textarea { 
+   border:solid 1px #000000; 
+} 

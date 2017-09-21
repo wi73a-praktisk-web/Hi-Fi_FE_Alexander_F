@@ -1,0 +1,1204 @@
+(function () {
+    const getUrlParameter = function (sParam) {
+        const sPageURL = decodeURIComponent(window.location.search.substring(1));
+        const sURLVariables = sPageURL.split('&');
+        let sParameterName;
+        for (let int = 0; int < sURLVariables.length; int = int + 1) {
+            sParameterName = sURLVariables[int].split('=');
+            if (sParameterName[0] === sParam) {
+                return sParameterName[1] === undefined ? true : sParameterName[1];
+            }
+        }
+    };
+
+    const fyldForside = function () {
+        console.log("hello forside!");
+        fetch('http://localhost:8080/index')
+            .then(function (result) {
+                return result.json();
+            })
+            .then(function (products) {
+                // get slider images
+                const firstSlide = document.getElementsByClassName("first-slide")[0];
+                const secondSlide = document.getElementsByClassName('second-slide')[0];
+                const thirdSlide = document.getElementsByClassName('third-slide')[0];
+    
+                //get slider headings
+                const firstHeading = document.getElementById('firstH');
+                const secondHeading = document.getElementById('secondH');
+                const thirdHeading = document.getElementById('thirdH');
+    
+                //get slider paragraphs
+                const firstP = document.getElementById('firstP');
+                const secondP = document.getElementById('secondP');
+                const thirdP = document.getElementById('thirdP');
+                
+                // get popular items images
+                const one = document.getElementById('one');
+                const two = document.getElementById('two');
+                const three = document.getElementById('three');
+                const four = document.getElementById('four');
+                
+                //get popular items h4's
+                const pop_h1_4 = document.getElementById('firstH4');
+                const pop_h2_4 = document.getElementById('secondH4');
+                const pop_h3_4 = document.getElementById('thirdH4');
+                const pop_h4_4 = document.getElementById('fourthH4');
+                
+                //get popular items h6's
+                const pop_h1_6 = document.getElementById('firstH6');
+                const pop_h2_6 = document.getElementById('secondH6');
+                const pop_h3_6 = document.getElementById('thirdH6');
+                const pop_h4_6 = document.getElementById('fourthH6');
+                
+                //get popular items p's
+                const popu1 = document.getElementById('popP1');
+                const popu2 = document.getElementById('popP2');
+                const popu3 = document.getElementById('popP3');
+                const popu4 = document.getElementById('popP4');
+                
+                //get special offer image, h2 and h4
+                const specialIMG = document.getElementById('offer');
+                const specialh2 = document.getElementById('specialh2');
+                const specialh4 = document.getElementById('specialh4');
+                
+                //SET NEW VALUES
+
+                //slider
+                console.log("type of firstSlide = " + typeof firstSlide);
+                firstSlide.setAttribute('src', "./../img/" + products[0].billede);
+                secondSlide.setAttribute('src', "./img/" + products[1].billede);
+                thirdSlide.setAttribute('src', "./img/" + products[2].billede);
+                firstHeading.innerHTML = products[0].Navn;
+                secondHeading.innerHTML = products[1].Navn;
+                thirdHeading.innerHTML = products[2].Navn;
+                firstP.innerHTML = products[0].Beskrivelse;
+                secondP.innerHTML = products[0].Beskrivelse;
+                thirdP.innerHTML = products[0].Beskrivelse;
+
+                //popular items
+                one.setAttribute('src', "./img/" + products[3].billede);
+                two.setAttribute('src', "./img/" + products[4].billede);
+                three.setAttribute('src', "./img/" + products[5].billede);
+                four.setAttribute('src', "./img/" + products[6].billede);
+                pop_h1_4.innerHTML = products[3].Navn;
+                pop_h2_4.innerHTML = products[4].Navn;
+                pop_h3_4.innerHTML = products[5].Navn;
+                pop_h4_4.innerHTML = products[6].Navn;
+                pop_h1_4.innerHTML = products[3].Beskrivelse;
+                pop_h2_4.innerHTML = products[4].Beskrivelse;
+                pop_h3_4.innerHTML = products[5].Beskrivelse;
+                pop_h4_4.innerHTML = products[6].Beskrivelse;
+                popu1.innerHTML = products[3].Pris;
+                popu2.innerHTML = products[4].Pris;
+                popu3.innerHTML = products[5].Pris;
+                popu4.innerHTML = products[6].Pris;
+
+                //special offer
+                specialIMG.setAttribute('src', "./img/" + products[7].billede);
+
+                specialh2.innerHTML = products[7].Navn;
+                specialh4.innerHTML = products[7].Beskrivelse;
+                
+            }).catch(function (error) {
+                console.log(error);
+            });
+    }
+
+    const visCDAfspillere = function () {
+        console.log("hello!");
+        fetch('http://localhost:8080/cd_afspillere')
+            .then(function (result) {
+                return result.json();
+            })
+            .then(function (products) {
+                products.forEach(function (product) {
+                    console.log(product);
+                    //create the image
+                    const img = document.createElement('IMG');
+                    img.setAttribute('src', "../../img/" + product.billede);
+                    img.setAttribute('alt', "produkt billede");
+                    img.setAttribute('class', "col-xs-12");
+
+                    //create the producer
+                    const prod = document.createElement('P');
+                    const prodName = document.createTextNode(product.prod_navn);
+                    prod.appendChild(prodName);
+                    prod.setAttribute('class', "col-xs-12");
+
+                    //create the header
+                    const h2 = document.createElement('H2');
+                    const navn = document.createTextNode(product.Navn);
+                    h2.appendChild(navn);
+
+                    //create the description
+                    const descP = document.createElement('P');
+                    const descNode = document.createTextNode(product.Beskrivelse);
+                    descP.appendChild(descNode);
+
+                    //create the vareNr
+                    const vareNr = document.createElement('p');
+                    const vareNrTxt = document.createTextNode(product.vareNr);
+                    vareNr.appendChild(vareNrTxt);
+
+                    //create the lagerstatus
+                    const lagerStatus = document.createElement('P');
+                    lagerStatus.innerHTML = product.Navn + "er på lager.";
+
+                    //create the price
+                    const price = document.createElement('P');
+                    const priceTag = document.createTextNode(product.Pris);
+                    price.appendChild(priceTag);
+
+                    //create the shoppingCart button
+                    const cart = document.createElement('A');
+                    cart.innerHTML = "Læg i kurv";
+                    cart.setAttribute('href', "#");
+                    cart.style.padding = "5px";
+                    cart.style.backgroundColor = "orange";
+                    cart.style.color = "white";
+                    cart.style.border = "2px solid rgba(34,34,34,1)";
+                    cart.style.borderRadius = "5px";
+
+                    //putting it all together
+
+                    //create inner div's
+                    const div2 = document.createElement('DIV');
+                    const div3 = document.createElement('DIV');
+                    const div1 = document.createElement('DIV');
+
+                    //prepare inner div's
+                    div2.setAttribute('class', "col-xs-12 col-xs-offset-0 col-sm-4 col-sm-offset-4");
+                    div3.setAttribute('class', "col-xs-12 col-xs-offset-0 col-sm-4 col-sm-offset-4");
+                    div1.setAttribute('class', "col-xs-12 col-xs-offset-0 col-sm-4 col-sm-offset-4");
+                    div1.style.padding = "10px";
+                    div2.style.padding = "10px";
+                    div3.style.padding = "10px";
+
+                    //append inner div's
+                    div1.appendChild(img);
+                    div1.appendChild(prodName);;
+                    div2.appendChild(h2);
+                    div2.appendChild(vareNr);
+                    div2.appendChild(descP);
+                    div3.appendChild(lagerStatus);
+                    div3.appendChild(price);
+                    div3.appendChild(cart);
+
+                    //create a row
+                    const row_row_row_your_boat = document.createElement('ROW');
+
+                    //create a wrapper_div
+                    const wrapperDiv = document.createElement('DIV');
+                    wrapperDiv.style.outline = "2px solid black";
+                    wrapperDiv.setAttribute('class', "col-xs-12");
+                    wrapperDiv.style.backgroundColor = "rgba(34,34,34,.5)";
+                    wrapperDiv.style.padding = "10px";
+                    wrapperDiv.style.margin = "10px";
+
+                    //create a wrapperRow
+                    const wrapRow = document.createElement('ROW');
+
+                    //document.getElementById('myDiv').innerHTML += product.Navn + " " + product.Pris + " " + product.vareNr + " " + product.Beskrivelse + " " + product.Lagerstatus + " " + product.billede +  "<br/>";
+
+                    //attach 3 divs to inner row
+                    row_row_row_your_boat.appendChild(div1);
+                    row_row_row_your_boat.appendChild(div2);
+                    row_row_row_your_boat.appendChild(div3);
+
+                    //append inner row to wrapper div
+                    wrapperDiv.appendChild(row_row_row_your_boat);
+
+                    //append wrapper div to wrapper row
+                    wrapRow.appendChild(wrapperDiv);
+
+                    //append wrapper row to actual div
+                    document.getElementById('myDiv').appendChild(wrapRow);
+                    document.getElementById('myDiv').innerHTML += "<br/>";
+
+                    //pray it works like this now
+                })
+            }).catch(function (error) {
+                console.log(error);
+            });
+    }
+
+    const visDVDAfspillere = function () {
+        console.log("hello!");
+        fetch('http://localhost:8080/dvd_afspillere')
+            .then(function (result) {
+                return result.json();
+            })
+            .then(function (products) {
+                products.forEach(function (product) {
+                    console.log(product);
+                    //create the image
+                    const img = document.createElement('IMG');
+                    img.setAttribute('src', "../../img/" + product.billede);
+                    img.setAttribute('alt', "produkt billede");
+                    img.setAttribute('class', "col-xs-12");
+
+                    //create the producer
+                    const prod = document.createElement('P');
+                    const prodName = document.createTextNode(product.prod_navn);
+                    prod.appendChild(prodName);
+                    prod.setAttribute('class', "col-xs-12");
+
+                    //create the header
+                    const h2 = document.createElement('H2');
+                    const navn = document.createTextNode(product.Navn);
+                    h2.appendChild(navn);
+
+                    //create the description
+                    const descP = document.createElement('P');
+                    const descNode = document.createTextNode(product.Beskrivelse);
+                    descP.appendChild(descNode);
+
+                    //create the vareNr
+                    const vareNr = document.createElement('p');
+                    const vareNrTxt = document.createTextNode(product.vareNr);
+                    vareNr.appendChild(vareNrTxt);
+
+                    //create the lagerstatus
+                    const lagerStatus = document.createElement('P');
+                    lagerStatus.innerHTML = product.Navn + "er på lager.";
+
+                    //create the price
+                    const price = document.createElement('P');
+                    const priceTag = document.createTextNode(product.Pris);
+                    price.appendChild(priceTag);
+
+                    //create the shoppingCart button
+                    const cart = document.createElement('A');
+                    cart.innerHTML = "Læg i kurv";
+                    cart.setAttribute('href', "#");
+                    cart.style.padding = "5px";
+                    cart.style.backgroundColor = "orange";
+                    cart.style.color = "white";
+                    cart.style.border = "2px solid rgba(34,34,34,1)";
+                    cart.style.borderRadius = "5px";
+
+                    //putting it all together
+
+                    //create inner div's
+                    const div2 = document.createElement('DIV');
+                    const div3 = document.createElement('DIV');
+                    const div1 = document.createElement('DIV');
+
+                    //prepare inner div's
+                    div2.setAttribute('class', "col-xs-12 col-xs-offset-0 col-sm-4 col-sm-offset-4");
+                    div3.setAttribute('class', "col-xs-12 col-xs-offset-0 col-sm-4 col-sm-offset-4");
+                    div1.setAttribute('class', "col-xs-12 col-xs-offset-0 col-sm-4 col-sm-offset-4");
+                    div1.style.padding = "10px";
+                    div2.style.padding = "10px";
+                    div3.style.padding = "10px";
+
+                    //append inner div's
+                    div1.appendChild(img);
+                    div1.appendChild(prodName);;
+                    div2.appendChild(h2);
+                    div2.appendChild(vareNr);
+                    div2.appendChild(descP);
+                    div3.appendChild(lagerStatus);
+                    div3.appendChild(price);
+                    div3.appendChild(cart);
+
+                    //create a row
+                    const row_row_row_your_boat = document.createElement('ROW');
+
+                    //create a wrapper_div
+                    const wrapperDiv = document.createElement('DIV');
+                    wrapperDiv.style.outline = "2px solid black";
+                    wrapperDiv.setAttribute('class', "col-xs-12");
+                    wrapperDiv.style.backgroundColor = "rgba(34,34,34,.5)";
+                    wrapperDiv.style.padding = "10px";
+                    wrapperDiv.style.margin = "10px";
+
+                    //create a wrapperRow
+                    const wrapRow = document.createElement('ROW');
+
+                    //document.getElementById('myDiv').innerHTML += product.Navn + " " + product.Pris + " " + product.vareNr + " " + product.Beskrivelse + " " + product.Lagerstatus + " " + product.billede +  "<br/>";
+
+                    //attach 3 divs to inner row
+                    row_row_row_your_boat.appendChild(div1);
+                    row_row_row_your_boat.appendChild(div2);
+                    row_row_row_your_boat.appendChild(div3);
+
+                    //append inner row to wrapper div
+                    wrapperDiv.appendChild(row_row_row_your_boat);
+
+                    //append wrapper div to wrapper row
+                    wrapRow.appendChild(wrapperDiv);
+
+                    //append wrapper row to actual div
+                    document.getElementById('myDiv').appendChild(wrapRow);
+                    document.getElementById('myDiv').innerHTML += "<br/>";
+
+                    //pray it works like this now
+                })
+            }).catch(function (error) {
+                console.log(error);
+            });
+    }
+
+    const visPladeAfspillere = function () {
+        console.log("hello!");
+        fetch('http://localhost:8080/plade_afspillere')
+            .then(function (result) {
+                return result.json();
+            })
+            .then(function (products) {
+                products.forEach(function (product) {
+                    console.log(product);
+                    //create the image
+                    const img = document.createElement('IMG');
+                    img.setAttribute('src', "../../img/" + product.billede);
+                    img.setAttribute('alt', "produkt billede");
+                    img.setAttribute('class', "col-xs-12");
+
+                    //create the producer
+                    const prod = document.createElement('P');
+                    const prodName = document.createTextNode(product.prod_navn);
+                    prod.appendChild(prodName);
+                    prod.setAttribute('class', "col-xs-12");
+
+                    //create the header
+                    const h2 = document.createElement('H2');
+                    const navn = document.createTextNode(product.Navn);
+                    h2.appendChild(navn);
+
+                    //create the description
+                    const descP = document.createElement('P');
+                    const descNode = document.createTextNode(product.Beskrivelse);
+                    descP.appendChild(descNode);
+
+                    //create the vareNr
+                    const vareNr = document.createElement('p');
+                    const vareNrTxt = document.createTextNode(product.vareNr);
+                    vareNr.appendChild(vareNrTxt);
+
+                    //create the lagerstatus
+                    const lagerStatus = document.createElement('P');
+                    lagerStatus.innerHTML = product.Navn + "er på lager.";
+
+                    //create the price
+                    const price = document.createElement('P');
+                    const priceTag = document.createTextNode(product.Pris);
+                    price.appendChild(priceTag);
+
+                    //create the shoppingCart button
+                    const cart = document.createElement('A');
+                    cart.innerHTML = "Læg i kurv";
+                    cart.setAttribute('href', "#");
+                    cart.style.padding = "5px";
+                    cart.style.backgroundColor = "orange";
+                    cart.style.color = "white";
+                    cart.style.border = "2px solid rgba(34,34,34,1)";
+                    cart.style.borderRadius = "5px";
+
+                    //putting it all together
+
+                    //create inner div's
+                    const div2 = document.createElement('DIV');
+                    const div3 = document.createElement('DIV');
+                    const div1 = document.createElement('DIV');
+
+                    //prepare inner div's
+                    div2.setAttribute('class', "col-xs-12 col-xs-offset-0 col-sm-4 col-sm-offset-4");
+                    div3.setAttribute('class', "col-xs-12 col-xs-offset-0 col-sm-4 col-sm-offset-4");
+                    div1.setAttribute('class', "col-xs-12 col-xs-offset-0 col-sm-4 col-sm-offset-4");
+                    div1.style.padding = "10px";
+                    div2.style.padding = "10px";
+                    div3.style.padding = "10px";
+
+                    //append inner div's
+                    div1.appendChild(img);
+                    div1.appendChild(prodName);;
+                    div2.appendChild(h2);
+                    div2.appendChild(vareNr);
+                    div2.appendChild(descP);
+                    div3.appendChild(lagerStatus);
+                    div3.appendChild(price);
+                    div3.appendChild(cart);
+
+                    //create a row
+                    const row_row_row_your_boat = document.createElement('ROW');
+
+                    //create a wrapper_div
+                    const wrapperDiv = document.createElement('DIV');
+                    wrapperDiv.style.outline = "2px solid black";
+                    wrapperDiv.setAttribute('class', "col-xs-12");
+                    wrapperDiv.style.backgroundColor = "rgba(34,34,34,.5)";
+                    wrapperDiv.style.padding = "10px";
+                    wrapperDiv.style.margin = "10px";
+
+                    //create a wrapperRow
+                    const wrapRow = document.createElement('ROW');
+
+                    //document.getElementById('myDiv').innerHTML += product.Navn + " " + product.Pris + " " + product.vareNr + " " + product.Beskrivelse + " " + product.Lagerstatus + " " + product.billede +  "<br/>";
+
+                    //attach 3 divs to inner row
+                    row_row_row_your_boat.appendChild(div1);
+                    row_row_row_your_boat.appendChild(div2);
+                    row_row_row_your_boat.appendChild(div3);
+
+                    //append inner row to wrapper div
+                    wrapperDiv.appendChild(row_row_row_your_boat);
+
+                    //append wrapper div to wrapper row
+                    wrapRow.appendChild(wrapperDiv);
+
+                    //append wrapper row to actual div
+                    document.getElementById('myDiv').appendChild(wrapRow);
+                    document.getElementById('myDiv').innerHTML += "<br/>";
+
+                    //pray it works like this now
+                })
+            }).catch(function (error) {
+                console.log(error);
+            });
+    }
+
+    const visInterneForstaerkere = function () {
+        console.log("hello!");
+        fetch('http://localhost:8080/interne_forstaerkere')
+            .then(function (result) {
+                return result.json();
+            })
+            .then(function (products) {
+                products.forEach(function (product) {
+                    console.log(product);
+                    //create the image
+                    const img = document.createElement('IMG');
+                    img.setAttribute('src', "../../img/" + product.billede);
+                    img.setAttribute('alt', "produkt billede");
+                    img.setAttribute('class', "col-xs-12");
+
+                    //create the producer
+                    const prod = document.createElement('P');
+                    const prodName = document.createTextNode(product.prod_navn);
+                    prod.appendChild(prodName);
+                    prod.setAttribute('class', "col-xs-12");
+
+                    //create the header
+                    const h2 = document.createElement('H2');
+                    const navn = document.createTextNode(product.Navn);
+                    h2.appendChild(navn);
+
+                    //create the description
+                    const descP = document.createElement('P');
+                    const descNode = document.createTextNode(product.Beskrivelse);
+                    descP.appendChild(descNode);
+
+                    //create the vareNr
+                    const vareNr = document.createElement('p');
+                    const vareNrTxt = document.createTextNode(product.vareNr);
+                    vareNr.appendChild(vareNrTxt);
+
+                    //create the lagerstatus
+                    const lagerStatus = document.createElement('P');
+                    lagerStatus.innerHTML = product.Navn + "er på lager.";
+
+                    //create the price
+                    const price = document.createElement('P');
+                    const priceTag = document.createTextNode(product.Pris);
+                    price.appendChild(priceTag);
+
+                    //create the shoppingCart button
+                    const cart = document.createElement('A');
+                    cart.innerHTML = "Læg i kurv";
+                    cart.setAttribute('href', "#");
+                    cart.style.padding = "5px";
+                    cart.style.backgroundColor = "orange";
+                    cart.style.color = "white";
+                    cart.style.border = "2px solid rgba(34,34,34,1)";
+                    cart.style.borderRadius = "5px";
+
+                    //putting it all together
+
+                    //create inner div's
+                    const div2 = document.createElement('DIV');
+                    const div3 = document.createElement('DIV');
+                    const div1 = document.createElement('DIV');
+
+                    //prepare inner div's
+                    div2.setAttribute('class', "col-xs-12 col-xs-offset-0 col-sm-4 col-sm-offset-4");
+                    div3.setAttribute('class', "col-xs-12 col-xs-offset-0 col-sm-4 col-sm-offset-4");
+                    div1.setAttribute('class', "col-xs-12 col-xs-offset-0 col-sm-4 col-sm-offset-4");
+                    div1.style.padding = "10px";
+                    div2.style.padding = "10px";
+                    div3.style.padding = "10px";
+
+                    //append inner div's
+                    div1.appendChild(img);
+                    div1.appendChild(prodName);;
+                    div2.appendChild(h2);
+                    div2.appendChild(vareNr);
+                    div2.appendChild(descP);
+                    div3.appendChild(lagerStatus);
+                    div3.appendChild(price);
+                    div3.appendChild(cart);
+
+                    //create a row
+                    const row_row_row_your_boat = document.createElement('ROW');
+
+                    //create a wrapper_div
+                    const wrapperDiv = document.createElement('DIV');
+                    wrapperDiv.style.outline = "2px solid black";
+                    wrapperDiv.setAttribute('class', "col-xs-12");
+                    wrapperDiv.style.backgroundColor = "rgba(34,34,34,.5)";
+                    wrapperDiv.style.padding = "10px";
+                    wrapperDiv.style.margin = "10px";
+
+                    //create a wrapperRow
+                    const wrapRow = document.createElement('ROW');
+
+                    //document.getElementById('myDiv').innerHTML += product.Navn + " " + product.Pris + " " + product.vareNr + " " + product.Beskrivelse + " " + product.Lagerstatus + " " + product.billede +  "<br/>";
+
+                    //attach 3 divs to inner row
+                    row_row_row_your_boat.appendChild(div1);
+                    row_row_row_your_boat.appendChild(div2);
+                    row_row_row_your_boat.appendChild(div3);
+
+                    //append inner row to wrapper div
+                    wrapperDiv.appendChild(row_row_row_your_boat);
+
+                    //append wrapper div to wrapper row
+                    wrapRow.appendChild(wrapperDiv);
+
+                    //append wrapper row to actual div
+                    document.getElementById('myDiv').appendChild(wrapRow);
+                    document.getElementById('myDiv').innerHTML += "<br/>";
+
+                    //pray it works like this now
+                })
+            }).catch(function (error) {
+                console.log(error);
+            });
+    }
+
+    const visEffektForstaerkere = function () {
+        console.log("hello!");
+        fetch('http://localhost:8080/effekt_forstaerkere')
+            .then(function (result) {
+                return result.json();
+            })
+            .then(function (products) {
+                products.forEach(function (product) {
+                    console.log(product);
+                    //create the image
+                    const img = document.createElement('IMG');
+                    img.setAttribute('src', "../../img/" + product.billede);
+                    img.setAttribute('alt', "produkt billede");
+                    img.setAttribute('class', "col-xs-12");
+
+                    //create the producer
+                    const prod = document.createElement('P');
+                    const prodName = document.createTextNode(product.prod_navn);
+                    prod.appendChild(prodName);
+                    prod.setAttribute('class', "col-xs-12");
+
+                    //create the header
+                    const h2 = document.createElement('H2');
+                    const navn = document.createTextNode(product.Navn);
+                    h2.appendChild(navn);
+
+                    //create the description
+                    const descP = document.createElement('P');
+                    const descNode = document.createTextNode(product.Beskrivelse);
+                    descP.appendChild(descNode);
+
+                    //create the vareNr
+                    const vareNr = document.createElement('p');
+                    const vareNrTxt = document.createTextNode(product.vareNr);
+                    vareNr.appendChild(vareNrTxt);
+
+                    //create the lagerstatus
+                    const lagerStatus = document.createElement('P');
+                    lagerStatus.innerHTML = product.Navn + "er på lager.";
+
+                    //create the price
+                    const price = document.createElement('P');
+                    const priceTag = document.createTextNode(product.Pris);
+                    price.appendChild(priceTag);
+
+                    //create the shoppingCart button
+                    const cart = document.createElement('A');
+                    cart.innerHTML = "Læg i kurv";
+                    cart.setAttribute('href', "#");
+                    cart.style.padding = "5px";
+                    cart.style.backgroundColor = "orange";
+                    cart.style.color = "white";
+                    cart.style.border = "2px solid rgba(34,34,34,1)";
+                    cart.style.borderRadius = "5px";
+
+                    //putting it all together
+
+                    //create inner div's
+                    const div2 = document.createElement('DIV');
+                    const div3 = document.createElement('DIV');
+                    const div1 = document.createElement('DIV');
+
+                    //prepare inner div's
+                    div2.setAttribute('class', "col-xs-12 col-xs-offset-0 col-sm-4 col-sm-offset-4");
+                    div3.setAttribute('class', "col-xs-12 col-xs-offset-0 col-sm-4 col-sm-offset-4");
+                    div1.setAttribute('class', "col-xs-12 col-xs-offset-0 col-sm-4 col-sm-offset-4");
+                    div1.style.padding = "10px";
+                    div2.style.padding = "10px";
+                    div3.style.padding = "10px";
+
+                    //append inner div's
+                    div1.appendChild(img);
+                    div1.appendChild(prodName);;
+                    div2.appendChild(h2);
+                    div2.appendChild(vareNr);
+                    div2.appendChild(descP);
+                    div3.appendChild(lagerStatus);
+                    div3.appendChild(price);
+                    div3.appendChild(cart);
+
+                    //create a row
+                    const row_row_row_your_boat = document.createElement('ROW');
+
+                    //create a wrapper_div
+                    const wrapperDiv = document.createElement('DIV');
+                    wrapperDiv.style.outline = "2px solid black";
+                    wrapperDiv.setAttribute('class', "col-xs-12");
+                    wrapperDiv.style.backgroundColor = "rgba(34,34,34,.5)";
+                    wrapperDiv.style.padding = "10px";
+                    wrapperDiv.style.margin = "10px";
+
+                    //create a wrapperRow
+                    const wrapRow = document.createElement('ROW');
+
+                    //document.getElementById('myDiv').innerHTML += product.Navn + " " + product.Pris + " " + product.vareNr + " " + product.Beskrivelse + " " + product.Lagerstatus + " " + product.billede +  "<br/>";
+
+                    //attach 3 divs to inner row
+                    row_row_row_your_boat.appendChild(div1);
+                    row_row_row_your_boat.appendChild(div2);
+                    row_row_row_your_boat.appendChild(div3);
+
+                    //append inner row to wrapper div
+                    wrapperDiv.appendChild(row_row_row_your_boat);
+
+                    //append wrapper div to wrapper row
+                    wrapRow.appendChild(wrapperDiv);
+
+                    //append wrapper row to actual div
+                    document.getElementById('myDiv').appendChild(wrapRow);
+                    document.getElementById('myDiv').innerHTML += "<br/>";
+
+                    //pray it works like this now
+                })
+            }).catch(function (error) {
+                console.log(error);
+            });
+    }
+
+    const visForForstaerkere = function () {
+        console.log("hello!");
+        fetch('http://localhost:8080/for_forstaerkere')
+            .then(function (result) {
+                return result.json();
+            })
+            .then(function (products) {
+                products.forEach(function (product) {
+                    console.log(product);
+                    //create the image
+                    const img = document.createElement('IMG');
+                    img.setAttribute('src', "../../img/" + product.billede);
+                    img.setAttribute('alt', "produkt billede");
+                    img.setAttribute('class', "col-xs-12");
+
+                    //create the producer
+                    const prod = document.createElement('P');
+                    const prodName = document.createTextNode(product.prod_navn);
+                    prod.appendChild(prodName);
+                    prod.setAttribute('class', "col-xs-12");
+
+                    //create the header
+                    const h2 = document.createElement('H2');
+                    const navn = document.createTextNode(product.Navn);
+                    h2.appendChild(navn);
+
+                    //create the description
+                    const descP = document.createElement('P');
+                    const descNode = document.createTextNode(product.Beskrivelse);
+                    descP.appendChild(descNode);
+
+                    //create the vareNr
+                    const vareNr = document.createElement('p');
+                    const vareNrTxt = document.createTextNode(product.vareNr);
+                    vareNr.appendChild(vareNrTxt);
+
+                    //create the lagerstatus
+                    const lagerStatus = document.createElement('P');
+                    lagerStatus.innerHTML = product.Navn + "er på lager.";
+
+                    //create the price
+                    const price = document.createElement('P');
+                    const priceTag = document.createTextNode(product.Pris);
+                    price.appendChild(priceTag);
+
+                    //create the shoppingCart button
+                    const cart = document.createElement('A');
+                    cart.innerHTML = "Læg i kurv";
+                    cart.setAttribute('href', "#");
+                    cart.style.padding = "5px";
+                    cart.style.backgroundColor = "orange";
+                    cart.style.color = "white";
+                    cart.style.border = "2px solid rgba(34,34,34,1)";
+                    cart.style.borderRadius = "5px";
+
+                    //putting it all together
+
+                    //create inner div's
+                    const div2 = document.createElement('DIV');
+                    const div3 = document.createElement('DIV');
+                    const div1 = document.createElement('DIV');
+
+                    //prepare inner div's
+                    div2.setAttribute('class', "col-xs-12 col-xs-offset-0 col-sm-4 col-sm-offset-4");
+                    div3.setAttribute('class', "col-xs-12 col-xs-offset-0 col-sm-4 col-sm-offset-4");
+                    div1.setAttribute('class', "col-xs-12 col-xs-offset-0 col-sm-4 col-sm-offset-4");
+                    div1.style.padding = "10px";
+                    div2.style.padding = "10px";
+                    div3.style.padding = "10px";
+
+                    //append inner div's
+                    div1.appendChild(img);
+                    div1.appendChild(prodName);;
+                    div2.appendChild(h2);
+                    div2.appendChild(vareNr);
+                    div2.appendChild(descP);
+                    div3.appendChild(lagerStatus);
+                    div3.appendChild(price);
+                    div3.appendChild(cart);
+
+                    //create a row
+                    const row_row_row_your_boat = document.createElement('ROW');
+
+                    //create a wrapper_div
+                    const wrapperDiv = document.createElement('DIV');
+                    wrapperDiv.style.outline = "2px solid black";
+                    wrapperDiv.setAttribute('class', "col-xs-12");
+                    wrapperDiv.style.backgroundColor = "rgba(34,34,34,.5)";
+                    wrapperDiv.style.padding = "10px";
+                    wrapperDiv.style.margin = "10px";
+
+                    //create a wrapperRow
+                    const wrapRow = document.createElement('ROW');
+
+                    //document.getElementById('myDiv').innerHTML += product.Navn + " " + product.Pris + " " + product.vareNr + " " + product.Beskrivelse + " " + product.Lagerstatus + " " + product.billede +  "<br/>";
+
+                    //attach 3 divs to inner row
+                    row_row_row_your_boat.appendChild(div1);
+                    row_row_row_your_boat.appendChild(div2);
+                    row_row_row_your_boat.appendChild(div3);
+
+                    //append inner row to wrapper div
+                    wrapperDiv.appendChild(row_row_row_your_boat);
+
+                    //append wrapper div to wrapper row
+                    wrapRow.appendChild(wrapperDiv);
+
+                    //append wrapper row to actual div
+                    document.getElementById('myDiv').appendChild(wrapRow);
+                    document.getElementById('myDiv').innerHTML += "<br/>";
+
+                    //pray it works like this now
+                })
+            }).catch(function (error) {
+                console.log(error);
+            });
+    }
+
+    const visRoerForstaerkere = function () {
+        console.log("hello!");
+        fetch('http://localhost:8080/roer_forstaerkere')
+            .then(function (result) {
+                return result.json();
+            })
+            .then(function (products) {
+                products.forEach(function (product) {
+                    console.log(product);
+                    //create the image
+                    const img = document.createElement('IMG');
+                    img.setAttribute('src', "../../img/" + product.billede);
+                    img.setAttribute('alt', "produkt billede");
+                    img.setAttribute('class', "col-xs-12");
+
+                    //create the producer
+                    const prod = document.createElement('P');
+                    const prodName = document.createTextNode(product.prod_navn);
+                    prod.appendChild(prodName);
+                    prod.setAttribute('class', "col-xs-12");
+
+                    //create the header
+                    const h2 = document.createElement('H2');
+                    const navn = document.createTextNode(product.Navn);
+                    h2.appendChild(navn);
+
+                    //create the description
+                    const descP = document.createElement('P');
+                    const descNode = document.createTextNode(product.Beskrivelse);
+                    descP.appendChild(descNode);
+
+                    //create the vareNr
+                    const vareNr = document.createElement('p');
+                    const vareNrTxt = document.createTextNode(product.vareNr);
+                    vareNr.appendChild(vareNrTxt);
+
+                    //create the lagerstatus
+                    const lagerStatus = document.createElement('P');
+                    lagerStatus.innerHTML = product.Navn + "er på lager.";
+
+                    //create the price
+                    const price = document.createElement('P');
+                    const priceTag = document.createTextNode(product.Pris);
+                    price.appendChild(priceTag);
+
+                    //create the shoppingCart button
+                    const cart = document.createElement('A');
+                    cart.innerHTML = "Læg i kurv";
+                    cart.setAttribute('href', "#");
+                    cart.style.padding = "5px";
+                    cart.style.backgroundColor = "orange";
+                    cart.style.color = "white";
+                    cart.style.border = "2px solid rgba(34,34,34,1)";
+                    cart.style.borderRadius = "5px";
+
+                    //putting it all together
+
+                    //create inner div's
+                    const div2 = document.createElement('DIV');
+                    const div3 = document.createElement('DIV');
+                    const div1 = document.createElement('DIV');
+
+                    //prepare inner div's
+                    div2.setAttribute('class', "col-xs-12 col-xs-offset-0 col-sm-4 col-sm-offset-4");
+                    div3.setAttribute('class', "col-xs-12 col-xs-offset-0 col-sm-4 col-sm-offset-4");
+                    div1.setAttribute('class', "col-xs-12 col-xs-offset-0 col-sm-4 col-sm-offset-4");
+                    div1.style.padding = "10px";
+                    div2.style.padding = "10px";
+                    div3.style.padding = "10px";
+
+                    //append inner div's
+                    div1.appendChild(img);
+                    div1.appendChild(prodName);;
+                    div2.appendChild(h2);
+                    div2.appendChild(vareNr);
+                    div2.appendChild(descP);
+                    div3.appendChild(lagerStatus);
+                    div3.appendChild(price);
+                    div3.appendChild(cart);
+
+                    //create a row
+                    const row_row_row_your_boat = document.createElement('ROW');
+
+                    //create a wrapper_div
+                    const wrapperDiv = document.createElement('DIV');
+                    wrapperDiv.style.outline = "2px solid black";
+                    wrapperDiv.setAttribute('class', "col-xs-12");
+                    wrapperDiv.style.backgroundColor = "rgba(34,34,34,.5)";
+                    wrapperDiv.style.padding = "10px";
+                    wrapperDiv.style.margin = "10px";
+
+                    //create a wrapperRow
+                    const wrapRow = document.createElement('ROW');
+
+                    //document.getElementById('myDiv').innerHTML += product.Navn + " " + product.Pris + " " + product.vareNr + " " + product.Beskrivelse + " " + product.Lagerstatus + " " + product.billede +  "<br/>";
+
+                    //attach 3 divs to inner row
+                    row_row_row_your_boat.appendChild(div1);
+                    row_row_row_your_boat.appendChild(div2);
+                    row_row_row_your_boat.appendChild(div3);
+
+                    //append inner row to wrapper div
+                    wrapperDiv.appendChild(row_row_row_your_boat);
+
+                    //append wrapper div to wrapper row
+                    wrapRow.appendChild(wrapperDiv);
+
+                    //append wrapper row to actual div
+                    document.getElementById('myDiv').appendChild(wrapRow);
+                    document.getElementById('myDiv').innerHTML += "<br/>";
+
+                    //pray it works like this now
+                })
+            }).catch(function (error) {
+                console.log(error);
+            });
+    }
+
+    const visHoejtalere = function () {
+        console.log("hello!");
+        fetch('http://localhost:8080/hoejtalere')
+            .then(function (result) {
+                return result.json();
+            })
+            .then(function (products) {
+                products.forEach(function (product) {
+                    console.log(product);
+                    //create the image
+                    const img = document.createElement('IMG');
+                    img.setAttribute('src', "../../img/" + product.billede);
+                    img.setAttribute('alt', "produkt billede");
+                    img.setAttribute('class', "col-xs-12");
+
+                    //create the producer
+                    const prod = document.createElement('P');
+                    const prodName = document.createTextNode(product.prod_navn);
+                    prod.appendChild(prodName);
+                    prod.setAttribute('class', "col-xs-12");
+
+                    //create the header
+                    const h2 = document.createElement('H2');
+                    const navn = document.createTextNode(product.Navn);
+                    h2.appendChild(navn);
+
+                    //create the description
+                    const descP = document.createElement('P');
+                    const descNode = document.createTextNode(product.Beskrivelse);
+                    descP.appendChild(descNode);
+
+                    //create the vareNr
+                    const vareNr = document.createElement('p');
+                    const vareNrTxt = document.createTextNode(product.vareNr);
+                    vareNr.appendChild(vareNrTxt);
+
+                    //create the lagerstatus
+                    const lagerStatus = document.createElement('P');
+                    lagerStatus.innerHTML = product.Navn + "er på lager.";
+
+                    //create the price
+                    const price = document.createElement('P');
+                    const priceTag = document.createTextNode(product.Pris);
+                    price.appendChild(priceTag);
+
+                    //create the shoppingCart button
+                    const cart = document.createElement('A');
+                    cart.innerHTML = "Læg i kurv";
+                    cart.setAttribute('href', "#");
+                    cart.style.padding = "5px";
+                    cart.style.backgroundColor = "orange";
+                    cart.style.color = "white";
+                    cart.style.border = "2px solid rgba(34,34,34,1)";
+                    cart.style.borderRadius = "5px";
+
+                    //putting it all together
+
+                    //create inner div's
+                    const div2 = document.createElement('DIV');
+                    const div3 = document.createElement('DIV');
+                    const div1 = document.createElement('DIV');
+
+                    //prepare inner div's
+                    div2.setAttribute('class', "col-xs-12 col-xs-offset-0 col-sm-4 col-sm-offset-4");
+                    div3.setAttribute('class', "col-xs-12 col-xs-offset-0 col-sm-4 col-sm-offset-4");
+                    div1.setAttribute('class', "col-xs-12 col-xs-offset-0 col-sm-4 col-sm-offset-4");
+                    div1.style.padding = "10px";
+                    div2.style.padding = "10px";
+                    div3.style.padding = "10px";
+
+                    //append inner div's
+                    div1.appendChild(img);
+                    div1.appendChild(prodName);;
+                    div2.appendChild(h2);
+                    div2.appendChild(vareNr);
+                    div2.appendChild(descP);
+                    div3.appendChild(lagerStatus);
+                    div3.appendChild(price);
+                    div3.appendChild(cart);
+
+                    //create a row
+                    const row_row_row_your_boat = document.createElement('ROW');
+
+                    //create a wrapper_div
+                    const wrapperDiv = document.createElement('DIV');
+                    wrapperDiv.style.outline = "2px solid black";
+                    wrapperDiv.setAttribute('class', "col-xs-12");
+                    wrapperDiv.style.backgroundColor = "rgba(34,34,34,.5)";
+                    wrapperDiv.style.padding = "10px";
+                    wrapperDiv.style.margin = "10px";
+
+                    //create a wrapperRow
+                    const wrapRow = document.createElement('ROW');
+
+                    //document.getElementById('myDiv').innerHTML += product.Navn + " " + product.Pris + " " + product.vareNr + " " + product.Beskrivelse + " " + product.Lagerstatus + " " + product.billede +  "<br/>";
+
+                    //attach 3 divs to inner row
+                    row_row_row_your_boat.appendChild(div1);
+                    row_row_row_your_boat.appendChild(div2);
+                    row_row_row_your_boat.appendChild(div3);
+
+                    //append inner row to wrapper div
+                    wrapperDiv.appendChild(row_row_row_your_boat);
+
+                    //append wrapper div to wrapper row
+                    wrapRow.appendChild(wrapperDiv);
+
+                    //append wrapper row to actual div
+                    document.getElementById('myDiv').appendChild(wrapRow);
+                    document.getElementById('myDiv').innerHTML += "<br/>";
+
+                    //pray it works like this now
+                })
+            }).catch(function (error) {
+                console.log(error);
+            });
+    }
+
+    const visAlleProdukter = function () {
+        fetch('http://localhost:8080/products')
+            .then(function (result) {
+                return result.json();
+            })
+            .then(function (products) {
+                products.forEach(function (product) {
+                    console.log(product);
+                    //create the image
+                    const img = document.createElement('IMG');
+                    img.setAttribute('src', "../img/" + product.billede);
+                    img.setAttribute('alt', "produkt billede");
+                    img.setAttribute('class', "col-xs-12");
+
+                    //create the producer
+                    const prod = document.createElement('P');
+                    const prodName = document.createTextNode(product.prod_navn);
+                    prod.appendChild(prodName);
+                    prod.setAttribute('class', "col-xs-12");
+
+                    //create the header
+                    const h2 = document.createElement('H2');
+                    const navn = document.createTextNode(product.Navn);
+                    h2.appendChild(navn);
+
+                    //create the description
+                    const descP = document.createElement('P');
+                    const descNode = document.createTextNode(product.Beskrivelse);
+                    descP.appendChild(descNode);
+
+                    //create the vareNr
+                    const vareNr = document.createElement('p');
+                    const vareNrTxt = document.createTextNode(product.vareNr);
+                    vareNr.appendChild(vareNrTxt);
+
+                    //create the lagerstatus
+                    const lagerStatus = document.createElement('P');
+                    lagerStatus.innerHTML = product.Navn + "er på lager.";
+
+                    //create the price
+                    const price = document.createElement('P');
+                    const priceTag = document.createTextNode(product.Pris);
+                    price.appendChild(priceTag);
+
+                    //create the shoppingCart button
+                    const cart = document.createElement('A');
+                    cart.innerHTML = "Læg i kurv";
+                    cart.setAttribute('href', "#");
+                    cart.style.padding = "5px";
+                    cart.style.backgroundColor = "orange";
+                    cart.style.color = "white";
+                    cart.style.border = "2px solid rgba(34,34,34,1)";
+                    cart.style.borderRadius = "5px";
+
+                    //putting it all together
+
+                    //create inner div's
+                    const div2 = document.createElement('DIV');
+                    const div3 = document.createElement('DIV');
+                    const div1 = document.createElement('DIV');
+
+                    //prepare inner div's
+                    div2.setAttribute('class', "col-xs-12 col-xs-offset-0 col-sm-4 col-sm-offset-4");
+                    div3.setAttribute('class', "col-xs-12 col-xs-offset-0 col-sm-6 col-sm-offset-3");
+                    div1.setAttribute('class', "col-xs-12 col-xs-offset-0 col-sm-2 col-sm-offset-5");
+                    div1.style.padding = "10px";
+                    div2.style.padding = "10px";
+                    div3.style.padding = "10px";
+
+                    //append inner div's
+                    div1.appendChild(img);
+                    div1.appendChild(prodName);;
+                    div2.appendChild(h2);
+                    div2.appendChild(vareNr);
+                    div2.appendChild(descP);
+                    div3.appendChild(lagerStatus);
+                    div3.appendChild(price);
+                    div3.appendChild(cart);
+
+                    //create a row
+                    const row_row_row_your_boat = document.createElement('ROW');
+
+                    //create a wrapper_div
+                    const wrapperDiv = document.createElement('DIV');
+                    wrapperDiv.style.outline = "2px solid black";
+                    wrapperDiv.setAttribute('class', "col-xs-12");
+                    wrapperDiv.style.backgroundColor = "rgba(34,34,34,.5)";
+                    wrapperDiv.style.padding = "10px";
+                    wrapperDiv.style.margin = "10px";
+
+                    //create a wrapperRow
+                    const wrapRow = document.createElement('ROW');
+
+                    //document.getElementById('myDiv').innerHTML += product.Navn + " " + product.Pris + " " + product.vareNr + " " + product.Beskrivelse + " " + product.Lagerstatus + " " + product.billede +  "<br/>";
+
+                    //attach 3 divs to inner row
+                    row_row_row_your_boat.appendChild(div1);
+                    row_row_row_your_boat.appendChild(div2);
+                    row_row_row_your_boat.appendChild(div3);
+
+                    //append inner row to wrapper div
+                    wrapperDiv.appendChild(row_row_row_your_boat);
+
+                    //append wrapper div to wrapper row
+                    wrapRow.appendChild(wrapperDiv);
+
+                    //append wrapper row to actual div
+                    document.getElementById('myDiv').appendChild(wrapRow);
+                    document.getElementById('myDiv').innerHTML += "<br/>";
+
+                    //pray it works like this now
+                })
+            }).catch(function (error) {
+                console.log(error);
+            });
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        if (window.location.href == "http://localhost:3000/index.html") {
+            fyldForside();
+        }
+        if (window.location.href == "http://localhost:3000/sub/forstaerkere/effekt_forstaerkere.html") {
+            visEffektForstaerkere();
+        }
+        if (window.location.href == "http://localhost:3000/sub/forstaerkere/for_forstaerkere.html") {
+            visForForstaerkere();
+        }
+        if (window.location.href == "http://localhost:3000/sub/forstaerkere/interne_forstaerkere.html") {
+            visInterneForstaerkere();
+        }
+        if (window.location.href == "http://localhost:3000/sub/forstaerkere/roer_forstaerkere.html") {
+            visRoerForstaerkere();
+        }
+        if (window.location.href == "http://localhost:3000/sub/afspillere/cd_afspillere.html") {
+            visCDAfspillere();
+        }
+        if (window.location.href == "http://localhost:3000/sub/afspillere/dvd_afspillere.html") {
+            visDVDAfspillere();
+        }
+        if (window.location.href == "http://localhost:3000/sub/afspillere/plade_afspillere.html") {
+            visPladeAfspillere();
+        }
+        if (window.location.href == "http://localhost:3000/sub/hoejtalere/hoejtalere.html") {
+            visHoejtalere();
+        }
+        if (window.location.href == "http://localhost:3000/sub/products.html") {
+            visAlleProdukter();
+        }
+        console.log(window.location.href);
+        // visAlleProdukter();
+        // visRoerForstaerkere();
+    });
+})();

@@ -1,0 +1,72 @@
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.2/css/font-awesome.css" rel="stylesheet">
+<link href="style.css" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+
+
+
+<div class="container">
+<!-- navbar -->
+<nav class="navbar navbar-default" role="navigation">
+<!-- Brand and toggle get grouped for better mobile display -->
+<div class="navbar-header">
+<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+  <span class="sr-only">Toggle navigation</span>
+  <span class="icon-bar"></span>
+  <span class="icon-bar"></span>
+  <span class="icon-bar"></span>
+</button>
+<a class="navbar-brand" href="/cs"><i class="fa fa-home"></i></a>
+</div>
+
+<!-- Collect the nav links, forms, and other content for toggling -->
+<div class="collapse navbar-collapse navbar-ex1-collapse">
+  <ul class="nav navbar-nav navbar-right"><li><a href="/cs/novinky/co-se-deje">Co se děje</a></li><li class="dropdown selected"><a href="/#" class="dropdown-toggle" data-toggle="dropdown">Historie <i class="fa fa-caret-right"></i></a><ul class="dropdown-menu"><li><a href="/cs/strucna-historie-casu">Stručná historie času</a></li><li class="selected"><a href="/cs/english-summary">English summary</a></li><li><a href="/cs/historie-1962-1987">1962 - 1987</a></li><li><a href="/cs/historie-1988-1992">1988 - 1992</a></li><li><a href="/cs/historie-1992-1996">1992 - 1996</a></li><li><a href="/cs/historie-1997-2002">1997 - 2002</a></li><li><a href="/cs/historie-2003-2005">2003 - 2005</a></li><li><a href="/cs/historie-2006-2008">2006 - 2008</a></li><li><a href="/cs/historie-2009-2011">2009 - 2011</a></li><li><a href="/cs/historie-2012">2012</a></li></ul></li><li><a href="/cs/akce/koncerty">Koncerty</a></li><li class="dropdown"><a href="/#" class="dropdown-toggle" data-toggle="dropdown">Diskografie <i class="fa fa-caret-right"></i></a><ul class="dropdown-menu"><li><a href="/cs/diskografie/desky-cd-lp">Desky (CD &amp; LP)</a></li><li><a href="/cs/diskografie/demo">Demo</a></li><li><a href="/cs/samplery">Samplery</a></li><li><a href="/cs/film-video">Film &amp; Video</a></li></ul></li><li class="dropdown"><a href="/#" class="dropdown-toggle" data-toggle="dropdown">Texty <i class="fa fa-caret-right"></i></a><ul class="dropdown-menu"><li><a href="/cs/destructive-tour">Destructive Tour</a></li><li><a href="/cs/brain-investigator">Brain Investigator</a></li><li><a href="/cs/cornered-animal">Cornered Animal</a></li><li><a href="/cs/the-guide-to-the-wild-years">The Guide To The Wild Years</a></li><li><a href="/cs/the-mirror-the-mask">The Mirror &amp; The Mask</a></li><li><a href="/cs/psychorama">Psychorama</a></li><li><a href="/cs/ragetime">Rag[e]time</a></li><li><a href="/cs/ostatni-texty">Ostatní texty</a></li><li><a href="/cs/totalne-nasrot-doplnky">Totálně našrot (doplňky)</a></li></ul></li><li class="dropdown"><a href="/#" class="dropdown-toggle" data-toggle="dropdown">Media <i class="fa fa-caret-right"></i></a><ul class="dropdown-menu"><li><a href="/cs/video">Video</a></li><li><a href="/cs/media/z-tisku-aj-tlace">Z tisku aj tlače</a></li><li><a href="/cs/media/rozhovory">Rozhovory</a></li><li><a href="/cs/media/recenze">Recenze</a></li><li><a href="/cs/media/bonbonky">Bonbónky</a></li><li><a href="/cs/download/mp3-ke-stazeni">MP3</a><ul class="dropdown-menu"></ul></li><li class="dropdown-submenu closed"><a href="/#" class="dropdown-toggle" data-toggle="dropdown">Fotogalerie <i class="fa fa-caret-right"></i></a><ul class="dropdown-menu"><li><a href="/cs/photo/1983-1992">1983 - 1992</a></li><li><a href="/cs/photo/1993-1999">1993 - 1999</a></li><li><a href="/cs/photo/1999-2008">1999 - 2008</a></li><li><a href="/cs/photo/2009-2011">2009 - 2011</a></li><li><a href="/cs/photo/ostatni">Ostatní</a></li></ul></li></ul></li><li><a href="/cs/online/guestbook">Guestbook</a></li><li><a href="/cs/e-shop/eshop">E-shop</a><ul class="dropdown-menu"><li><a href="/cs/jak-nakupovat">Jak nakupovat</a></li></ul></li><li><a href="/cs/form/kontakt">Kontakt</a><ul class="dropdown-menu"><li><a href="/cs/linky">Linky</a></li></ul></li></ul>
+</div><!-- /.navbar-collapse -->
+</nav><!-- /.navbar -->
+</div>
+
+<script>
+/*
+* @package: Bootstrap Multilevel Navbar fix
+* @version: 1.0.0
+* @author: Edi Amin (aka CloudDesigner)
+* @email: to.ediamin@gmail.com
+* @date: Dec 19,2012
+* @desc: Tested with Bootstrap v2.2.2 and 2.2.2
+* @license Licensed under the Apache License v2.0
+*/
+
+(function($) {
+$('body').on('click', function(e) {
+$('.dropdown-submenu').removeClass('open').addClass('closed');
+
+});
+
+$('.dropdown-submenu').on('click', function(e) {
+e.stopPropagation();
+
+$this=$(this);
+parent=$this.parent().parent();
+
+if ( $(e.target).parent().hasClass('dropdown-submenu') ) {
+e.preventDefault();
+}
+
+
+if($this.hasClass('open')) {
+$this.removeClass('open').addClass('closed')
+} else if(parent.hasClass('open')) {
+if($this.hasClass('closed')) {
+$this.removeClass('closed').addClass('open');
+}
+}
+});
+})(jQuery)
+
+</script>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
