@@ -11,6 +11,8 @@
         }
     };
 
+    
+
     const fyldForside = function () {
         console.log("hello forside!");
         fetch('http://localhost:8080/index')

@@ -12,7 +12,7 @@ body {
 .pop_article {
     color: rgba(34, 34, 34, 1);
     outline: 3px solid rgba(34, 34, 34, 1);
-    background-color: rgba(34, 34, 34, 0.3);
+    background-color: rgba(34, 34, 34, 0.77);
     padding: 20px;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -139,12 +139,11 @@ body {
     border-radius: 10px;
 }
 
-input[type=text] {
-    position: fixed;
-    z-index: 500;
-    margin-top: 50px;
-}
-
 .carousel-caption h1, .carousel-caption a {
     font-size: 125%;
+}
+
+#one, #two, #three, #four {
+    height: 50px;
+    width: 50px;
 }

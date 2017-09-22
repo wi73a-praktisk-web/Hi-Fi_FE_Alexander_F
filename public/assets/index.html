@@ -27,6 +27,14 @@
                       <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="index.html">Hi-Fi</a>
+                    <form id="search_form" class="navbar-form pull-left" role="search">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search">
+                            <div class="input-group-btn">
+                                <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
@@ -51,7 +59,6 @@
                                 <li class="dropdown-submenu open">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
                                         Afspillere
-                                        <b class="caret"></b>
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li>
@@ -70,7 +77,6 @@
                                 </li>
                                 <li class="dropdown-submenu closed">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Forstærkere
-                                        <b class="caret"></b>
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li>
@@ -104,11 +110,6 @@
     </header>
     <main class="container">
         <row>
-            <div class="col-xs-12">
-                <input id="searchbar" type="text" placeholder="Search..." />
-            </div>
-        </row>
-        <row>
             <div id="myCarousel" class="carousel slide col-xs-10 col-xs-offset-1" data-ride="carousel">
                 <ol class="carousel-indicators">
                     <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -117,7 +118,7 @@
                 </ol>
                 <div class="carousel-inner" role="listbox">
                     <div class="item active">
-                        <img class="first-slide" alt="First slide"/>
+                        <img class="first-slide" alt="First slide" />
                         <div class="container">
                             <div class="carousel-caption">
                                 <h1 id="firstH">Example headline.</h1>
@@ -130,7 +131,7 @@
                         </div>
                     </div>
                     <div class="item">
-                        <img class="second-slide"alt="Second slide">
+                        <img class="second-slide" alt="Second slide">
                         <div class="container">
                             <div class="carousel-caption">
                                 <h1 id="secondH">Another example headline.</h1>
@@ -167,7 +168,7 @@
         <row>
             <div class="pop_article col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1 col-md-4 col-md-offset-2">
                 <div class="col-xs-2">
-                    <img id="one" src="img/cd_afspillere/creek_classic_cd.jpg" />
+                    <img id="one" class="img-responsive" src="img/cd_afspillere/creek_classic_cd.jpg" />
                 </div>
                 <div class="col-xs-6">
                     <h4 id="firstH4" class="col-xs-12">Creek Classic CD Afspiller</h4>
@@ -184,7 +185,7 @@
 
             <div class="pop_article col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-0 col-sm-offset-right-1 col-md-4 col-md-offset-right-2">
                 <div class="col-xs-2">
-                    <img  id="two" src="img/cd_afspillere/creek_classic_cd.jpg" />
+                    <img id="two" class="img-responsive" src="img/cd_afspillere/creek_classic_cd.jpg" />
                 </div>
                 <div class="col-xs-6">
                     <h4 id="secondH4" class="col-xs-12">Creek Classic CD Afspiller</h4>
@@ -201,7 +202,7 @@
 
             <div class="pop_article col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1 col-md-4 col-md-offset-2">
                 <div class="col-xs-2">
-                    <img  id="three" src="img/cd_afspillere/creek_classic_cd.jpg" />
+                    <img id="three" class="img-responsive" src="img/cd_afspillere/creek_classic_cd.jpg" />
                 </div>
                 <div class="col-xs-6">
                     <h4 id="thirdH4" class="col-xs-12">Creek Classic CD Afspiller</h4>
@@ -218,7 +219,7 @@
 
             <div class="pop_article col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-0 col-sm-offset-right-1 col-md-4 col-md-offset-right-2">
                 <div class="col-xs-2">
-                    <img id="four" src="img/cd_afspillere/creek_classic_cd.jpg" />
+                    <img id="four" class="img-responsive" src="img/cd_afspillere/creek_classic_cd.jpg" />
                 </div>
                 <div class="col-xs-6">
                     <h4 id="fourthH4" class="col-xs-12">Creek Classic CD Afspiller</h4>
