@@ -147,3 +147,7 @@
 	 flex-direction: row;
 	 align-items: baseline;
  }
+
+ .input-group {
+	 width: 100%;
+ }

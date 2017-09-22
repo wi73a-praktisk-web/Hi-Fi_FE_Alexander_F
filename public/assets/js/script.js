@@ -1,14 +1,3 @@
-window.onscroll = function() {toggleSearchbar()};
-
-function toggleSearchbar() {
-    console.log("called");
-    if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-        document.getElementById("searchbar").style.display = "block";
-    } else {
-        document.getElementById("searchbar").style.display = "none";
-    }
-}
-
     /*
      * @package: Bootstrap Multilevel Navbar fix
      * @version: 1.0.0
