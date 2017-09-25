@@ -157,4 +157,6 @@ body {
     width: 75%;
     margin-right: 0;
     padding-right: 0;
+    max-height: 80vh;
+    overflow-y: auto;
 }
