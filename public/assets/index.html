@@ -131,7 +131,7 @@
                                     Glyphicon buttons on the left and right might not load/display properly due to web browser
                                     security rules.
                                 </p>
-                                <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
+                                <p><a class="btn btn-lg btn-primary" href="#" role="button">Læs mere</a></p>
                             </div>
                         </div>
                     </div>
@@ -143,7 +143,7 @@
                                 <p id="secondP">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida
                                     at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
                                 </p>
-                                <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+                                <p><a class="btn btn-lg btn-primary" href="#" role="button">Læs mere</a></p>
                             </div>
                         </div>
                     </div>
@@ -155,7 +155,7 @@
                                 <p id="thirdP">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida
                                     at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
                                 </p>
-                                <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+                                <p><a class="btn btn-lg btn-primary" href="#" role="button">Læs mere</a></p>
                             </div>
                         </div>
                     </div>
@@ -171,6 +171,7 @@
             </div>
         </row>
         <row>
+            <h1>Populære produkter</h1>
             <div class="pop_article col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1 col-md-4 col-md-offset-2">
                 <div class="col-xs-2">
                     <img id="one" class="img-responsive" src="img/cd_afspillere/creek_classic_cd.jpg" />
@@ -241,6 +242,9 @@
         <row>
             <div id="special_offer" class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2">
                 <row>
+                    <div class="col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1 col-md-4 col-md-offset-2">
+                        <h1>Special Tilbud</h1>
+                    </div>
                     <div class="col-xs-12">
                         <img id="offer" src="img/cd_afspillere/creek_Destiny_CD.jpg" alt="advertisement_picture" class="img-responsive">
                     </div>
@@ -283,7 +287,7 @@
             </div>
         </row>
         <row id="footer">
-            <div id="contact_info" class="col-xs-10 col-xs-offset-1">
+            <div id="contact_info" class="col-xs-12">
                 <row>
                     <div class="col-xs-12 col-sm-4">
                         <p>
@@ -304,14 +308,26 @@
                         </p>
                     </div>
                     <div class="col-xs-12">
-                        <button id="contact_button" type="button" onclick="window.open('forms/kontaktform.html', '_blank', 'height=500', 'width=200')">Kontakt os</button>
+                        <row>
+                            <div class"col-xs-12">
+                                <button id="contact_button">Kontakt os</button>
+                            </div>
+                                <br/>
+                            <div id="contact_form" class="col-xs-12">
+                                <input type="text" id="name" placeholder="Name"><br> 
+                                <input type="text" id="subject" placeholder="Subject"><br> 
+                                <input type="text" id="email" placeholder="E-mail adress"><br> 
+                                <input type="text" id="message" placeholder="Message"><br>
+                                <button id="send">Send</button>
+                            </div>
+                        </row>
                     </div>
                     <div class="col-xs-12">
                         <hr/>
                     </div>
                 </row>
             </div>
-            <div id="social_media" class="col-xs-10 col-xs-offset-1">
+            <div id="social_media" class="col-xs-12">
                 <row>
                     <div class="col-xs-12  col-sm-6 col-md-4 ">
                         <a>
@@ -340,7 +356,7 @@
                     </div>
                 </row>
             </div>
-            <div id="tm" class="col-xs-10 col-xs-offset-1">
+            <div id="tm" class="col-xs-12">
                 <hr/>
                 <i class="fa fa-copyright" aria-hidden="true"> Copyright Hi-Fi Klubben 2002
                     <i class="fa fa-trademark" aria-hidden="true"></i>
@@ -351,8 +367,8 @@
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="./js/script.js"></script> />
-    <script src="./js/products.js"></script> />
+    <script src="./js/script.js"></script>
+    <script src="./js/products.js"></script>
     <script src="./js/search_script.js"></script>
 </body>
 

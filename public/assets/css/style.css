@@ -79,7 +79,6 @@ body {
 }
 
 #social_media div {
-    margin: 5px;
     font-size: 75%;
     width: auto;
 }
@@ -93,6 +92,7 @@ body {
     padding-bottom: 20px;
     font-size: 75%;
 }
+
 
 #footer div {
     background-color: rgba(34,34,34,1);
@@ -138,10 +138,11 @@ body {
 }
 
 #contact_button {
+    width: 200px;
     padding: 5px;
-    width: 150px;
     background-color: orange;
     border-radius: 10px;
+    text-decoration: none;
 }
 
 .carousel-caption h1, .carousel-caption a {
@@ -159,4 +160,20 @@ body {
     padding-right: 0;
     max-height: 80vh;
     overflow-y: auto;
+}
+
+input[type=text] {
+    width: 250px;
+    border: 2px solid orange;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    color: black;
+}
+
+input[type=text]:focus {
+    border: 2px solid rgb(67, 231, 240);
+}
+
+#contact_form {
+    display: none;
 }
