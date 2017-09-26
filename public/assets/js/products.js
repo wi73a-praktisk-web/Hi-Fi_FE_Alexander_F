@@ -1487,10 +1487,11 @@ $("#contact_button").click(function () {
 document.querySelector('#send').addEventListener('click', (event) => {
     console.log('event ok');
     event.preventDefault();
-    let name = document.querySelector('#name').value;
-    let subject = document.querySelector('#subject').value;
-    let email = document.querySelector('#email').value;
-    let message = document.querySelector('#message').value;
+    let name = document.querySelector('#name').value.toString();
+    let subject = document.querySelector('#subject').value.toString();
+    let email = document.querySelector('#email').value.toString();
+    let message = document.querySelector('#message').value.toString();
+    
 
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
@@ -1498,12 +1499,12 @@ document.querySelector('#send').addEventListener('click', (event) => {
     let init = {
         method: 'POST',
         headers: headers,
-        body: `{"navn":"${name}","type":"${subject}","pris":"${email}","billede":"${message}" }`,
+        body: `{"name":"${name}","subject":"${subject}","email":"${email}","message":"${message}" }`,
         cache: 'no-cache',
         mode: 'cors'
     };
 
-    let request = new Request('http://localhost:1337/create', init);
+    let request = new Request('http://localhost:8080/create', init);
 
     fetch(request)
         .then(response => { console.log(response) }).catch(err => { console.log(err) });
