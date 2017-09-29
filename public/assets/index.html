@@ -38,9 +38,10 @@
 
                         </ul>
                     </form>
+
                 </div>
                 <div id="navbar" class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav">
+                    <ul id="myList" class="nav navbar-nav">
                         <li>
                             <a href="index.html"> 
                                 <span class="glyphicon glyphicon-home" >
@@ -107,6 +108,12 @@
                                     </a>
                                 </li>
                             </ul>
+                        </li>
+                        <li>
+                            <a id="log_in" href="sub/log_in.html"> 
+                                <span class="glyphicon glyphicon-user" >
+                                </span> Log in
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -309,16 +316,18 @@
                     </div>
                     <div class="col-xs-12">
                         <row>
-                            <div class"col-xs-12">
+                            <div class "col-xs-12">
                                 <button id="contact_button">Kontakt os</button>
                             </div>
-                                <br/>
+                            <br/>
                             <div id="contact_form" class="col-xs-12">
-                                <input type="text" id="name" placeholder="Name"><br> 
-                                <input type="text" id="subject" placeholder="Subject"><br> 
-                                <input type="text" id="email" placeholder="E-mail adress"><br> 
-                                <input type="text" id="message" placeholder="Message"><br>
-                                <button id="send">Send</button>
+                                <form>
+                                    <input type="text" id="name" placeholder="Name"><br>
+                                    <input type="text" id="subject" placeholder="Subject"><br>
+                                    <input type="email"id="email" placeholder="E-mail adress" required><br>
+                                    <input type="text" id="message" maxlength="1000" placeholder="Message"><br>
+                                    <button id="send">Send</button>
+                                </form>
                             </div>
                         </row>
                     </div>

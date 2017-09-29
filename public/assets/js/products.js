@@ -1487,11 +1487,23 @@ $("#contact_button").click(function () {
 document.querySelector('#send').addEventListener('click', (event) => {
     console.log('event ok');
     event.preventDefault();
-    let name = document.querySelector('#name').value.toString();
+    for (let i = 0; i < document.querySelector('name').value.length; i++) {
+        if (/^[A-Za-z\s]+$/.test(document.querySelector('name').value)) {
+            let name = document.querySelector('#name').value.toString();
+        }
+        else {
+            alert("Input contains illegal characters, please try again");
+        }
+    }
     let subject = document.querySelector('#subject').value.toString();
     let email = document.querySelector('#email').value.toString();
-    let message = document.querySelector('#message').value.toString();
-    
+    if(document.querySelector('#message').value.length <= 1000) {
+        let message = document.querySelector('#message').value.toString();
+    }
+    else {
+        alert("message is too long, maximum of thousand characters");
+    }
+
 
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
@@ -1507,6 +1519,10 @@ document.querySelector('#send').addEventListener('click', (event) => {
     let request = new Request('http://localhost:8080/create', init);
 
     fetch(request)
-        .then(response => { console.log(response) }).catch(err => { console.log(err) });
+        .then(response => {
+            console.log(response)
+        }).catch(err => {
+            console.log(err)
+        });
 
 });
