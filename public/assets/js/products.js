@@ -123,6 +123,7 @@
 
                         // make the product click-able by putting it into an anchor
                         const a = document.createElement('A');
+                        a.setAttribute('href', "../products.html?search=" + product.vareNr);
                         a.appendChild(wrapRow);
 
                         //append wrapper row to actual div
@@ -261,6 +262,7 @@
 
                         // make the product click-able by putting it into an anchor
                         const a = document.createElement('A');
+                        a.setAttribute('href', "../products.html?search=" + product.vareNr);
                         a.appendChild(outerRow);
 
                         //append wrapper row to actual div
@@ -479,6 +481,7 @@
 
                     // make the product click-able by putting it into an anchor
                     const a = document.createElement('A');
+                    a.setAttribute('href', "../products.html?search=" + product.vareNr);
                     a.appendChild(wrapRow);
 
                     //append wrapper row to actual div
@@ -601,6 +604,7 @@
 
                     // make the product click-able by putting it into an anchor
                     const a = document.createElement('A');
+                    a.setAttribute('href', "../products.html?search=" + product.vareNr);
                     a.appendChild(wrapRow);
 
                     //append wrapper row to actual div
@@ -723,6 +727,7 @@
 
                     // make the product click-able by putting it into an anchor
                     const a = document.createElement('A');
+                    a.setAttribute('href', "../products.html?search=" + product.vareNr);
                     a.appendChild(wrapRow);
 
                     //append wrapper row to actual div
@@ -845,6 +850,7 @@
 
                     // make the product click-able by putting it into an anchor
                     const a = document.createElement('A');
+                    a.setAttribute('href', "../products.html?search=" + product.vareNr);
                     a.appendChild(wrapRow);
 
                     //append wrapper row to actual div
@@ -967,6 +973,7 @@
 
                     // make the product click-able by putting it into an anchor
                     const a = document.createElement('A');
+                    a.setAttribute('href', "../products.html?search=" + product.vareNr);
                     a.appendChild(wrapRow);
 
                     //append wrapper row to actual div
@@ -1089,6 +1096,7 @@
 
                     // make the product click-able by putting it into an anchor
                     const a = document.createElement('A');
+                    a.setAttribute('href', "../products.html?search=" + product.vareNr);
                     a.appendChild(wrapRow);
 
                     //append wrapper row to actual div
@@ -1211,6 +1219,7 @@
 
                     // make the product click-able by putting it into an anchor
                     const a = document.createElement('A');
+                    a.setAttribute('href', "../products.html?search=" + product.vareNr);
                     a.appendChild(wrapRow);
 
                     //append wrapper row to actual div
@@ -1333,6 +1342,7 @@
 
                     // make the product click-able by putting it into an anchor
                     const a = document.createElement('A');
+                    a.setAttribute('href', "../products.html?search=" + product.vareNr);
                     a.appendChild(wrapRow);
 
                     //append wrapper row to actual div
@@ -1454,6 +1464,7 @@
 
                     // make the product click-able by putting it into an anchor
                     const a = document.createElement('A');
+                    a.setAttribute('href', "../products.html?search=" + product.vareNr);
                     a.appendChild(wrapRow);
 
                     //append wrapper row to actual div
