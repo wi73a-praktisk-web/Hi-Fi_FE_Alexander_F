@@ -1,4 +1,22 @@
 document.addEventListener('DOMContentLoaded', function () {
+    var container, inputs;
+
+    container = document.querySelector('.registry_form');
+    inputs = container.querySelectorAll('input');
+    console.log(inputs);
+    for (let index = 0; index < inputs.length; index++) {
+
+        inputs[index].addEventListener("blur", event => {
+            if (!event.target.checkValidity()) {
+                event.target.setCustomValidity('Please fill out this field');
+                /* event.target.focus(); */
+                document.getElementById('register_btn').click();
+            }
+        })
+        inputs[index].addEventListener("focus", event => {
+                document.querySelector('.registry_form').reportValidity();
+        })
+    }
     var lacking;
 
     document.querySelector('#rep_password').addEventListener('keyup', (event) => {
@@ -41,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    document.querySelector('#register_btn').addEventListener('click', (event) => {
+    document.querySelector('#register_btn').addEventListener("click", (event) => {
 
         // 1. get values 
         // 2. validate values on client side
@@ -51,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // 6. based on response, break and throw error or redirect to login page
 
         event.preventDefault();
-        if (lacking) {
+        if (lacking || !document.querySelector(".registry_form").reportValidity()) {
 
         } else {
             let name = document.querySelector('#name').value.toString();
@@ -83,8 +101,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
             fetch(request)
                 .then(response => {
-                    return response.json();
                     console.log(response);
+                    return response.json();
                 })
                 .then(result => {
                     console.log("result = " + result[0]);
@@ -95,9 +113,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 }).catch(err => {
                     console.log(err)
                 });
-
-
-
         }
     })
 })

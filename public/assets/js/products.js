@@ -121,8 +121,12 @@
                         //append wrapper div to wrapper row
                         wrapRow.appendChild(wrapperDiv);
 
+                        // make the product click-able by putting it into an anchor
+                        const a = document.createElement('A');
+                        a.appendChild(wrapRow);
+
                         //append wrapper row to actual div
-                        document.getElementById('myDiv').appendChild(wrapRow);
+                        document.getElementById('myDiv').appendChild(a);
                         document.getElementById('myDiv').innerHTML += "<br/>";
                     }
                 })
@@ -255,7 +259,12 @@
                         const outerRow = document.createElement('ROW');
                         outerRow.appendChild(innerDiv);
 
-                        li.appendChild(outerRow);
+                        // make the product click-able by putting it into an anchor
+                        const a = document.createElement('A');
+                        a.appendChild(outerRow);
+
+                        //append wrapper row to actual div
+                        li.appendChild(a);
                         ul.appendChild(li);
                         ul.innerHTML += "<br/>";
                         // console.log(ul);
@@ -468,8 +477,12 @@
                     //append wrapper div to wrapper row
                     wrapRow.appendChild(wrapperDiv);
 
+                    // make the product click-able by putting it into an anchor
+                    const a = document.createElement('A');
+                    a.appendChild(wrapRow);
+
                     //append wrapper row to actual div
-                    document.getElementById('myDiv').appendChild(wrapRow);
+                    document.getElementById('myDiv').appendChild(a);
                     document.getElementById('myDiv').innerHTML += "<br/>";
 
                     //pray it works like this now
@@ -586,8 +599,12 @@
                     //append wrapper div to wrapper row
                     wrapRow.appendChild(wrapperDiv);
 
+                    // make the product click-able by putting it into an anchor
+                    const a = document.createElement('A');
+                    a.appendChild(wrapRow);
+
                     //append wrapper row to actual div
-                    document.getElementById('myDiv').appendChild(wrapRow);
+                    document.getElementById('myDiv').appendChild(a);
                     document.getElementById('myDiv').innerHTML += "<br/>";
 
                     //pray it works like this now
@@ -704,8 +721,12 @@
                     //append wrapper div to wrapper row
                     wrapRow.appendChild(wrapperDiv);
 
+                    // make the product click-able by putting it into an anchor
+                    const a = document.createElement('A');
+                    a.appendChild(wrapRow);
+
                     //append wrapper row to actual div
-                    document.getElementById('myDiv').appendChild(wrapRow);
+                    document.getElementById('myDiv').appendChild(a);
                     document.getElementById('myDiv').innerHTML += "<br/>";
 
                     //pray it works like this now
@@ -822,8 +843,12 @@
                     //append wrapper div to wrapper row
                     wrapRow.appendChild(wrapperDiv);
 
+                    // make the product click-able by putting it into an anchor
+                    const a = document.createElement('A');
+                    a.appendChild(wrapRow);
+
                     //append wrapper row to actual div
-                    document.getElementById('myDiv').appendChild(wrapRow);
+                    document.getElementById('myDiv').appendChild(a);
                     document.getElementById('myDiv').innerHTML += "<br/>";
 
                     //pray it works like this now
@@ -940,8 +965,12 @@
                     //append wrapper div to wrapper row
                     wrapRow.appendChild(wrapperDiv);
 
+                    // make the product click-able by putting it into an anchor
+                    const a = document.createElement('A');
+                    a.appendChild(wrapRow);
+
                     //append wrapper row to actual div
-                    document.getElementById('myDiv').appendChild(wrapRow);
+                    document.getElementById('myDiv').appendChild(a);
                     document.getElementById('myDiv').innerHTML += "<br/>";
 
                     //pray it works like this now
@@ -1058,8 +1087,12 @@
                     //append wrapper div to wrapper row
                     wrapRow.appendChild(wrapperDiv);
 
+                    // make the product click-able by putting it into an anchor
+                    const a = document.createElement('A');
+                    a.appendChild(wrapRow);
+
                     //append wrapper row to actual div
-                    document.getElementById('myDiv').appendChild(wrapRow);
+                    document.getElementById('myDiv').appendChild(a);
                     document.getElementById('myDiv').innerHTML += "<br/>";
 
                     //pray it works like this now
@@ -1176,8 +1209,12 @@
                     //append wrapper div to wrapper row
                     wrapRow.appendChild(wrapperDiv);
 
+                    // make the product click-able by putting it into an anchor
+                    const a = document.createElement('A');
+                    a.appendChild(wrapRow);
+
                     //append wrapper row to actual div
-                    document.getElementById('myDiv').appendChild(wrapRow);
+                    document.getElementById('myDiv').appendChild(a);
                     document.getElementById('myDiv').innerHTML += "<br/>";
 
                     //pray it works like this now
@@ -1294,8 +1331,12 @@
                     //append wrapper div to wrapper row
                     wrapRow.appendChild(wrapperDiv);
 
+                    // make the product click-able by putting it into an anchor
+                    const a = document.createElement('A');
+                    a.appendChild(wrapRow);
+
                     //append wrapper row to actual div
-                    document.getElementById('myDiv').appendChild(wrapRow);
+                    document.getElementById('myDiv').appendChild(a);
                     document.getElementById('myDiv').innerHTML += "<br/>";
 
                     //pray it works like this now
@@ -1411,8 +1452,12 @@
                     //append wrapper div to wrapper row
                     wrapRow.appendChild(wrapperDiv);
 
+                    // make the product click-able by putting it into an anchor
+                    const a = document.createElement('A');
+                    a.appendChild(wrapRow);
+
                     //append wrapper row to actual div
-                    document.getElementById('myDiv').appendChild(wrapRow);
+                    document.getElementById('myDiv').appendChild(a);
                     document.getElementById('myDiv').innerHTML += "<br/>";
 
                     //pray it works like this now
@@ -1490,17 +1535,15 @@ document.querySelector('#send').addEventListener('click', (event) => {
     for (let i = 0; i < document.querySelector('name').value.length; i++) {
         if (/^[A-Za-z\s]+$/.test(document.querySelector('name').value)) {
             let name = document.querySelector('#name').value.toString();
-        }
-        else {
+        } else {
             alert("Input contains illegal characters, please try again");
         }
     }
     let subject = document.querySelector('#subject').value.toString();
     let email = document.querySelector('#email').value.toString();
-    if(document.querySelector('#message').value.length <= 1000) {
+    if (document.querySelector('#message').value.length <= 1000) {
         let message = document.querySelector('#message').value.toString();
-    }
-    else {
+    } else {
         alert("message is too long, maximum of thousand characters");
     }
 
