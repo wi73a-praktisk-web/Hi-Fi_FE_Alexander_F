@@ -1,24 +1,39 @@
+
 document.addEventListener('DOMContentLoaded', function () {
+    document.querySelector('#image').addEventListener("change", function () {
+        var reader = new FileReader();
+        let file = document.querySelector('#image').files[0];
+    
+        reader.addEventListener("load", function () {
+            document.querySelector('#preview').src = reader.result;
+            localStorage.setItem("imgData", reader.result);
+        }, false);
+    
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    
+        console.log(file);
+    })
+    
     document.querySelector('#register_product_btn').addEventListener('click', (event) => {
-        
-                // 1. get values 
-                // 2. validate values on client side
-                // 3. send values to server
-                // 4. server validation of values
-                // 5. server response
-                // 6. based on response, break and throw error or redirect to login page
-        
-                event.preventDefault();
-                
-                    let name = document.querySelector('#name').value.toString();
-                    let username = document.querySelector('#description').value.toString();
-                    let item_number = document.querySelector('#item_number').value.toString();
-                    let price = document.querySelector('#price').value.toString();
-                    let prod_name = document.querySelector('#producer').value.toString();
-                    let cat_name = document.querySelector('#category').value.toString();
-                    let image = document.querySelector('#image').files[0].name;
-                    console.log(image);
-                    /* let headers = new Headers();
+
+        // 1. get values 
+        // 2. validate values on client side
+        // 3. send values to server
+        // 4. server validation of values
+        // 5. server response
+        // 6. based on response, break and throw error or redirect to login page
+
+        event.preventDefault();
+        let name = document.querySelector('#name').value.toString();
+        let username = document.querySelector('#description').value.toString();
+        let item_number = document.querySelector('#item_number').value.toString();
+        let price = document.querySelector('#price').value.toString();
+        let prod_name = document.querySelector('#producer').value.toString();
+        let cat_name = document.querySelector('#category').value.toString();
+
+        /* let headers = new Headers();
                     headers.append('Content-Type', 'application/json');
         
                     let init = {
@@ -53,8 +68,8 @@ document.addEventListener('DOMContentLoaded', function () {
                         }).catch(err => {
                             console.log(err)
                         }); */
-        
-        
-        
-            })
+
+
+
+    })
 })

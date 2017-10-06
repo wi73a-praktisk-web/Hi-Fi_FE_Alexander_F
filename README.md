@@ -15,7 +15,7 @@ frontend-delen, alexander faisst
 * Grunden til at jeg valgte denne opsætning i første omgang er, at jeg i starten af forløbet ikke var helt sikker på hvordan det skulle sættes op, og bare gik med noget der fungerede - omend ikke særlig godt, især ift maintainebility. Så bliver jeg til gengæld nødt til at ændre på det nu. 
 * I den færdige løsning ender jeg forhåbentligt med kun nogle meget få fetches og routes, som er meget mere generiske end hvad jeg har nu. Dette kommer muligvis til at inkluderer en række nestede switches, cases og if-else-statements. Dette glæder jeg mig faktisk til, men det bliver en stor bid arbejde, så jeg venter til jeg har tiden og energien til at sætte mig ned længe nok ad gangen til at kunne afslutte arbejdet og ikke ende halvvejs. 
 
-#Features included so far
+# Features included so far
 
 1. Front page data is filled out dynamically (elements exist, but values are set to database values)
 2. Sub-pages contain header and footer, but are otherwise filled out dynamically
@@ -27,19 +27,19 @@ frontend-delen, alexander faisst
 8. After having registered, one is being redirected to the profile page, which is then dynamically filled out with the data from the user just created. 
 9. Everything is responsive, of cause. However, it currently relies greatly on bootstrap (and an internet connection)
 
-#To Be Done: 
+# To Be Done: 
 
 1. Refactoring of css files (naming, structuring, sorting, making everything look nice). Currently there are too many files, which are badly named and none of their content is in any way structured and/or organized. 
     * Structure into styling (colors, fonts etc) and layout (margins, paddings, orientations)
     * Structure into overridings of bootstrap css and my own css
     * Let slider keep it's own, but possibly create some dedicated files for individual parts of the page, like the slider
 2. Basically the same goes for the client-side javascript files, especially "products.js" which contains 1500 lines of code, about half of which could probably somehow be summed up in a single helper function
-    * Generally refactor client-side fetching -and server-side routing code to make the site more dynamically. 
+    * Generally refactor client-side fetching -and server-side routing code to make the site more dynamic. 
     * In relation to my search-bar and possibly other functions, the code currently checks for whether or not the search input is even contained in the results. Instead i want to use 'LIKE' on the server-side in my SQL, and then just display whatever input, instead of returning everything and then filtering through it on client-side, which causes a huge performance gap, as well as being bad coding style
     * Refactor and structure JS files. 
         1. Currently i have no page-specific files, i just have a few chaotic ones. 
         2. Also, all pages don't need to point to all files, as they do right now. It would suffice to point to one or two dedicated ones. This would also make things more manageable and provide a better overview. 
-4. Add a side-manu to any product-page to make navigation easier
+4. Add a side-menu to any product-page to make navigation easier
 5. Server-side validation for user- and product registry
 6. Fiddleing around with saving images locally, but SO close to a solution
 8. Thorough documentation of how the fetching and routing works
