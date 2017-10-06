@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="./../css/style.css">
     <link rel="stylesheet" type="text/css" href="./../css/style(2).css">
     <link rel="stylesheet" type="text/css" href="./../css/slider_css.css">
-    <title>Document</title>
+    <title>Adding Products</title>
 </head>
 
 <body>
@@ -123,13 +123,15 @@
                     </row>
                     <row>
                         <div class="col-xs-12">
-                            <form class="product_registry_form" action='submit'>
+                            <form class="product_registry_form" action=''>
                                 <input type="text" id="name" placeholder="Name" required autofocus/><br/>
-                                <input type="text" id="decription" placeholder="Description" required/><br/>
+                                <input type="text" id="description" placeholder="Description" required/><br/>
                                 <input type="text" id="item_number" placeholder="Item Number" required/><br/>
                                 <input type="text" id="price" placeholder="Price" required/><br/>
                                 <input type="file" id="image" required/><br/>
-                                <button type="submit" id="register_product_btn">Register</button>
+                                <input type="text" id="category" placeholder="Category" required/><br/>
+                                <input type="text" id="producer" placeholder="Producer" required/><br/>
+                                <button type="" id="register_product_btn">Register</button>
                             </form>
                         </div>
                     </row>
@@ -221,7 +223,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="./../js/script.js"></script>
     <script src="./../js/products.js"></script>
-    <script src="./../js/register.js"></script>
+    <script src="./../js/register_product.js"></script>
 </body>
 
 </html>

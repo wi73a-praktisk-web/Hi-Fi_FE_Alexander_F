@@ -59,7 +59,7 @@ const getUserByID = (param) => {
 
                 // create the image
                 const img = document.createElement('IMG');
-                img.setAttribute('src', "../../img/" + response.img_url);
+                img.setAttribute('src', "../../img/profile_placeholder.png");
                 img.setAttribute('alt', "profiil-billede");
                 img.setAttribute('class', "col-xs-5 col-xs-offset-2 img-responsive");
 
