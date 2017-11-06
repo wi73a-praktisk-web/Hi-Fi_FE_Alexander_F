@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // 3. send values to server
         // 4. server validation of values
         // 5. server response
-        // 6. based on response, break and throw error or redirect to login page
+        // 6. based on response, break and throw error or redirect to profile page
 
         event.preventDefault();
         let name = document.querySelector('#name').value.toString();

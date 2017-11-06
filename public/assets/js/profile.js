@@ -63,6 +63,9 @@ const getUserByID = (param) => {
                 img.setAttribute('alt', "profiil-billede");
                 img.setAttribute('class', "col-xs-5 col-xs-offset-2 img-responsive");
 
+                // create a file picker to update the profile picture
+                
+
                 //create the name
                 const input_name = document.createElement('INPUT');
                 input_name.setAttribute('readonly', true);

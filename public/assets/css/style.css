@@ -292,3 +292,21 @@ main {
     margin-top: 10px;
     padding: 10px;
 }
+
+
+#search_form {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+}
+
+.input-group {
+    width: 100%;
+}
+
+input:required {
+   box-shadow:none;
+}
+input:invalid {
+   box-shadow:0 0 5px red,0 0 5px red,0 0 5px red,0 0 5px red,0 0 5px red,0 0 5px red,0 0 5px red,0 0 5px red;
+}

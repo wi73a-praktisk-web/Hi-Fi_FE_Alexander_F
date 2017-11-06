@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../../css/style.css">
     <link rel="stylesheet" type="text/css" href="../../css/style(2).css">
     <link rel="stylesheet" type="text/css" href="../../css/slider_css.css">
+    <link rel="stylesheet" type="text/css" href="../../css/vertical_dropdown.css">
     <title>Document</title>
 </head>
 
@@ -115,12 +116,65 @@
         <!-- <input id="searchbar" type="text" placeholder="Search..."/> -->
         <div class="container">
             <row>
-                <div id="myDiv" class="col-xs-12">
+                <div class="col-xs-0 col-md-3">
+                    <nav id="vertical_drop_down">
+                        <ul>
+                            <li>
+                                <a href="../products.html"> Alle Produkter </a>
+                            </li>
+                            <li>
+                                <a href="#"> Afspillere </a>
+                                <ul class="nested_ul_ver">
+                                    <li>
+                                        <a href="./cd_afspillere.html"> CD Afspillere
+                                                                        </a>
+
+                                    </li>
+                                    <li>
+                                        <a href="./dvd_afspillere.html"> DVD Afspillere
+                                                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="./plade_afspillere.html"> Pladespillere
+                                                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#"> Forstærkere
+                                                                </a>
+                                <ul class="nested_ul_ver">
+                                    <li>
+                                        <a href="./../forstaerkere/effekt_forstaerkere.html"> Effektforstærkere
+                                                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="./../forstaerkere/for_forstaerkere.html"> Forforstærkere
+                                                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="./../forstaerkere/interne_forstaerkere.html"> Interne Forstærkere
+                                                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="./../forstaerkere/roer_forstaerkere.html"> Rørforstærkere
+                                                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="./../hoejtalere/hoejtalere.html"> Højtalere
+                                                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div id="myDiv" class="col-xs-12 col-md-9">
 
                 </div>
             </row>
-            
-        <row id="footer">
+
+            <row id="footer">
                 <div id="contact_info" class="col-xs-12">
                     <row>
                         <div class="col-xs-12 col-sm-4">
@@ -143,14 +197,14 @@
                         </div>
                         <div class="col-xs-12">
                             <row>
-                                <div class"col-xs-12">
+                                <div class "col-xs-12">
                                     <button id="contact_button">Kontakt os</button>
                                 </div>
-                                    <br/>
+                                <br/>
                                 <div id="contact_form" class="col-xs-12">
-                                    <input type="text" id="name" placeholder="Name"><br> 
-                                    <input type="text" id="subject" placeholder="Subject"><br> 
-                                    <input type="email" id="email" placeholder="E-mail adress"><br> 
+                                    <input type="text" id="name" placeholder="Name"><br>
+                                    <input type="text" id="subject" placeholder="Subject"><br>
+                                    <input type="email" id="email" placeholder="E-mail adress"><br>
                                     <input type="text" id="message" maxlength="1000" placeholder="Message"><br>
                                     <button id="send">Send</button>
                                 </div>
