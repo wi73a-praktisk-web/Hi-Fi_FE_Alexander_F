@@ -12,19 +12,22 @@ const getUrlParameter = function (sParam) {
 
 const getUserByID = (param) => {
     console.log("param client side = " + param);
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
     let param2 = param.toString();
 
-    let init = {
-        method: 'POST',
-        headers: headers,
-        body : `{
-            "param" : "${param2}"}`,
-        mode: 'cors'
-    };
     console.log(param);
-    let request = new Request('http://localhost:8080/user', init);
+
+    let request = new Request('http://localhost:8080/user', {
+        'method': 'POST',
+        'headers': {
+            'Authorization': localStorage.getItem('token'),
+            'userID': localStorage.getItem('userid'),
+            'Content-Type': 'application/json'
+        },
+        'body': `{
+            "param" : "${param2}"}`,
+        'mode': 'cors', 
+        'cache': 'default'
+    });
 
     fetch(request)
         .then(response => {
@@ -32,7 +35,6 @@ const getUserByID = (param) => {
             return response.json();
         })
         .then(response => {
-            if (response.id == param) {
                 //build profile page
 
                 //create the elements
@@ -54,7 +56,7 @@ const getUserByID = (param) => {
                 //create the heading
                 const h2 = document.createElement('H2');
                 h2.setAttribute("class", 'col-xs-5')
-                const username = document.createTextNode(response.username);
+                const username = document.createTextNode(response[0].username);
                 h2.appendChild(username);
 
                 // create the image
@@ -64,37 +66,37 @@ const getUserByID = (param) => {
                 img.setAttribute('class', "col-xs-5 col-xs-offset-2 img-responsive");
 
                 // create a file picker to update the profile picture
-                
+
 
                 //create the name
                 const input_name = document.createElement('INPUT');
                 input_name.setAttribute('readonly', true);
                 // input_name.setAttribute('class', "col-xs-6 col-xs-offset-0 col-sm-8 col-sm-offset-2 col-md-10 col-md-offset-1");
-                input_name.setAttribute('placeholder', response.name);
+                input_name.setAttribute('placeholder', response[0].name);
                 input_name.style.margin = "5px";
                 input_name.style.padding = "5px";
                 input_name.style.border = "2px solid rgba(24, 136, 180, 1)";
                 input_name.style.borderRadius = "5px";
                 input_name.style.backgroundColor = "rgba(210, 230, 238, 1)";
                 input_name.style.color = "black";
-                
+
                 //create the email adress
                 const input_email = document.createElement('INPUT');
                 input_email.setAttribute('readonly', true);
                 // input_email.setAttribute('class', "col-xs-6 col-xs-offset-0 col-sm-8 col-sm-offset-2 col-md-10 col-md-offset-1");
-                input_email.setAttribute('placeholder', response.email);
+                input_email.setAttribute('placeholder', response[0].email);
                 input_email.style.margin = "5px";
                 input_email.style.padding = "5px";
                 input_email.style.border = "2px solid rgba(24, 136, 180, 1)";
                 input_email.style.borderRadius = "5px";
                 input_email.style.backgroundColor = "rgba(210, 230, 238, 1)";
                 input_email.style.color = "black";
-                
+
                 //create the adress
                 const input_adress = document.createElement('INPUT');
                 input_adress.setAttribute('readonly', true);
                 // input_adress.setAttribute('class', "col-xs-6 col-xs-offset-0 col-sm-8 col-sm-offset-2 col-md-10 col-md-offset-1");
-                input_adress.setAttribute('placeholder', response.adress);
+                input_adress.setAttribute('placeholder', response[0].adress);
                 input_adress.style.margin = "5px";
                 input_adress.style.padding = "5px";
                 input_adress.style.border = "2px solid rgba(24, 136, 180, 1)";
@@ -105,17 +107,17 @@ const getUserByID = (param) => {
                 const input_phone = document.createElement('INPUT');
                 input_phone.setAttribute('readonly', true);
                 // input_phone.setAttribute('class', "col-xs-6 col-xs-offset-0 col-sm-8 col-sm-offset-2 col-md-10 col-md-offset-1");
-                input_phone.setAttribute('placeholder', response.phone);
+                input_phone.setAttribute('placeholder', response[0].phone);
                 input_phone.style.margin = "5px";
                 input_phone.style.padding = "5px";
                 input_phone.style.border = "2px solid rgba(24, 136, 180, 1)";
                 input_phone.style.borderRadius = "5px";
                 input_phone.style.backgroundColor = "rgba(210, 230, 238, 1)";
                 input_phone.style.color = "black";
-                
+
                 //create the creation date
                 const created = document.createElement('P');
-                created.innerHTML = response.created;
+                created.innerHTML = response[0].created;
                 created.style.margin = "5px";
                 created.style.padding = "5px";
                 created.style.border = "2px solid rgba(24, 136, 180, 1)";
@@ -164,7 +166,7 @@ const getUserByID = (param) => {
                 adress_row.appendChild(adress_div);
                 phone_row.appendChild(phone_div);
                 creation_row.appendChild(creation_div);
-                
+
                 //append everything to html page (myDiv)
                 document.getElementById('profile_cont').appendChild(header_row);
                 document.getElementById('profile_cont').appendChild(name_row);
@@ -174,11 +176,6 @@ const getUserByID = (param) => {
                 document.getElementById('profile_cont').appendChild(creation_row);
 
                 //tada!
-                
-                
-            } else {
-                //throw some error
-            }
         })
         .catch(err => {
             console.log(err)
@@ -186,6 +183,10 @@ const getUserByID = (param) => {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+
+    if (localStorage.getItem('token') === null) {
+        window.location.assign('./log_in.html');
+    }
     if (getUrlParameter('user')) {
         getUserByID(getUrlParameter('user'));
     }

@@ -122,19 +122,12 @@
                         </div>
                     </row>
                     <row>
-                        <div class="col-xs-12">
-                            <input type="text" id="username" placeholder="Username" autofocus><br/>
-                        </div>
-                    </row>
-                    <row>
-                        <div class="col-xs-12">
-                            <input type="password" id="password" placeholder="Password"><br/>
-                        </div>
-                    </row>
-                    <row>
-                        <div class="col-xs-12">
-                            <button id="login_btn">Log in</button>
-                        </div>
+                        <form class="loginForm">
+                            <div><label for="username">Brugernavn</label><input type="text" name="username" id="username" autofocus></div>
+                            <div><label for="password">Adgangskode</label><input type="password" name="password" id="password"></div>
+                            <button>Log ind!</button>
+                        </form>
+                        <button id="logud">log ud</button>
                     </row>
                     <row>
                         <div class="col-xs-12">
@@ -233,6 +226,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="./../js/script.js"></script>
     <script src="./../js/products.js"></script>
+    <script src="./../js/login.js"></script>
 </body>
 
 </html>

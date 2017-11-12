@@ -13,7 +13,7 @@
 
     const go_fetch = function (param) {
         console.log("gofetch = " + param);
-        fetch('http://localhost:8080/products')
+        fetch('http://localhost:8080/products/' + param)
             .then(function (result) {
                 return result.json();
             })
@@ -25,7 +25,9 @@
                         console.log(product);
                         //create the image
                         const img = document.createElement('IMG');
-                        img.setAttribute('src', "../../img/" + product.billede);
+                        if (product.billede) {
+                            img.setAttribute('src', "../../img/" + product.billede);
+                        }
                         img.setAttribute('alt', "produkt billede");
                         img.setAttribute('class', "col-xs-12");
 
@@ -372,7 +374,7 @@
             });
     }
 
-   
+
 
     const getCategory = function (param) {
         console.log("hello this is finally working getCateory by id!");
@@ -605,7 +607,7 @@
 
                     // make the product click-able by putting it into an anchor
                     const a = document.createElement('A');
-                    a.setAttribute('href', "../products.html?search=" + product.vareNr);
+                    a.setAttribute('href', "../sub/products.html?search=" + product.vareNr);
                     a.appendChild(wrapRow);
 
                     //append wrapper row to actual div
@@ -620,6 +622,7 @@
     }
 
     document.addEventListener('DOMContentLoaded', function () {
+
         $("input#name").removeAttr('readonly');
         if (window.location.href == "http://localhost:3000/index.html") {
             fyldForside();

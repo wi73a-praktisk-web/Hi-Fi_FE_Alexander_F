@@ -310,3 +310,12 @@ input:required {
 input:invalid {
    box-shadow:0 0 5px red,0 0 5px red,0 0 5px red,0 0 5px red,0 0 5px red,0 0 5px red,0 0 5px red,0 0 5px red;
 }
+
+#content_div div {
+    display: flex;
+    flex-direction: row;
+}
+
+#content_div button {
+    height: 35px;
+}
