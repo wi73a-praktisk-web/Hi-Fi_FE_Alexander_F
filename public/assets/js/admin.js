@@ -17,6 +17,9 @@ const getUrlParameter = function (sParam) {
 };
 
 document.getElementById('products').addEventListener('click', (event) => {
+    document.getElementById('categories_list').innerHTML = '';
+    document.getElementById('producers_list').innerHTML = '';
+    document.getElementById('edit_div').innerHTML = '';
     console.log("something, happens!");
     document.getElementById('content_div').innerHTML = '';
     fetch('http://localhost:8080/products')
@@ -26,48 +29,106 @@ document.getElementById('products').addEventListener('click', (event) => {
             document.getElementById('content_div').innerHTML += `
             <div class="col-xs-12">
                 <button id="new_product" onclick="add_new_product()">Add New Product</button>
-            </div>`;
+            </div>
+            <table id="content_table">
+                <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>vareNr</th>
+                    <th>Beskrivelse</th>
+                    <th>Pris</th>
+                    <th>Producent</th>
+                    <th>Kategori</th>
+                </tr>
+            </table>`;
             products.forEach(product => {
-                document.getElementById('content_div').innerHTML += `
-                <row>
-                    <div class="col-xs-12">
+                document.getElementById('content_table').innerHTML += `
+                <tr>
+                    <td>
                         <button id="${product.id}" onclick="edit_product(this.id)">edit</button>
                         <button id="${product.id}" onclick="delete_product(this.id)">delete</button>
-                        <p>
-                            ${product.Navn} + ${product.vareNr} + ${product.Beskrivelse} + ${product.Pris} + ${product.prod_navn} + ${product.kat_navn}
-                        </p>
-                    </div>
-                </row>
-            `;
-            })
+                    </td>
+                    <td>${product.Navn}
+                    </td>
+                    <td>${product.vareNr}
+                    </td>
+                    <td>${product.Beskrivelse} 
+                    </td>
+                    <td>${product.Pris}
+                    </td>
+                    <td>${product.prod_navn}
+                    </td>
+                    <td>${product.kat_navn}
+                    </td>
+                </tr>`;
+
+            });
+            fetch('http://localhost:8080/getAllCategories')
+                .then(result => {
+                    return result.json();
+                }).then(categories => {
+                    categories.forEach(category => {
+                        document.getElementById('categories_list').innerHTML += `
+                    <li>
+                        <input type="checkbox" id="${category.id}" onclick="handleClick(this)" value="${category.navn}">
+                        <label for="${category.id}">${category.navn}</label>
+                    </li>`;
+                    })
+                }).catch(err => {
+                    console.log(err);
+                });
+            fetch('http://localhost:8080/getAllProducers')
+                .then(result => {
+                    return result.json();
+                }).then(producers => {
+                    producers.forEach(producer => {
+                        document.getElementById('producers_list').innerHTML += `
+                    <li>
+                        <input type="checkbox" id="${producer.id}" onclick="handleClick(this)" value="${producer.navn}">
+                        <label for="${producer.id}">${producer.navn}</label>
+                    </li>`;
+                    })
+                }).catch(err => {
+                    console.log(err);
+                })
         }).catch(err => {
             console.log(err);
         })
 })
 
 document.getElementById('categories_button').addEventListener('click', (event) => {
+    document.getElementById('categories_list').innerHTML = '';
+    document.getElementById('producers_list').innerHTML = '';
+    document.getElementById('edit_div').innerHTML = '';
     console.log("something, happens!");
     document.getElementById('content_div').innerHTML = '';
     fetch('http://localhost:8080/getAllCategories')
         .then(function (result) {
             return result.json();
         }).then(categories => {
-            document.getElementById('content_div').innerHTML += 
-            `<div class="col-xs-12">
+            document.getElementById('content_div').innerHTML +=
+                `<div class="col-xs-12">
                 <button id="new_category" onclick="add_new_category()">Add New Category</button>
-            </div>`;
+            </div>
+            
+            <table id="content_table">
+                <tr>
+                    <th></th>
+                    <th>Navn
+                    </th>
+                </tr>
+            </table>`;
             categories.forEach(category => {
-                document.getElementById('content_div').innerHTML += `
-                <row>
-                    <div class="col-xs-12">
+                document.getElementById('content_table').innerHTML += `
+                <tr>
+                    <td>
                         <button id="${category.id}" onclick="edit_category(this.id)">edit</button>
                         <button id="${category.id}" onclick="delete_category(this.id)">delete</button>
-                        <p>
-                            ${category.navn}
-                        </p>
-                    </div>
-                </row>
-            `;
+                    </td>
+                    <td>
+                        ${category.navn}
+                    </td>
+                </tr>`;
             })
         }).catch(err => {
             console.log(err);
@@ -75,28 +136,35 @@ document.getElementById('categories_button').addEventListener('click', (event) =
 })
 
 document.getElementById('producers_button').addEventListener('click', (event) => {
+    document.getElementById('categories_list').innerHTML = '';
+    document.getElementById('producers_list').innerHTML = '';
+    document.getElementById('edit_div').innerHTML = '';
     console.log("something, happens!");
     document.getElementById('content_div').innerHTML = '';
     fetch('http://localhost:8080/getAllProducers')
         .then(function (result) {
             return result.json();
         }).then(producers => {
-            document.getElementById('content_div').innerHTML += 
-            `<div class="col-xs-12">
+            document.getElementById('content_div').innerHTML +=
+                `<div class="col-xs-12">
                 <button id="new_producer" onclick="add_new_producer()">Add New Producer</button>
-            </div>`;
+            </div>
+            <table id="content_table">
+                <tr>
+                    <th></th>
+                    <th>Navn
+                    </th>
+                </tr>
+            </table>`;
             producers.forEach(producer => {
-                document.getElementById('content_div').innerHTML += `
-                <row>
-                    <div class="col-xs-12">
+                document.getElementById('content_table').innerHTML += `
+                <tr>
+                    <td>
                         <button id="${producer.id}" onclick="edit_producer(this.id)">edit</button>
                         <button id="${producer.id}" onclick="delete_producer(this.id)">delete</button>
-                        <p>
-                            ${producer.navn}
-                        </p>
-                    </div>
-                </row>
-            `;
+                    </td>
+                    <td>${producer.navn}</td>
+                </tr>`;
             })
         }).catch(err => {
             console.log(err);
@@ -104,6 +172,9 @@ document.getElementById('producers_button').addEventListener('click', (event) =>
 })
 
 document.getElementById('users').addEventListener('click', (event) => {
+    document.getElementById('categories_list').innerHTML = '';
+    document.getElementById('producers_list').innerHTML = '';
+    document.getElementById('edit_div').innerHTML = '';
     document.getElementById('content_div').innerHTML = '';
     fetch('http://localhost:8080/allUsers', {
         'method': 'get',
@@ -120,19 +191,29 @@ document.getElementById('users').addEventListener('click', (event) => {
         document.getElementById('content_div').innerHTML += `
         <div class="col-xs-12">
             <button id="new_user" onclick="add_new_user()">Add New User</button>
-        </div>`;
+        </div>
+        <table id="content_table">
+            <tr>
+                <th></th>
+                <th>Navn
+                </th>
+                <th>Brugernavn</th>
+                <th>E-mail</th>
+                <th>Created</th>
+            </tr>
+        </table>`;
         users.forEach(user => {
-            document.getElementById('content_div').innerHTML += `
-                <row>
-                    <div class="col-xs-12">
-                        <button id="${user.id}" onclick="edit_user(this.id)">edit</button>
-                        <button id="${user.id}" onclick="delete_user(this.id)">delete</button>
-                        <p>
-                            ${user.name} + ${user.username} + ${user.email} + ${user.created}
-                        </p>
-                    </div>
-                </row>
-            `;
+            document.getElementById('content_table').innerHTML += `
+            <tr>
+                <td>
+                    <button id="${user.id}" onclick="edit_user(this.id)">edit</button>
+                    <button id="${user.id}" onclick="delete_user(this.id)">delete</button>
+                </td>
+                <td>${user.name}</td>
+                <td>${user.username}</td>
+                <td>${user.email}</td>
+                <td>${user.created}</td>
+            </tr>`;
         })
     }).catch(err => {
         console.log(err);
@@ -805,4 +886,94 @@ function add_new_category() {
                 console.log(err)
             });
     })
+}
+
+function handleClick(sender) {
+    document.getElementById('content_div').innerHTML = '';
+    var prod_boxes = document.getElementById('producers_list').getElementsByTagName('input');
+    console.log(prod_boxes.length);
+    var prod_checkedBoxes = [];
+    for (var i = 0; i < prod_boxes.length; i++) {
+        if (prod_boxes[i].checked) {
+            prod_checkedBoxes.push(prod_boxes[i].id);
+        }
+    }
+    prod_checkedBoxes.forEach(id => {
+        console.log(id);
+    });
+
+    var cat_boxes = document.getElementById('categories_list').getElementsByTagName('input');
+    console.log(cat_boxes.length);
+    var cat_checkedBoxes = [];
+    for (var i = 0; i < cat_boxes.length; i++) {
+        if (cat_boxes[i].checked) {
+            cat_checkedBoxes.push(cat_boxes[i].id);
+        }
+    }
+    cat_checkedBoxes.forEach(id => {
+        console.log(id);
+    });
+
+    let init = {
+        method: 'POST',
+        headers: {
+            'Authorization': localStorage.getItem('token'),
+            'userID': localStorage.getItem('userid'),
+            'Content-Type': 'application/json'
+        },
+        body: `{"producer_ids":"${prod_checkedBoxes}",
+                "category_ids":"${cat_checkedBoxes}" }`,
+        cache: 'no-cache',
+        mode: 'cors'
+    };
+
+    console.log("body" + init.body);
+
+    let request = new Request('http://localhost:8080/getFilteredProducts', init);
+
+    fetch(request)
+        .then(function (result) {
+            return result.json();
+        }).then(products => {
+            document.getElementById('content_div').innerHTML += `
+                <div class="col-xs-12">
+                    <button id="new_product" onclick="add_new_product()">Add New Product</button>
+                </div>
+                <table id="content_table">
+                    <tr>
+                        <th></th>
+                        <th>Name</th>
+                        <th>vareNr</th>
+                        <th>Beskrivelse</th>
+                        <th>Pris</th>
+                        <th>Producent</th>
+                        <th>Kategori</th>
+                    </tr>
+                </table>`;
+            products.forEach(product => {
+                document.getElementById('content_table').innerHTML += `
+                    <tr>
+                        <td>
+                            <button id="${product.id}" onclick="edit_product(this.id)">edit</button>
+                            <button id="${product.id}" onclick="delete_product(this.id)">delete</button>
+                        </td>
+                        <td>${product.Navn}
+                        </td>
+                        <td>${product.vareNr}
+                        </td>
+                        <td>${product.Beskrivelse} 
+                        </td>
+                        <td>${product.Pris}
+                        </td>
+                        <td>${product.prod_navn}
+                        </td>
+                        <td>${product.kat_navn}
+                        </td>
+                    </tr>`;
+
+            });
+            // window.location.assign('http://localhost:3000/sub/manage_content.html');
+        }).catch(err => {
+            console.log(err)
+        });
 }
