@@ -15,23 +15,34 @@
 </head>
 
 <body>
+    <div id="state_div" class="col-xs-12">
+        <row>
+            <div class="col-xs-8 col-xs-offset-2    ">
+                <a href="manage_content.html">Ctrl Panel</a>
+                <a id="profile_page_a" href="profile_page.html">Profile Page</a>
+                <button id="log_out_btn" type="button" onclick="log_out()">Log Out</button>
+            </div>
+        </row>
+    </div>
     <header>
         <nav class="navbar navbar-inverse navbar-fixed-top navbar-collapse" role="navigation">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
                         aria-controls="navbar">
-                      <span class="sr-only">Toggle navigation</span>
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="../index.html">Hi-Fi</a>
                     <form id="search_form" class="navbar-form pull-left" role="search">
                         <div class="input-group">
                             <input id="search_bar" type="text" class="form-control" placeholder="Search">
                             <div class="input-group-btn">
-                                <button id="search_btn" type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                                <button id="search_btn" type="submit" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
                             </div>
                         </div>
                         <ul id="search_list">
@@ -42,25 +53,25 @@
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li>
-                            <a href="index.html"> 
-                                <span class="glyphicon glyphicon-home" >
+                            <a href="index.html">
+                                <span class="glyphicon glyphicon-home">
                                 </span> Home
                             </a>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
-                                <span class="glyphicon glyphicon-facetime-video" >
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <span class="glyphicon glyphicon-facetime-video">
                                 </span> Produkter
                                 <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="./sub/products.html"> 
+                                    <a href="./sub/products.html">
                                         Alle produkter
                                     </a>
                                 </li>
                                 <li class="dropdown-submenu open">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                         Afspillere
                                     </a>
                                     <ul class="dropdown-menu">
@@ -116,7 +127,7 @@
         <div class="container">
             <row>
                 <div id="profile_cont" class="col-xs-12 col-xs-offset-0 col-sm-10 col-sm-offset-0 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
-                    
+
                 </div>
             </row>
         </div>
@@ -149,10 +160,14 @@
                                 </div>
                                 <br/>
                                 <div id="contact_form" class="col-xs-12">
-                                    <input type="text" id="name" placeholder="Name"><br>
-                                    <input type="text" id="subject" placeholder="Subject"><br>
-                                    <input type="email" id="email" placeholder="E-mail adress"><br>
-                                    <input type="text" id="message" maxlength="1000" placeholder="Message"><br>
+                                    <input type="text" id="name" placeholder="Name">
+                                    <br>
+                                    <input type="text" id="subject" placeholder="Subject">
+                                    <br>
+                                    <input type="email" id="email" placeholder="E-mail adress">
+                                    <br>
+                                    <input type="text" id="message" maxlength="1000" placeholder="Message">
+                                    <br>
                                     <button id="send">Send</button>
                                 </div>
                             </row>
@@ -166,35 +181,35 @@
                     <row>
                         <div class="col-xs-12  col-sm-6 col-md-4 ">
                             <a>
-                                    <i class="fa fa-facebook"> Facebook</i>
-                                </a>
+                                <i class="fa fa-facebook"> Facebook</i>
+                            </a>
                         </div>
                         <div class="col-xs-12  col-sm-6  col-md-4">
                             <a>
-                                    <i class="fa fa-pinterest"> Pinterest</i>
-                                </a>
+                                <i class="fa fa-pinterest"> Pinterest</i>
+                            </a>
                         </div>
                         <div class="col-xs-12 col-sm-6  col-md-4">
                             <a>
-                                    <i class="fa fa-instagram"> Instagram</i>
-                                </a>
+                                <i class="fa fa-instagram"> Instagram</i>
+                            </a>
                         </div>
                         <div class="col-xs-12 col-sm-6  col-md-4">
                             <a>
-                                    <i class="fa fa-twitter"> Twitter</i>
-                                </a>
+                                <i class="fa fa-twitter"> Twitter</i>
+                            </a>
                         </div>
                         <div class="col-xs-12  col-sm-6  col-md-4 ">
                             <a>
-                                    <i class="fa fa-flickr"> FLickr</i>
-                                </a>
+                                <i class="fa fa-flickr"> FLickr</i>
+                            </a>
                         </div>
                     </row>
                 </div>
                 <div id="tm" class="col-xs-12">
                     <hr/>
                     <i class="fa fa-copyright" aria-hidden="true"> Copyright Hi-Fi Klubben 2002
-                            <i class="fa fa-trademark" aria-hidden="true"></i>
+                        <i class="fa fa-trademark" aria-hidden="true"></i>
                     </i>
                 </div>
             </row>

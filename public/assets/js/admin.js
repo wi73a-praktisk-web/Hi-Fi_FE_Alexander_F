@@ -32,7 +32,8 @@ document.getElementById('products').addEventListener('click', (event) => {
             </div>
             <table id="content_table">
                 <tr>
-                    <th></th>
+                    <th>Options</th>
+                    <th>Image</th>
                     <th>Name</th>
                     <th>vareNr</th>
                     <th>Beskrivelse</th>
@@ -47,6 +48,9 @@ document.getElementById('products').addEventListener('click', (event) => {
                     <td>
                         <button id="${product.id}" onclick="edit_product(this.id)">edit</button>
                         <button id="${product.id}" onclick="delete_product(this.id)">delete</button>
+                    </td>
+                    <td>
+                        <img src='http://localhost:8080/images/${product.billede}' height="75" width="200 "alt="henter billede">
                     </td>
                     <td>${product.Navn}
                     </td>
@@ -113,7 +117,7 @@ document.getElementById('categories_button').addEventListener('click', (event) =
             
             <table id="content_table">
                 <tr>
-                    <th></th>
+                    <th>Options</th>
                     <th>Navn
                     </th>
                 </tr>
@@ -151,7 +155,7 @@ document.getElementById('producers_button').addEventListener('click', (event) =>
             </div>
             <table id="content_table">
                 <tr>
-                    <th></th>
+                    <th>Options</th>
                     <th>Navn
                     </th>
                 </tr>
@@ -194,9 +198,10 @@ document.getElementById('users').addEventListener('click', (event) => {
         </div>
         <table id="content_table">
             <tr>
-                <th></th>
+                <th>Options</th>
                 <th>Navn
                 </th>
+                <th>Billede</th>
                 <th>Brugernavn</th>
                 <th>E-mail</th>
                 <th>Created</th>
@@ -208,6 +213,9 @@ document.getElementById('users').addEventListener('click', (event) => {
                 <td>
                     <button id="${user.id}" onclick="edit_user(this.id)">edit</button>
                     <button id="${user.id}" onclick="delete_user(this.id)">delete</button>
+                </td>
+                <td>
+                    <img src='http://localhost:8080/images/${user.billede}' height="75" width="200 "alt="henter billede">
                 </td>
                 <td>${user.name}</td>
                 <td>${user.username}</td>
@@ -258,41 +266,60 @@ function edit_user(target_id) {
     }).then(users => {
         document.getElementById('edit_div').innerHTML += `
             <h1>Edit User </h1>
-            <input type="text" id="name" value="${users[0].name}"><br/>
-            <input type="text" id="username" value="${users[0].username}"><br/>
-            <input type="text" id="email" value="${users[0].email}"><br/>
-            <input type="text" id="created" value="${users[0].created}"><br/>
-            <input type="text" id="adress" value="${users[0].adress}"><br/>
-            <input type="text" id="phone" value="${users[0].phone}">
-            <button id="${users[0].id}" onclick="update_user(this.id)">Update</button>
-            `;
-    }).catch(err => {
-        console.log(err);
-    })
-}
+            <form id="user_form" method="post" enctype="multipart/form-data">
+                <input name="name" type="text" id="name" value="${users[0].name}"><br/>
+                <input name="username" type="text" id="username" value="${users[0].username}"><br/>
+                <input name="email" type="text" id="email" value="${users[0].email}"><br/>
+                <input name="created" type="text" id="created" value="${users[0].created}"><br/>
+                <input name="adress" type="text" id="adress" value="${users[0].adress}"><br/>
+                <input name="phone" type="text" id="phone" value="${users[0].phone}">
+                
+                <label>Gammelt Billede</label>
+                <img src="http://localhost:8080/images/${users[0].url}" id="old_pic" alt="billede hentes" width="200" height="75">
+                <label>Upload Nyt Billede</label>
+                <input type="hidden" name="oldUserImage" id="olduserImage" value="${users[0].url}">
+                <input type="file" name="userImage" id="userImage" value="empty">
+                <img id="preview" width="200" height="75">
+                <button type="submit" id="register_user_btn">Update</button>
+            </form>`;
+            document.querySelector('#userImage').addEventListener('change', () => {
+                var reader = new FileReader();
+                let file = document.querySelector('#userImage').files[0];
+                reader.addEventListener("load", function () {
+                    document.querySelector('#preview').src = reader.result;
+                    localStorage.setItem("imgData", reader.result);
+                })
+                if (file) {
+                    reader.readAsDataURL(file);
+                }
+            });
+        document.querySelector('#register_user_btn').addEventListener("click", (event) => {
+            
+            event.preventDefault();
+            
+        
+            // grib formularen og håndter indholdet via FormData objektet
+            let form = document.querySelector('#user_form');
+            let data = new FormData(form);
+            let init = {
+                method: 'PUT',
+                body: data,
+                cache: 'no-cache',
+                mode: 'cors'
+            };
 
-function update_user(target_id) {
-    fetch('http://localhost:8080/updateUser', {
-        'method': 'post',
-        'headers': {
-            'Authorization': localStorage.getItem('token'),
-            'userID': localStorage.getItem('userid'),
-            'Content-Type': 'application/json'
-        },
-        'body': `{
-            "param" : "${target_id}",
-            "name" : "${document.querySelector('#name').value.toString()}",
-            "username" : "${document.querySelector('#username').value.toString()}",
-            "email" : "${document.querySelector('#email').value.toString()}",
-            "adress" : "${document.querySelector('#adress').value.toString()}",
-            "phone" : "${document.querySelector('#phone').value.toString()}"}`,
-        'mode': 'cors',
-        'cache': 'default'
-    }).then(result => {
-        console.log(result);
-        return result.json();
-    }).then(result => {
-        window.location.assign('http://localhost:3000/sub/manage_content.html');
+            console.log(init.body);
+
+            let request = new Request(`http://localhost:8080/updateUser/${target_id}`, init);
+
+            fetch(request)
+                .then(result => {
+                    window.location.assign('http://localhost:3000/sub/manage_content.html');
+                }).catch(err => {
+                    console.log(err)
+                });
+            // }
+        })
     }).catch(err => {
         console.log(err);
     })
@@ -301,20 +328,23 @@ function update_user(target_id) {
 function add_new_user() {
     document.getElementById('edit_div').innerHTML += `
     <h1>Add new User </h1>
-    <form class="registry_form" action='submit'>
-        <input type="text" id="name" placeholder="Name" required autofocus/><br/>
-        <input type="text" id="username" placeholder="Username" required/><br/>
-        <input type="password" id="password" placeholder="Password" required/><br/>
+    <form id="user_form" method="post" enctype="multipart/form-data">
+        <input name="name" type="text" id="name" placeholder="Name" required autofocus/><br/>
+        <input name="username" type="text" id="username" placeholder="Username" required/><br/>
+        <input name="password" type="password" id="password" placeholder="Password" required/><br/>
         <input type="password" id="rep_password" placeholder="Repeat Password" required/><br/>
-        <input type="text" id="email" placeholder="E-mail adress" required/><br/>
+        <input name="email" type="text" id="email" placeholder="E-mail adress" required/><br/>
         <input type="text" id="rep_email" placeholder="Repeat E-mail adress" required/><br/>
-        <input type="text" id="adress" placeholder="Adress" /><br/>
-        <input type="text" id="phone_number" placeholder="Phone number" /><br/>
+        <input name="adress" type="text" id="adress" placeholder="Adress" /><br/>
+        <input name="phone_number" type="text" id="phone_number" placeholder="Phone number" /><br/>
+        <label>Upload Nyt Billede</label>
+        <input type="hidden" name="oldUserImage" id="oldUserImage" value="">
+        <input type="file" name="userImage" id="userImage" value="empty">
         <button type="submit" id="register_user_btn">Register</button>
     </form>`;
     var container, inputs;
 
-    container = document.querySelector('.registry_form');
+    container = document.querySelector('#user_form');
     inputs = container.querySelectorAll('input');
     console.log(inputs);
     for (let index = 0; index < inputs.length; index++) {
@@ -327,7 +357,7 @@ function add_new_user() {
             }
         })
         inputs[index].addEventListener("focus", event => {
-            document.querySelector('.registry_form').reportValidity();
+            document.querySelector('#user_form').reportValidity();
         })
     }
     var lacking;
@@ -373,58 +403,32 @@ function add_new_user() {
     });
 
     document.querySelector('#register_user_btn').addEventListener("click", (event) => {
-
-        // 1. get values 
-        // 2. validate values on client side
-        // 3. send values to server
-        // 4. server validation of values
-        // 5. server response
-        // 6. based on response, break and throw error or redirect to login page
-
         event.preventDefault();
-        if (lacking || !document.querySelector(".registry_form").reportValidity()) {
 
-        } else {
-            let name = document.querySelector('#name').value.toString();
-            let username = document.querySelector('#username').value.toString();
-            let password = document.querySelector('#password').value.toString();
-            let email = document.querySelector('#email').value.toString();
-            let adress = document.querySelector('#adress').value.toString();
-            let phone_number = document.querySelector('#phone_number').value.toString();
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
 
-            let init = {
-                method: 'POST',
-                headers: {
-                    'Authorization': localStorage.getItem('token'),
-                    'userID': localStorage.getItem('userid'),
-                    'Content-Type': 'application/json'
-                },
-                body: `{"name":"${name}",
-                            "username":"${username}",
-                            "password":"${password}", 
-                            "email":"${email}", 
-                            "adress":"${adress}", 
-                            "phone_number":"${phone_number}"}`,
-                cache: 'no-cache',
-                mode: 'cors'
-            };
+        // grib formularen og håndter indholdet via FormData objektet
+        let form = document.querySelector('#user_form');
+        let data = new FormData(form);
+        let init = {
+            method: 'POST',
+            body: data,
+            cache: 'no-cache',
+            mode: 'cors'
+        };
 
-            console.log(init.body);
+        console.log(init.body);
 
-            let request = new Request('http://localhost:8080/registerUser', init);
+        let request = new Request('http://localhost:8080/registerUser', init);
 
-            fetch(request)
-                .then(response => {
-                    console.log(response);
-                })
-                .then(result => {
-                    window.location.assign('http://localhost:3000/sub/manage_content.html');
-
-
-                }).catch(err => {
-                    console.log(err)
-                });
-        }
+        fetch(request)
+            .then(result => {
+                window.location.assign('http://localhost:3000/sub/manage_content.html');
+            }).catch(err => {
+                console.log(err)
+            });
+        // }
     })
 }
 
@@ -469,13 +473,36 @@ function edit_product(target_id) {
         console.log("product ID = " + products[0].id);
         document.getElementById('edit_div').innerHTML += `
             <h1>Edit Product </h1>
-            <input type="text" id="produktnavn" value="${products[0].Navn}"><br/>
-            <input type="text" id="vareNr" value="${products[0].vareNr}"><br/>
-            <input type="text" id="beskrivelse" value="${products[0].Beskrivelse}"><br/>
-            <select id="producers"></select>
-            <select id="categories"></select>
-            <button id="${target_id}" onclick="update_product(this.id)">Update</button>
-            `;
+            <form id="product_form" method="post" enctype="multipart/form-data">
+                <input type="text" name="Navn" id="produktnavn" value="${products[0].Navn}"><br/>
+                <input type="text" name="vareNr" id="vareNr" value="${products[0].vareNr}"><br/>
+                <input type="text" name="Pris" id="Pris" value="${products[0].Pris}"><br/>
+                <input type="text" name="Beskrivelse" id="beskrivelse" value="${products[0].Beskrivelse}"><br/>
+                <select name="producers" id="producers"></select>
+                <select name="categories" id="categories"></select>
+                <label>Gammelt Billede</label>
+                <img src="http://localhost:8080/images/${products[0].billede}" id="old_pic" alt="billede hentes" width="200" height="75">
+                <label>Upload Nyt Billede</label>
+                <input type="hidden" name="oldProductImage" id="oldProductImage" value="${products[0].billede}">
+                <input type="file" name="productImage" id="productImage" value="empty">
+                <img id="preview" width="200" height="75">
+                <button id="${target_id}">Update</button>
+            </form>`;
+        document.querySelector('#product_form button').addEventListener('click', event => {
+            event.preventDefault();
+            update_product(target_id);
+        });
+        document.querySelector('#productImage').addEventListener('change', () => {
+            var reader = new FileReader();
+            let file = document.querySelector('#productImage').files[0];
+            reader.addEventListener("load", function () {
+                document.querySelector('#preview').src = reader.result;
+                localStorage.setItem("imgData", reader.result);
+            })
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        });
     }).then(() => {
         fetch('http://localhost:8080/getAllCategories', {
             'method': 'get',
@@ -540,22 +567,15 @@ function edit_product(target_id) {
 }
 
 function update_product(target_id) {
+    // grib formularen og håndter indholdet via FormData objektet
+    let form = document.getElementById('product_form');
+    let data = new FormData(form);
+
     console.log("undefined? = " + target_id);
     fetch('http://localhost:8080/updateProduct/' + target_id, {
-        'method': 'post',
-        'headers': {
-            'Authorization': localStorage.getItem('token'),
-            'userID': localStorage.getItem('userid'),
-            'Content-Type': 'application/json'
-        },
-        'body': `{
-            "name" : "${document.querySelector('#produktnavn').value.toString()}",
-            "item_number" : "${document.querySelector('#vareNr').value.toString()}",
-            "description" : "${document.querySelector('#beskrivelse').value.toString()}",
-            "prod_navn" : "${document.querySelector('#producers').value.toString()}",
-            "cat_name" : "${document.querySelector('#categories').value.toString()}"}`,
-        'mode': 'cors',
-        'cache': 'default'
+        "method": 'put',
+        "body": data,
+        'cache': 'no-cache'
     }).then(result => {
         console.log(result);
         return result.json();
@@ -569,15 +589,16 @@ function update_product(target_id) {
 function add_new_product() {
     document.getElementById('edit_div').innerHTML += `
     <h1>Add new Product </h1>
-    <form class="registry_form" action='submit'>
-        <input type="text" id="name" placeholder="Name" required autofocus/><br/>
-        <input type="text" id="username" placeholder="Username" required/><br/>
-        <input type="password" id="password" placeholder="Password" required/><br/>
-        <input type="password" id="rep_password" placeholder="Repeat Password" required/><br/>
-        <input type="text" id="email" placeholder="E-mail adress" required/><br/>
-        <input type="text" id="rep_email" placeholder="Repeat E-mail adress" required/><br/>
-        <input type="text" id="adress" placeholder="Adress" /><br/>
-        <input type="text" id="phone_number" placeholder="Phone number" /><br/>
+    <form id="product_form" method="post" enctype="multipart/form-data">
+        <input type="text" name="Navn" id="produktnavn"><br/>
+        <input type="text" name="vareNr" id="vareNr" ><br/>
+        <input type="text" name="Pris" id="Pris"><br/>
+        <input type="text" name="Beskrivelse" id="beskrivelse" ><br/>
+        <select name="producers" id="producers"></select>
+        <select name="categories" id="categories"></select>
+        <label>Upload Nyt Billede</label>
+        <input type="hidden" name="oldProductImage" id="oldProductImage" >
+        <input type="file" name="productImage" id="productImage" value="empty">
         <button type="submit" id="register_product_btn">Register</button>
     </form>
     `;
@@ -628,27 +649,16 @@ function add_new_product() {
         // 6. based on response, break and throw error or redirect to profile page
 
         event.preventDefault();
-        let name = document.querySelector('#name').value.toString();
-        let description = document.querySelector('#description').value.toString();
-        let item_number = document.querySelector('#item_number').value.toString();
-        let price = document.querySelector('#price').value.toString();
 
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
 
+        // grib formularen og håndter indholdet via FormData objektet
+        let form = document.getElementById('product_form');
+        let data = new FormData(form);
         let init = {
             method: 'POST',
-            headers: {
-                'Authorization': localStorage.getItem('token'),
-                'userID': localStorage.getItem('userid'),
-                'Content-Type': 'application/json'
-            },
-            body: `{"name":"${name}",
-                    "description":"${description}",
-                    "item_number":"${item_number}", 
-                    "price":"${price}", 
-                    "prod_name":"${document.getElementById('producers').value.toString()}", 
-                    "cat_name":"${document.getElementById('categories').value.toString()}"}`,
+            body: data,
             cache: 'no-cache',
             mode: 'cors'
         };
@@ -667,6 +677,7 @@ function add_new_product() {
             });
     })
 }
+
 //producer
 function delete_producer(target_id) {
     fetch('http://localhost:8080/deleteProducer/' + target_id, {
@@ -941,7 +952,7 @@ function handleClick(sender) {
                 </div>
                 <table id="content_table">
                     <tr>
-                        <th></th>
+                        <th>Options</th>
                         <th>Name</th>
                         <th>vareNr</th>
                         <th>Beskrivelse</th>

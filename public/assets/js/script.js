@@ -1,4 +1,21 @@
-    /*
+document.addEventListener('DOMContentLoaded', function () {
+    
+        if (localStorage.getItem('token') != null) {
+            document.getElementById('state_div').style.visibility = "visible";
+            document.getElementById('state_div').style.color = "black";
+            console.log(document.getElementById('profile_page_a').href += "?user=" + localStorage.getItem('userid'));
+        }
+        else if(localStorage.getItem('token') === null) {
+            document.getElementById('state_div').style.display = "none";
+        }
+    });
+ 
+    function log_out() {
+        localStorage.removeItem('token');
+        window.location.assign(window.location.href);
+    }
+
+ /*
      * @package: Bootstrap Multilevel Navbar fix
      * @version: 1.0.0
      * @author: Edi Amin (aka CloudDesigner)
