@@ -11,12 +11,13 @@ const getUrlParameter = function (sParam) {
 };
 
 const getUserByID = (param) => {
+    document.getElementById('profile_page_a').setAttribute('href', "profile_page.html?user=" + param);
     console.log("param client side = " + param);
     let param2 = param.toString();
 
     console.log(param);
 
-    let request = new Request('http://localhost:8080/user', {
+    let request = new Request('95.85.49.133:8080/user', {
         'method': 'POST',
         'headers': {
             'Authorization': localStorage.getItem('token'),
@@ -25,7 +26,7 @@ const getUserByID = (param) => {
         },
         'body': `{
             "param" : "${param2}"}`,
-        'mode': 'cors', 
+        'mode': 'cors',
         'cache': 'default'
     });
 
@@ -35,147 +36,87 @@ const getUserByID = (param) => {
             return response.json();
         })
         .then(response => {
-                //build profile page
+            document.getElementById('profile_cont').innerHTML += `
+            <row>
+                <div class="col-xs-12">
+                    <row>
+                        <form id="user_form" method="post" enctype="multipart/form-data">
+                            <div class="col-xs-8">
+                                <h1>${response[0].name}</h1>
+                            </div>
+                            <div id="profile_img_div" class="col-xs-4">
+                                <img src="95.85.49.133:8080/images/${response[0].url}" class="img-responsive">
+                            </div>
+                            <div class="col-xs-12">
+                                    <button id="edit_btn" class="glyphicon glyphicon-edit"></button><br/>
+                                    <input type="text" name="name" id="name" value="${response[0].name}"><br/>
+                                    <input name="username" type="text" id="username" value="${response[0].username}" readonly><br/>
+                                    <input name="email" type="text" id="email" value="${response[0].email}" readonly><br/>
+                                    <input name="adress" type="text" id="adress" value="${response[0].adress}" readonly><br/>
+                                    <input name="phone" type="text" id="phone" value="${response[0].phone}" readonly><br/>
+                                    <input name="created" type="text" id="created" value="${response[0].created}" readonly>
+                                    <button type="submit" id="update_user_btn">Update</button>
+                            </div>
+                        </form>;
+                    </row>
+                </div>
+            </row>
+            `;
+            document.querySelector('#edit_btn').addEventListener('click', (event) => {
+                event.preventDefault();
+                document.getElementById("update_user_btn").style.display = "block";
+                let inputs = document.getElementById('user_form').getElementsByTagName("input");
+                Array.from(inputs).forEach(input => {
+                    input.readOnly = false;
+                });
+                document.getElementById('name').focus();
+                document.getElementById('profile_img_div').innerHTML += `
+                <label>Upload Nyt Billede</label>
+                <input type="hidden" name="oldUserImage" id="olduserImage" value="${response[0].url}">
+                <input type="file" name="userImage" id="userImage" value="${response[0].url}">
+                <img id="preview" class="img-responsive">
+                `;
+                document.querySelector('#userImage').addEventListener('change', () => {
+                    var reader = new FileReader();
+                    let file = document.querySelector('#userImage').files[0];
+                    reader.addEventListener("load", function () {
+                        document.querySelector('#preview').src = reader.result;
+                        localStorage.setItem("imgData", reader.result);
+                    })
+                    if (file) {
+                        reader.readAsDataURL(file);
+                    }
+                });
+            });
+            document.getElementById("update_user_btn").style.display = "none";
+            
+            document.querySelector('#update_user_btn').addEventListener("click", (event) => {
 
-                //create the elements
-                /**
-                 * profile picture
-                 * name
-                 * user name
-                 * email adress
-                 * adress
-                 * phone
-                 * created date
-                 */
-
-                /**
-                 * also functionality for changing the password as well as 
-                 * functionality to change user & personal data (password probably is categorized under user)
-                 */
-
-                //create the heading
-                const h2 = document.createElement('H2');
-                h2.setAttribute("class", 'col-xs-5')
-                const username = document.createTextNode(response[0].username);
-                h2.appendChild(username);
-
-                // create the image
-                const img = document.createElement('IMG');
-                img.setAttribute('src', "../../img/profile_placeholder.png");
-                img.setAttribute('alt', "profiil-billede");
-                img.setAttribute('class', "col-xs-5 col-xs-offset-2 img-responsive");
-
-                // create a file picker to update the profile picture
+                event.preventDefault();
 
 
-                //create the name
-                const input_name = document.createElement('INPUT');
-                input_name.setAttribute('readonly', true);
-                // input_name.setAttribute('class', "col-xs-6 col-xs-offset-0 col-sm-8 col-sm-offset-2 col-md-10 col-md-offset-1");
-                input_name.setAttribute('placeholder', response[0].name);
-                input_name.style.margin = "5px";
-                input_name.style.padding = "5px";
-                input_name.style.border = "2px solid rgba(24, 136, 180, 1)";
-                input_name.style.borderRadius = "5px";
-                input_name.style.backgroundColor = "rgba(210, 230, 238, 1)";
-                input_name.style.color = "black";
+                // grib formularen og håndter indholdet via FormData objektet
+                let form = document.querySelector('#user_form');
+                let data = new FormData(form);
+                let init = {
+                    method: 'PUT',
+                    body: data,
+                    cache: 'no-cache',
+                    mode: 'cors'
+                };
 
-                //create the email adress
-                const input_email = document.createElement('INPUT');
-                input_email.setAttribute('readonly', true);
-                // input_email.setAttribute('class', "col-xs-6 col-xs-offset-0 col-sm-8 col-sm-offset-2 col-md-10 col-md-offset-1");
-                input_email.setAttribute('placeholder', response[0].email);
-                input_email.style.margin = "5px";
-                input_email.style.padding = "5px";
-                input_email.style.border = "2px solid rgba(24, 136, 180, 1)";
-                input_email.style.borderRadius = "5px";
-                input_email.style.backgroundColor = "rgba(210, 230, 238, 1)";
-                input_email.style.color = "black";
+                console.log(init.body);
 
-                //create the adress
-                const input_adress = document.createElement('INPUT');
-                input_adress.setAttribute('readonly', true);
-                // input_adress.setAttribute('class', "col-xs-6 col-xs-offset-0 col-sm-8 col-sm-offset-2 col-md-10 col-md-offset-1");
-                input_adress.setAttribute('placeholder', response[0].adress);
-                input_adress.style.margin = "5px";
-                input_adress.style.padding = "5px";
-                input_adress.style.border = "2px solid rgba(24, 136, 180, 1)";
-                input_adress.style.borderRadius = "5px";
-                input_adress.style.backgroundColor = "rgba(210, 230, 238, 1)";
-                input_adress.style.color = "black";
-                //create the phone
-                const input_phone = document.createElement('INPUT');
-                input_phone.setAttribute('readonly', true);
-                // input_phone.setAttribute('class', "col-xs-6 col-xs-offset-0 col-sm-8 col-sm-offset-2 col-md-10 col-md-offset-1");
-                input_phone.setAttribute('placeholder', response[0].phone);
-                input_phone.style.margin = "5px";
-                input_phone.style.padding = "5px";
-                input_phone.style.border = "2px solid rgba(24, 136, 180, 1)";
-                input_phone.style.borderRadius = "5px";
-                input_phone.style.backgroundColor = "rgba(210, 230, 238, 1)";
-                input_phone.style.color = "black";
+                let request = new Request(`95.85.49.133:8080/updateUser/${response[0].id}`, init);
 
-                //create the creation date
-                const created = document.createElement('P');
-                created.innerHTML = response[0].created;
-                created.style.margin = "5px";
-                created.style.padding = "5px";
-                created.style.border = "2px solid rgba(24, 136, 180, 1)";
-                created.style.borderRadius = "5px";
-                created.style.width = "75%";
-                created.style.backgroundColor = "rgba(210, 230, 238, 1)";
-                created.style.color = "black";
-
-                //create rows to hold divs
-                const header_row = document.createElement('ROW');
-                const name_row = document.createElement('ROW');
-                const email_row = document.createElement('ROW');
-                const adress_row = document.createElement('ROW');
-                const phone_row = document.createElement('ROW');
-                const creation_row = document.createElement('ROW');
-
-                //create divs to hold elements
-                const header_div = document.createElement('DIV');
-                const name_div = document.createElement('DIV');
-                const email_div = document.createElement('DIV');
-                const adress_div = document.createElement('DIV');
-                const phone_div = document.createElement('DIV');
-                const creation_div = document.createElement('DIV');
-
-                //append elements to divs
-                header_div.appendChild(h2);
-                header_div.appendChild(img);
-                name_div.appendChild(input_name);
-                email_div.appendChild(input_email);
-                adress_div.appendChild(input_adress);
-                phone_div.appendChild(input_phone);
-                creation_div.appendChild(created);
-
-                //prepare the div's
-                header_div.setAttribute('class', "col-xs-10 col-xs-offset-1");
-                name_div.setAttribute('class', "col-xs-10 col-xs-offset-1");
-                email_div.setAttribute('class', "col-xs-10 col-xs-offset-1");
-                adress_div.setAttribute('class', "col-xs-10 col-xs-offset-1");
-                phone_div.setAttribute('class', "col-xs-10 col-xs-offset-1");
-                creation_div.setAttribute('class', "col-xs-10 col-xs-offset-1");
-
-                //append divs to rows
-                header_row.appendChild(header_div);
-                name_row.appendChild(name_div);
-                email_row.appendChild(email_div);
-                adress_row.appendChild(adress_div);
-                phone_row.appendChild(phone_div);
-                creation_row.appendChild(creation_div);
-
-                //append everything to html page (myDiv)
-                document.getElementById('profile_cont').appendChild(header_row);
-                document.getElementById('profile_cont').appendChild(name_row);
-                document.getElementById('profile_cont').appendChild(email_row);
-                document.getElementById('profile_cont').appendChild(adress_row);
-                document.getElementById('profile_cont').appendChild(phone_row);
-                document.getElementById('profile_cont').appendChild(creation_row);
-
-                //tada!
+                fetch(request)
+                    .then(result => {
+                        window.location.assign('95.85.49.133:3000/sub/profile_page.html?user=' + response[0].id);
+                    }).catch(err => {
+                        console.log(err)
+                    });
+                // }
+            })
         })
         .catch(err => {
             console.log(err)

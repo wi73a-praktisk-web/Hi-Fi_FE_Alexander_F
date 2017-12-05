@@ -181,7 +181,7 @@ document.getElementById('users').addEventListener('click', (event) => {
     document.getElementById('edit_div').innerHTML = '';
     document.getElementById('content_div').innerHTML = '';
     fetch('http://localhost:8080/allUsers', {
-        'method': 'get',
+        'method': 'post',
         'headers': {
             'Authorization': localStorage.getItem('token'),
             'userID': localStorage.getItem('userid'),
@@ -215,7 +215,7 @@ document.getElementById('users').addEventListener('click', (event) => {
                     <button id="${user.id}" onclick="delete_user(this.id)">delete</button>
                 </td>
                 <td>
-                    <img src='http://localhost:8080/images/${user.billede}' height="75" width="200 "alt="henter billede">
+                    <img src='http://localhost:8080/images/${user.url}' height="75" width="200 "alt="henter billede">
                 </td>
                 <td>${user.name}</td>
                 <td>${user.username}</td>
@@ -338,10 +338,21 @@ function add_new_user() {
         <input name="adress" type="text" id="adress" placeholder="Adress" /><br/>
         <input name="phone_number" type="text" id="phone_number" placeholder="Phone number" /><br/>
         <label>Upload Nyt Billede</label>
-        <input type="hidden" name="oldUserImage" id="oldUserImage" value="">
         <input type="file" name="userImage" id="userImage" value="empty">
+        <img id="preview" width="200" height="75">
         <button type="submit" id="register_user_btn">Register</button>
     </form>`;
+    document.querySelector('#userImage').addEventListener('change', () => {
+        var reader = new FileReader();
+        let file = document.querySelector('#userImage').files[0];
+        reader.addEventListener("load", function () {
+            document.querySelector('#preview').src = reader.result;
+            localStorage.setItem("imgData", reader.result);
+        })
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    });
     var container, inputs;
 
     container = document.querySelector('#user_form');
@@ -590,18 +601,30 @@ function add_new_product() {
     document.getElementById('edit_div').innerHTML += `
     <h1>Add new Product </h1>
     <form id="product_form" method="post" enctype="multipart/form-data">
-        <input type="text" name="Navn" id="produktnavn"><br/>
-        <input type="text" name="vareNr" id="vareNr" ><br/>
-        <input type="text" name="Pris" id="Pris"><br/>
-        <input type="text" name="Beskrivelse" id="beskrivelse" ><br/>
-        <select name="producers" id="producers"></select>
+        <input type="text" name="Navn" id="produktnavn" placeholder="Navn"><br/>
+        <input type="text" name="vareNr" id="vareNr" placeholder="vareNr"><br/>
+        <input type="text" name="Pris" id="Pris" placeholder="Pris"><br/>
+        <input type="text" name="Beskrivelse" id="beskrivelse" placeholder="Beskrivelse"><br/>
+        <select name="producers" id="producers" placeholder="Producers"></select>
         <select name="categories" id="categories"></select>
+
         <label>Upload Nyt Billede</label>
-        <input type="hidden" name="oldProductImage" id="oldProductImage" >
         <input type="file" name="productImage" id="productImage" value="empty">
+        <img id="preview" width="200" height="75">
         <button type="submit" id="register_product_btn">Register</button>
     </form>
     `;
+    document.querySelector('#productImage').addEventListener('change', () => {
+        var reader = new FileReader();
+        let file = document.querySelector('#productImage').files[0];
+        reader.addEventListener("load", function () {
+            document.querySelector('#preview').src = reader.result;
+            localStorage.setItem("imgData", reader.result);
+        })
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    });
     fetch('http://localhost:8080/getAllCategories', {
         'method': 'get',
         'headers': {
