@@ -342,6 +342,7 @@ input:invalid {
 }
 
 #state_div {
+    margin-top: 10px;
     background-color: rgba(44,44,44,1);
     color: white;
 }
@@ -357,4 +358,25 @@ input:invalid {
 
 #state_div a:hover, #state_div button:hover {
     background-color: rgba(94,94,94,0.7);
+}
+
+#message_list{
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+#message_list a:hover {
+    cursor: pointer;
+}
+
+#message_list a {
+    display: block;
+    outline: 2px solid black;
+    background-color: rgb(174, 174, 174);
+    padding: 5px;
+}
+
+#inbox_btn:hover span {
+    color: red;
 }
