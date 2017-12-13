@@ -223,26 +223,49 @@ document.querySelector('#outbox_btn').addEventListener('click', (event) => {
         </row>`;
         console.log("messages" + messages.length);
         messages.forEach(message => {
-            console.log("message" + message.id);
-            document.querySelector('#message_list').innerHTML += `
-            <div>
-                <row>    
-                    <div class="col-xs-10">
-                        <a id="${message.id}" onclick="viewSingleOutboxMessage(this.id)" href="#">
-                            <row>
-                                <div>
-                                    <label>From:</label> <strong>${message.sender}</strong> <label>Sent: </label> <strong> ${message.created}</strong>
-                                </div>
-                            </row>
-                            <row>
-                                <div>
-                                    <label>Subject: </label> <strong> ${message.subject}</strong>
-                                </div>
-                            </row>
-                        </a>
-                    </div>
-                </row>
-            </div>`;
+            let send_url;
+            fetch('http://localhost:8080/getUserImage/' + message.sender, {
+                'method': 'get',
+                'headers': {
+                    'Authorization': localStorage.getItem('token'),
+                    'userID': localStorage.getItem('userid'),
+                    'Content-Type': 'application/json'
+                },
+                'mode': 'cors',
+                'cache': 'default'})
+            .then(response => {
+                return response.json();
+            })
+            .then(result => {
+                console.log('result[0].url = ' + result[0].url);
+                send_url = result[0].url;
+                console.log('send_url = ' + send_url);
+            })
+            .then(() => {
+                console.log("message" + message.id);
+                document.querySelector('#message_list').innerHTML += `
+                <div>
+                    <row>    
+                        <div class="col-xs-10">
+                            <a id="${message.id}" onclick="viewSingleOutboxMessage(this.id)" href="#">
+                                <row>
+                                    <div>
+                                        <label>From:</label> <img src='http://localhost:8080/images/${send_url}' height="20" alt="henter billede"> <strong>${message.sender}</strong> <label>Sent: </label> <strong> ${message.created}</strong>
+                                    </div>
+                                </row>
+                                <row>
+                                    <div>
+                                        <label>Subject: </label> <strong> ${message.subject}</strong>
+                                    </div>
+                                </row>
+                            </a>
+                        </div>
+                    </row>
+                </div>`;
+            })
+            .catch(err => {
+                console.log(err);
+            });
         })
     }).catch(err => {
         console.log(err);
