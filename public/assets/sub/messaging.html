@@ -18,12 +18,12 @@
     <div id="state_div" class="col-xs-12">
         <row>
             <div class="col-xs-8 col-xs-offset-2">
-                <a href="manage_content.html">Ctrl Panel</a>
+                <a href="manage_content.html">Control Panel</a>
                 <a id="profile_page_a" href="profile_page.html">Profile Page
                     <img id="profile_img" height="40">
                 </a>
                 <button id="log_out_btn" type="button" onclick="log_out()">Log Out</button>
-                <button class="glyphicon glyphicon-envelope" type="button" id="messaging_btn"> Messaging</button>
+                <button type="button" id="messaging_btn"> <span class="glyphicon glyphicon-envelope" ></span> Messaging</button>
             </div>
         </row>
     </div>
@@ -116,6 +116,12 @@
                                     <a href="./hoejtalere/hoejtalere.html"> Højtalere
                                     </a>
                                 </li>
+                                <li>
+                                    <a id="log_in" href="log_in.html"> 
+                                        <span class="glyphicon glyphicon-user" >
+                                        </span> Log in
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
@@ -126,18 +132,34 @@
     <main>
         <!-- <input id="searchbar" type="text" placeholder="Search..."/> -->
             <row>
-                <div id="" class="col-xs-8 col-xs-offset-2">
+                <div id="message_div" class="col-xs-8 col-xs-offset-2">
                     <row>
                         <div class="col-xs-12">
-                            <h1>Messaging</h1>
-                            <button id="new_message_btn">New</button>
+                            <h1>
+                                <span class="glyphicon glyphicon-envelope" ></span>
+                                Messaging
+                            </h1>
+                            <button id="new_message_btn">
+                                <span class="glyphicon glyphicon-pencil">
+                                    
+                                </span>
+                                New
+                            </button>
                             <button id="inbox_btn">
-                                <span class="glyphicon glyphicon-flag">
+                                <span class="glyphicon glyphicon-download">
                                     
                                 </span>
                                 InBox
+                                <span class="glyphicon glyphicon-flag">
+                                    
+                                </span>
                             </button>
-                            <button id="outbox_btn">OutBox</button>
+                            <button id="outbox_btn">
+                                <span class="glyphicon glyphicon-upload">
+                                    
+                                </span>
+                                OutBox
+                            </button>
                         </div>
                     </row>
                     <row>

@@ -23,7 +23,10 @@
                 .then((data) => {
                     localStorage.setItem('token', data.AccessToken);
                     localStorage.setItem('userid', data.ID);
+                    console.log('data.AToken = ' + data.AccessToken)
+                    console.log("data.ID = " + data.ID);
                     window.location.replace("./profile_page.html?user=" + data.ID);
+                    document.querySelector('#log_in').style.display = "none";
                 })
                 .catch((err) => {
                     console.log(err);

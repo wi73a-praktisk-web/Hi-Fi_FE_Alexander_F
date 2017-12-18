@@ -17,6 +17,14 @@ const getUrlParameter = function (sParam) {
 };
 
 document.getElementById('products').addEventListener('click', (event) => {
+    Array.from(document.getElementById('ctrl_panel_btn_div').getElementsByTagName('button')).forEach(element => {
+        if(element.innerHTML == "Products") {
+            element.className = element.className + " active";
+        }
+        else {
+            element.className = "";
+        }
+    });
     document.getElementById('categories_list').innerHTML = '';
     document.getElementById('producers_list').innerHTML = '';
     document.getElementById('edit_div').innerHTML = '';
@@ -27,6 +35,7 @@ document.getElementById('products').addEventListener('click', (event) => {
             return result.json();
         }).then(products => {
             document.getElementById('content_div').innerHTML += `
+            <h1>Products</h1>
             <div class="col-xs-12">
                 <button id="new_product" onclick="add_new_product()">Add New Product</button>
             </div>
@@ -44,10 +53,18 @@ document.getElementById('products').addEventListener('click', (event) => {
             </table>`;
             products.forEach(product => {
                 document.getElementById('content_table').innerHTML += `
-                <tr>
+                <tr class="prod_tr">
                     <td>
-                        <button id="${product.id}" onclick="edit_product(this.id)">edit</button>
-                        <button id="${product.id}" onclick="delete_product(this.id)">delete</button>
+                        <button id="${product.id}" onclick="edit_product(this.id)">
+                            <span class="glyphicon glyphicon-pencil">
+
+                            </span>
+                        </button><br/>
+                        <button id="${product.id}" onclick="delete_product(this.id)">
+                            <span class="glyphicon glyphicon-trash">
+
+                            </span>
+                        </button>
                     </td>
                     <td>
                         <img src='http://localhost:8080/images/${product.billede}' height="75" width="200 "alt="henter billede">
@@ -101,6 +118,14 @@ document.getElementById('products').addEventListener('click', (event) => {
 })
 
 document.getElementById('categories_button').addEventListener('click', (event) => {
+    Array.from(document.getElementById('ctrl_panel_btn_div').getElementsByTagName('button')).forEach(element => {
+        if(element.innerHTML == "Categories") {
+            element.className = element.className + " active";
+        }
+        else {
+            element.className = "";
+        }
+    });
     document.getElementById('categories_list').innerHTML = '';
     document.getElementById('producers_list').innerHTML = '';
     document.getElementById('edit_div').innerHTML = '';
@@ -111,7 +136,8 @@ document.getElementById('categories_button').addEventListener('click', (event) =
             return result.json();
         }).then(categories => {
             document.getElementById('content_div').innerHTML +=
-                `<div class="col-xs-12">
+                `<h1>Categories</h1>
+                <div class="col-xs-12">
                 <button id="new_category" onclick="add_new_category()">Add New Category</button>
             </div>
             
@@ -140,6 +166,14 @@ document.getElementById('categories_button').addEventListener('click', (event) =
 })
 
 document.getElementById('producers_button').addEventListener('click', (event) => {
+    Array.from(document.getElementById('ctrl_panel_btn_div').getElementsByTagName('button')).forEach(element => {
+        if(element.innerHTML == "Producers") {
+            element.className = element.className + " active";
+        }
+        else {
+            element.className = "";
+        }
+    });
     document.getElementById('categories_list').innerHTML = '';
     document.getElementById('producers_list').innerHTML = '';
     document.getElementById('edit_div').innerHTML = '';
@@ -150,7 +184,8 @@ document.getElementById('producers_button').addEventListener('click', (event) =>
             return result.json();
         }).then(producers => {
             document.getElementById('content_div').innerHTML +=
-                `<div class="col-xs-12">
+                `<h1>Producers</h1>
+                <div class="col-xs-12">
                 <button id="new_producer" onclick="add_new_producer()">Add New Producer</button>
             </div>
             <table id="content_table">
@@ -176,6 +211,14 @@ document.getElementById('producers_button').addEventListener('click', (event) =>
 })
 
 document.getElementById('users').addEventListener('click', (event) => {
+    Array.from(document.getElementById('ctrl_panel_btn_div').getElementsByTagName('button')).forEach(element => {
+        if(element.innerHTML == "Users") {
+            element.className = element.className + " active";
+        }
+        else {
+            element.className = "";
+        }
+    });
     document.getElementById('categories_list').innerHTML = '';
     document.getElementById('producers_list').innerHTML = '';
     document.getElementById('edit_div').innerHTML = '';
@@ -193,15 +236,16 @@ document.getElementById('users').addEventListener('click', (event) => {
         return result.json();
     }).then(users => {
         document.getElementById('content_div').innerHTML += `
+        <h1>Users</h1>
         <div class="col-xs-12">
             <button id="new_user" onclick="add_new_user()">Add New User</button>
         </div>
         <table id="content_table">
             <tr>
                 <th>Options</th>
-                <th>Navn
+                <th>Billede
                 </th>
-                <th>Billede</th>
+                <th>Navn</th>
                 <th>Brugernavn</th>
                 <th>E-mail</th>
                 <th>Created</th>
@@ -324,7 +368,7 @@ function edit_user(target_id) {
         console.log(err);
     })
 }
-
+//enc-type => encryption type
 function add_new_user() {
     document.getElementById('edit_div').innerHTML += `
     <h1>Add new User </h1>

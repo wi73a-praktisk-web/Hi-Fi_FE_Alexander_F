@@ -5,6 +5,7 @@ document.querySelector('#messaging_btn').addEventListener('click', (event) => {
     window.location.assign('http://localhost:3000/sub/messaging.html');
 });
     if (localStorage.getItem('token') != null) {
+        document.querySelector('#log_in').style.display = "none";
         document.getElementById('profile_img').style.padding = "7.5px";
         document.getElementById('state_div').style.visibility = "visible";
         document.getElementById('state_div').style.color = "black";

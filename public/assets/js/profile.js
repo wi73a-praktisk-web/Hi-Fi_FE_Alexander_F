@@ -48,16 +48,34 @@ const getUserByID = (param) => {
                                 <img src="http://localhost:8080/images/${response[0].url}" class="img-responsive">
                             </div>
                             <div class="col-xs-12">
-                                    <button id="edit_btn" class="glyphicon glyphicon-edit"></button><br/>
-                                    <input type="text" name="name" id="name" value="${response[0].name}"><br/>
-                                    <input name="username" type="text" id="username" value="${response[0].username}" readonly><br/>
-                                    <input name="email" type="text" id="email" value="${response[0].email}" readonly><br/>
-                                    <input name="adress" type="text" id="adress" value="${response[0].adress}" readonly><br/>
-                                    <input name="phone" type="text" id="phone" value="${response[0].phone}" readonly><br/>
-                                    <input name="created" type="text" id="created" value="${response[0].created}" readonly>
-                                    <button type="submit" id="update_user_btn">Update</button>
+                            <button id="edit_btn" class="glyphicon glyphicon-edit"></button><br/>
+                            <p>
+                                <label for="name">Name: </label>
+                                <input type="text" name="name" id="name" value="${response[0].name}"><br/>
+                            </p>
+                            <p>
+                                <label for="username">Username: </label>
+                                <input name="username" type="text" id="username" value="${response[0].username}" readonly><br/>
+                            </p>
+                            <p>
+                                <label for="email">E-mail Adress: </label>
+                                <input name="email" type="text" id="email" value="${response[0].email}" readonly><br/>
+                            </p>
+                            <p>
+                                <label for="adress">Adress: </label>
+                                <input name="adress" type="text" id="adress" value="${response[0].adress}" readonly><br/>
+                            </p>
+                            <p>
+                                <label for="phone">Phone number: </label>
+                                <input name="phone" type="text" id="phone" value="${response[0].phone}" readonly><br/>
+                            </p>
+                            <p>
+                                <label for="created">Created: </label>
+                                <input name="created" type="text" id="created" value="${response[0].created}" readonly>
+                            </p>
+                            <button type="submit" id="update_user_btn">Update</button>
                             </div>
-                        </form>;
+                        </form>
                     </row>
                 </div>
             </row>
@@ -89,7 +107,7 @@ const getUserByID = (param) => {
                 });
             });
             document.getElementById("update_user_btn").style.display = "none";
-            
+
             document.querySelector('#update_user_btn').addEventListener("click", (event) => {
 
                 event.preventDefault();

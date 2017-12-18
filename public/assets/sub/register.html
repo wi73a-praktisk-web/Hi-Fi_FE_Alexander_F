@@ -15,6 +15,18 @@
 </head>
 
 <body>
+    <div id="state_div" class="col-xs-12">
+        <row>
+            <div class="col-xs-8 col-xs-offset-2">
+                <a href="manage_content.html">Control Panel</a>
+                <a id="profile_page_a" href="profile_page.html">Profile Page
+                    <img id="profile_img" height="40">
+                </a>
+                <button id="log_out_btn" type="button" onclick="log_out()">Log Out</button>
+                <button type="button" id="messaging_btn"> <span class="glyphicon glyphicon-envelope" ></span> Messaging</button>
+            </div>
+        </row>
+    </div>
     <header>
         <nav class="navbar navbar-inverse navbar-fixed-top navbar-collapse" role="navigation">
             <div class="container">
@@ -113,31 +125,7 @@
     </header>
     <main>
         <!-- <input id="searchbar" type="text" placeholder="Search..."/> -->
-        <div class="container">
-            <row>
-                <div id="log_in_cont" class="col-xs-12">
-                    <row>
-                        <div class="col-xs-12">
-                            <h1>Register</h1><br>
-                        </div>
-                    </row>
-                    <row>
-                        <div class="col-xs-12">
-                            <form class="registry_form" action='submit'>
-                                <input type="text" id="name" placeholder="Name" required autofocus/><br/>
-                                <input type="text" id="username" placeholder="Username" required/><br/>
-                                <input type="password" id="password" placeholder="Password" required/><br/>
-                                <input type="password" id="rep_password" placeholder="Repeat Password" required/><br/>
-                                <input type="text" id="email" placeholder="E-mail adress" required/><br/>
-                                <input type="text" id="rep_email" placeholder="Repeat E-mail adress" required/><br/>
-                                <input type="text" id="adress" placeholder="Adress" /><br/>
-                                <input type="text" id="phone_number" placeholder="Phone number" /><br/>
-                                <button type="submit" id="register_btn">Register</button>
-                            </form>
-                        </div>
-                    </row>
-                </div>
-            </row>
+        <div id="form_div" class="container">
         </div>
         <div class="container">
             <row id="footer">
