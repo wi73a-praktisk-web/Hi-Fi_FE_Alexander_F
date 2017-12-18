@@ -18,10 +18,9 @@ const getUrlParameter = function (sParam) {
 
 document.getElementById('products').addEventListener('click', (event) => {
     Array.from(document.getElementById('ctrl_panel_btn_div').getElementsByTagName('button')).forEach(element => {
-        if(element.innerHTML == "Products") {
+        if (element.innerHTML == "Products") {
             element.className = element.className + " active";
-        }
-        else {
+        } else {
             element.className = "";
         }
     });
@@ -119,10 +118,9 @@ document.getElementById('products').addEventListener('click', (event) => {
 
 document.getElementById('categories_button').addEventListener('click', (event) => {
     Array.from(document.getElementById('ctrl_panel_btn_div').getElementsByTagName('button')).forEach(element => {
-        if(element.innerHTML == "Categories") {
+        if (element.innerHTML == "Categories") {
             element.className = element.className + " active";
-        }
-        else {
+        } else {
             element.className = "";
         }
     });
@@ -167,10 +165,9 @@ document.getElementById('categories_button').addEventListener('click', (event) =
 
 document.getElementById('producers_button').addEventListener('click', (event) => {
     Array.from(document.getElementById('ctrl_panel_btn_div').getElementsByTagName('button')).forEach(element => {
-        if(element.innerHTML == "Producers") {
+        if (element.innerHTML == "Producers") {
             element.className = element.className + " active";
-        }
-        else {
+        } else {
             element.className = "";
         }
     });
@@ -212,10 +209,9 @@ document.getElementById('producers_button').addEventListener('click', (event) =>
 
 document.getElementById('users').addEventListener('click', (event) => {
     Array.from(document.getElementById('ctrl_panel_btn_div').getElementsByTagName('button')).forEach(element => {
-        if(element.innerHTML == "Users") {
+        if (element.innerHTML == "Users") {
             element.className = element.className + " active";
-        }
-        else {
+        } else {
             element.className = "";
         }
     });
@@ -285,7 +281,7 @@ function delete_user(target_id) {
         'cache': 'default'
     }).then(result => {
         console.log(result);
-        window.location.assign('http://localhost:3000/sub/manage_content.html');
+        // window.location.assign('http://localhost:3000/sub/manage_content.html');
     }).catch(err => {
         console.log(err);
     })
@@ -326,22 +322,22 @@ function edit_user(target_id) {
                 <img id="preview" width="200" height="75">
                 <button type="submit" id="register_user_btn">Update</button>
             </form>`;
-            document.querySelector('#userImage').addEventListener('change', () => {
-                var reader = new FileReader();
-                let file = document.querySelector('#userImage').files[0];
-                reader.addEventListener("load", function () {
-                    document.querySelector('#preview').src = reader.result;
-                    localStorage.setItem("imgData", reader.result);
-                })
-                if (file) {
-                    reader.readAsDataURL(file);
-                }
-            });
+        document.querySelector('#userImage').addEventListener('change', () => {
+            var reader = new FileReader();
+            let file = document.querySelector('#userImage').files[0];
+            reader.addEventListener("load", function () {
+                document.querySelector('#preview').src = reader.result;
+                localStorage.setItem("imgData", reader.result);
+            })
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        });
         document.querySelector('#register_user_btn').addEventListener("click", (event) => {
-            
+
             event.preventDefault();
-            
-        
+
+
             // grib formularen og håndter indholdet via FormData objektet
             let form = document.querySelector('#user_form');
             let data = new FormData(form);
@@ -370,6 +366,7 @@ function edit_user(target_id) {
 }
 //enc-type => encryption type
 function add_new_user() {
+    document.getElementById('edit_div').innerHTML = '';
     document.getElementById('edit_div').innerHTML += `
     <h1>Add new User </h1>
     <form id="user_form" method="post" enctype="multipart/form-data">
@@ -507,6 +504,7 @@ function delete_product(target_id) {
 }
 
 function edit_product(target_id) {
+    
     console.log(target_id);
     document.getElementById('edit_div').innerHTML = '';
     fetch('http://localhost:8080/products/' + target_id, {
@@ -529,23 +527,104 @@ function edit_product(target_id) {
         document.getElementById('edit_div').innerHTML += `
             <h1>Edit Product </h1>
             <form id="product_form" method="post" enctype="multipart/form-data">
-                <input type="text" name="Navn" id="produktnavn" value="${products[0].Navn}"><br/>
-                <input type="text" name="vareNr" id="vareNr" value="${products[0].vareNr}"><br/>
-                <input type="text" name="Pris" id="Pris" value="${products[0].Pris}"><br/>
-                <input type="text" name="Beskrivelse" id="beskrivelse" value="${products[0].Beskrivelse}"><br/>
-                <select name="producers" id="producers"></select>
-                <select name="categories" id="categories"></select>
+                <p>
+                    <label for="produktnavn">Navn</label>
+                    <input type="text" name="Navn" id="produktnavn" value="${products[0].Navn}" minlength="5" maxlength="50" required>
+                </p>
+                <p>
+                    <label for="produktnavn">Navn</label>
+                    <input type="text" name="Navn" id="vareNr" value="${products[0].vareNr}" minlength="5" maxlength="50" required>
+                </p>
+                <p>
+                    <label for="produktnavn">Navn</label>
+                    <input type="text" name="Navn" id="Pris" value="${products[0].Pris}" minlength="5" maxlength="50" required>
+                </p>
+                <p>
+                    <label for="produktnavn">Navn</label>
+                    <input type="text" name="Navn" id="beskrivelse" value="${products[0].Beskrivelse}" minlength="5" maxlength="50" required>
+                </p>
+                
+                <p>
+                    <label for="producers">Producenter</label>
+                    <select name="producers" id="producers"></select>
+                </p>
+                <p>
+                    <label for="categories">Kategorier</label>
+                    <select name="categories" id="categories"></select>
+                </p>
                 <label>Gammelt Billede</label>
                 <img src="http://localhost:8080/images/${products[0].billede}" id="old_pic" alt="billede hentes" width="200" height="75">
                 <label>Upload Nyt Billede</label>
                 <input type="hidden" name="oldProductImage" id="oldProductImage" value="${products[0].billede}">
                 <input type="file" name="productImage" id="productImage" value="empty">
                 <img id="preview" width="200" height="75">
-                <button id="${target_id}">Update</button>
+                <button type="submit" id="update_button">Update</button>
             </form>`;
-        document.querySelector('#product_form button').addEventListener('click', event => {
+            // Array.from(document.querySelector('#product_form').querySelectorAll('input')).forEach(input => {
+            //     console.log(input);
+                        
+            //     input.addEventListener("input", event => {
+            //         if (!input.reportValidity()) {
+            //             console.log("do something!");
+            //             input.setCustomValidity('Please fill out this field');
+            //             input.reportValidity();
+            //         }
+            //         else {
+            //             input.style.boxShadow = "0 0 10px green";   
+            //         }
+            //     });
+
+            //     input.addEventListener("change", event => {
+            //         if (!input.reportValidity()) {
+            //             console.log("do something!");
+            //             input.setCustomValidity('Please fill out this field');
+            //             input.reportValidity();
+            //         }
+            //         else {
+            //             input.style.boxShadow = "0 0 10px green";   
+            //         }
+            //     });
+                
+            //     input.addEventListener("focus", event => {
+            //         if (!input.reportValidity()) {
+            //             input.setCustomValidity('Please fill out this field');
+            //             input.reportValidity();
+            //         }
+            //         else {
+            //             input.style.boxShadow = "0 0 10px green";   
+            //         }
+            //     });
+
+            //     // input.addEventListener("valid", event => {
+            //     //     if (!input.checkValidity()) {
+            //     //         console.log("do something!");
+            //     //         // input.setCustomValidity('Please fill out this field');
+            //     //         input.style.boxShadow = "0 0 10px green";
+            //     //     }
+            //     // });
+            // })
+        document.querySelector('#update_button').addEventListener('click', event => {
             event.preventDefault();
-            update_product(target_id);
+            if (!document.querySelector("#product_form").reportValidity()) {
+
+            } else {
+                let form = document.getElementById('product_form');
+                let data = new FormData(form);
+
+                console.log("undefined? = " + target_id);
+                fetch('http://localhost:8080/updateProduct/' + target_id, {
+                    "method": 'put',
+                    "body": data,
+                    'cache': 'no-cache'
+                }).then(result => {
+                    console.log(result);
+                    return result.json();
+                }).then(result => {
+                    // window.location.assign('http://localhost:3000/sub/manage_content.html');
+                }).catch(err => {
+                    console.log(err);
+                })
+            }
         });
         document.querySelector('#productImage').addEventListener('change', () => {
             var reader = new FileReader();
@@ -580,7 +659,7 @@ function edit_product(target_id) {
             cat_options.forEach(option => {
                 console.log("kategorinavn" + kategorinavn);
                 console.log("innerHTML" + option.innerHTML);
-                if (option.innerHTML == kategorinavn) {
+                if (option.innerHTML.trim() == kategorinavn.trim()) {
                     option.selected = true;
                 }
             })
@@ -606,7 +685,7 @@ function edit_product(target_id) {
                 prod_options.forEach(option => {
                     console.log("producentnavn" + producentnavn);
                     console.log("innerHTML" + option.innerHTML);
-                    if (option.innerHTML == producentnavn) {
+                    if (option.innerHTML.trim() == producentnavn.trim()) {
                         option.selected = true;
                     }
                 })
@@ -622,40 +701,42 @@ function edit_product(target_id) {
 }
 
 function update_product(target_id) {
-    // grib formularen og håndter indholdet via FormData objektet
-    let form = document.getElementById('product_form');
-    let data = new FormData(form);
 
-    console.log("undefined? = " + target_id);
-    fetch('http://localhost:8080/updateProduct/' + target_id, {
-        "method": 'put',
-        "body": data,
-        'cache': 'no-cache'
-    }).then(result => {
-        console.log(result);
-        return result.json();
-    }).then(result => {
-        window.location.assign('http://localhost:3000/sub/manage_content.html');
-    }).catch(err => {
-        console.log(err);
-    })
 }
 
 function add_new_product() {
+    document.getElementById('edit_div').innerHTML = '';
     document.getElementById('edit_div').innerHTML += `
     <h1>Add new Product </h1>
     <form id="product_form" method="post" enctype="multipart/form-data">
-        <input type="text" name="Navn" id="produktnavn" placeholder="Navn"><br/>
-        <input type="text" name="vareNr" id="vareNr" placeholder="vareNr"><br/>
-        <input type="text" name="Pris" id="Pris" placeholder="Pris"><br/>
-        <input type="text" name="Beskrivelse" id="beskrivelse" placeholder="Beskrivelse"><br/>
+        <p>
+            <label for="produktnavn">Navn</label>
+            <input type="text" name="Navn" id="produktnavn" placeholder="Navn" minlength="5" maxlength="50" required>
+        </p>
+        <p>
+        <label for="vareNr">vareNr</label>
+        <input type="text" name="vareNr" id="vareNr" placeholder="vareNr" min="1" max="9999999999" value="0" step="5" required>
+    </p>
+    <p>
+        <label for="Pris">Pris</label>
+        <input type="number" name="Pris" id="Pris" min="1" max="999999999999999999999999999999" required>
+    </p>
+    <p>
+        <label for="beskrivelse">Beskrivelse</label>
+        <input type="text" name="Beskrivelse" id="beskrivelse" placeholder="Beskrivelse" minlength="5" maxlength="50" required>
+    </p>
+    <p>
+        <label for="producers">Producers</label>
         <select name="producers" id="producers" placeholder="Producers"></select>
+    </p>
+    <p>
+        <label for="categories">Kategorier</label>
         <select name="categories" id="categories"></select>
-
-        <label>Upload Nyt Billede</label>
-        <input type="file" name="productImage" id="productImage" value="empty">
-        <img id="preview" width="200" height="75">
-        <button type="submit" id="register_product_btn">Register</button>
+    </p>
+    <label>Upload Nyt Billede</label>
+    <input type="file" name="productImage" id="productImage" value="empty">
+    <img id="preview" width="200" height="75">
+    <button type="submit" id="register_product_btn">Register</button>
     </form>
     `;
     document.querySelector('#productImage').addEventListener('change', () => {
@@ -706,6 +787,39 @@ function add_new_product() {
     }).catch(err => {
         console.log(err);
     });
+    // Array.from(document.querySelector('#product_form').querySelectorAll('input')).forEach(input => {
+    //     console.log(input);
+    //     input.addEventListener("blur", event => {
+    //         if (!input.checkValidity()) {
+    //             console.log("do something!");
+    //             input.setCustomValidity('Please fill out this field');
+    //             input.reportValidity();
+    //         }
+    //     });
+
+    //     input.addEventListener("change", event => {
+    //         if (!input.checkValidity()) {
+    //             console.log("do something!");
+    //             input.setCustomValidity('Please fill out this field');
+    //             input.reportValidity();
+    //         }
+    //     });
+        
+    //     // input.addEventListener("focus", event => {
+    //     //     if (!input.checkValidity()) {
+    //     //         input.setCustomValidity('Please fill out this field');
+    //     //         input.reportValidity();
+    //     //     }
+    //     // });
+
+    //     input.addEventListener("valid", event => {
+    //         if (!input.checkValidity()) {
+    //             console.log("do something!");
+    //             // input.setCustomValidity('Please fill out this field');
+    //             input.style.boxShadow = "0 0 10px green";
+    //         }
+    //     });
+    // })
     document.querySelector('#register_product_btn').addEventListener('click', (event) => {
 
         // 1. get values 
@@ -714,8 +828,6 @@ function add_new_product() {
         // 4. server validation of values
         // 5. server response
         // 6. based on response, break and throw error or redirect to profile page
-
-        event.preventDefault();
 
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
@@ -814,6 +926,7 @@ function update_producer(target_id) {
 }
 
 function add_new_producer() {
+    document.getElementById('edit_div').innerHTML = '';
     document.getElementById('edit_div').innerHTML += `
     <h1>Add new Producer </h1>
     <form class="registry_form" action='submit'>
@@ -928,6 +1041,7 @@ function update_category(target_id) {
 }
 
 function add_new_category() {
+    document.getElementById('edit_div').innerHTML = '';
     document.getElementById('edit_div').innerHTML += `
     <h1>Add new Category </h1>
     <form class="registry_form" action='submit'>

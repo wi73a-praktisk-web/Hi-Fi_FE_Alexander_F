@@ -174,6 +174,7 @@ body {
     overflow-y: auto;
 }
 
+input[type="number"],
 input[type="text"],
 input[type="email"], 
 input[type="password"] {
@@ -183,11 +184,37 @@ input[type="password"] {
     color: black;
 }
 
+input[type="number"],
 input[type="text"]:focus,
 input[type="email"]:focus, 
 input[type="password"]:focus {
     border: 3px solid rgb(67, 231, 240);
 }
+
+.input-group {
+    width: 100%;
+}
+
+input[type="number"]:invalid,
+input[type="text"]:invalid,
+input[type="email"]:invalid, 
+input[type="password"]:invalid {
+   box-shadow:0 0 5px red,0 0 5px red,0 0 5px red,0 0 5px red,0 0 5px red,0 0 5px red,0 0 5px red,0 0 5px red;
+}
+
+
+input[type="number"]:valid,
+input[type="text"]:valid,
+input[type="email"]:valid, 
+input[type="password"]:valid {
+    box-shadow: none;
+    box-shadow:0 0 5px green,0 0 5px green,0 0 5px green,0 0 5px green,0 0 5px green,0 0 5px green,0 0 5px green,0 0 5px green;
+}
+/* 
+input:required {
+   box-shadow:none;
+}
+ */
 
 button {
     color: orange;
@@ -308,9 +335,6 @@ main {
 
 input:required {
    box-shadow:none;
-}
-input:invalid {
-   box-shadow:0 0 5px red,0 0 5px red,0 0 5px red,0 0 5px red,0 0 5px red,0 0 5px red,0 0 5px red,0 0 5px red;
 }
 
 
@@ -489,6 +513,10 @@ input:invalid {
     color: white;
 }
 
+#producers, #categories {
+    color: black;
+}
+
 .prod_tr {
     border-bottom: 2px solid white;
 }
@@ -508,4 +536,10 @@ input:invalid {
 
 #check_div label {
     color: white;
+}
+
+#profile_img_div img {
+    border-radius: 10px;
+    box-shadow: 0 0 10px orange, 0 0 10px orange, 0 0 10px orange, 0 0 10px orange, 0 0 10px orange, 0 0 10px orange;
+    margin-top: 20px;
 }
