@@ -532,15 +532,15 @@ function edit_product(target_id) {
                     <input type="text" name="Navn" id="produktnavn" value="${products[0].Navn}" minlength="5" maxlength="50" required>
                 </p>
                 <p>
-                    <label for="produktnavn">Navn</label>
-                    <input type="text" name="Navn" id="vareNr" value="${products[0].vareNr}" minlength="5" maxlength="50" required>
+                    <label for="vareNr">vareNr</label>
+                    <input type="number" name="Navn" id="vareNr" value="${products[0].vareNr}" minlength="5" maxlength="50" required>
                 </p>
                 <p>
-                    <label for="produktnavn">Navn</label>
-                    <input type="text" name="Navn" id="Pris" value="${products[0].Pris}" minlength="5" maxlength="50" required>
+                    <label for="Pris">Pris</label>
+                    <input type="number" name="Navn" id="Pris" value="${products[0].Pris}" min="1" max="9999999999" value="0" required>
                 </p>
                 <p>
-                    <label for="produktnavn">Navn</label>
+                    <label for="beskrivelse">Beskrivelse</label>
                     <input type="text" name="Navn" id="beskrivelse" value="${products[0].Beskrivelse}" minlength="5" maxlength="50" required>
                 </p>
                 
@@ -715,11 +715,11 @@ function add_new_product() {
         </p>
         <p>
         <label for="vareNr">vareNr</label>
-        <input type="text" name="vareNr" id="vareNr" placeholder="vareNr" min="1" max="9999999999" value="0" step="5" required>
+        <input type="number" name="vareNr" id="vareNr" placeholder="vareNr" min="1" max="9999999999" value="0" step="5" required>
     </p>
     <p>
         <label for="Pris">Pris</label>
-        <input type="number" name="Pris" id="Pris" min="1" max="999999999999999999999999999999" required>
+        <input type="number" name="Pris" id="Pris" min="1" max="999999999999999999999999999999" value="0" step="5" required>
     </p>
     <p>
         <label for="beskrivelse">Beskrivelse</label>
