@@ -195,7 +195,7 @@ input[type="password"]:focus {
     width: 100%;
 }
 
-input[type="number"]:out-of-range,
+input[type="number"]:invalid,
 input[type="text"]:invalid,
 input[type="email"]:invalid, 
 input[type="password"]:invalid {
@@ -203,7 +203,7 @@ input[type="password"]:invalid {
 }
 
 
-input[type="number"]:in-range,
+input[type="number"]:valid,
 input[type="text"]:valid,
 input[type="email"]:valid, 
 input[type="password"]:valid {

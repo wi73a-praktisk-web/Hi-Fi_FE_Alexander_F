@@ -587,12 +587,12 @@ function edit_product(target_id) {
                 
                 <p>
                     <label for="producers">Producenter
-                    <input name="producers_input" id="producers_input" list="producers"></label>
+                    <input type="text" name="producers_input" id="producers_input" list="producers" minlength="5" maxlength="50" required></label>
                     <datalist name="producers" id="producers"></datalist>
                 </p>
                 <p>
                     <label for="categories">Kategorier
-                    <input name="categories_input" id="categories_input" list="categories"></label>
+                    <input type="text" name="categories_input" id="categories_input" list="categories" minlength="5" maxlength="50" required></label>
                     <datalist name="categories" id="categories"></datalist>
                 </p>
                 <label>Gammelt Billede</label>
@@ -766,12 +766,12 @@ function add_new_product() {
         </p>
         <p>
             <label for="producers">Producenter
-            <input name="producers_input" id="producers_input" list="producers"></label>
+            <input type="text" name="producers_input" id="producers_input" list="producers" minlength="5" maxlength="50" required></label>
             <datalist name="producers" id="producers"></datalist>
         </p>
         <p>
             <label for="categories">Kategorier
-            <input name="categories_input" id="categories_input" list="categories"></label>
+            <input type="text" name="categories_input" id="categories_input" list="categories" minlength="5" maxlength="50"  required></label>
             <datalist name="categories" id="categories"></datalist>
         </p>
         <label>Upload Nyt Billede</label>

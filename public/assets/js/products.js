@@ -31,7 +31,7 @@
             .then(function (products) {
                 products.forEach(function (product) {
                     console.log(product.kat_navn);
-                    if (param == product.Navn || param == product.vareNr || param == product.prod_navn || param == product.kat_navn) {
+                    // if (param == product.Navn || param == product.vareNr || param == product.prod_navn || param == product.kat_navn) {
 
                         console.log(product);
                         //create the image
@@ -142,7 +142,7 @@
                         //append wrapper row to actual div
                         document.getElementById('myDiv').appendChild(a);
                         document.getElementById('myDiv').innerHTML += "<br/>";
-                    }
+                    // }
                 })
             }).catch(function (error) {
                 console.log(error);
@@ -385,11 +385,9 @@
             });
     }
 
-
-
     const getCategory = function (param) {
         console.log("hello this is finally working getCateory by id!");
-        fetch('http://localhost:8080/products/' + param)
+        fetch('http://localhost:8080/getProductsByCategory/' + param)
             .then(function (result) {
                 return result.json();
             })

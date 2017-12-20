@@ -263,9 +263,9 @@ Arbejds-proces, Praktisk-Web-Produktion Ugentlig Arbejdsplan
      |....? ALWAYS MORE TO DO ?
 ```
 
-Her betyder et kryds, at opgaven er påbagyndt, og to at den er afsluttet. 
 
 ## CRUD Completement
+Her betyder et kryds, at opgaven er påbagyndt, og to at den er afsluttet. 
 ### Products
 	view 		                                           [x][x]
 	edit 		                                           [x][x]
@@ -353,10 +353,10 @@ Her betyder et kryds, at opgaven er påbagyndt, og to at den er afsluttet.
     implement control panel anchor  [x][x]
 
 ### Site Pages
-    Front Page [][]
-    Product Page(s) [][]
-    Contact Page [][]
-    Other Page(s) [][]
+    Front Page [x][x]
+    Product Page(s) [x][x]
+    Contact Page [x][x]
+    Other Page(s) [x][x]
 ## Roles:
     DataBase    [x][]
 	Everything  [][]
@@ -366,7 +366,7 @@ Her betyder et kryds, at opgaven er påbagyndt, og to at den er afsluttet.
     Splitting routes and client-side code into seperate files 	[x][]
     Polishing 	                                                [x][]
 
-# Description of Fetching, Routing and Generally how the system is put togetehr
+# Description of Fetching, Routing and Generally how the system is put together
 
 This specific illustration describes the general data flow, rather than a sepcific route
 <img src="public/assets/img/SysIllu.png" alt="henter billede"/>
