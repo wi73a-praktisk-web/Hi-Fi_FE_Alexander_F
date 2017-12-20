@@ -507,6 +507,10 @@ input:required {
     color: white;
 }
 
+#categories_input, #producers_input {
+    color: black;
+}
+
 #ctrl_panel_wrapper #content_div{
     background-color: rgba(54,54,54,1);
     border-radius: 5px;

@@ -281,7 +281,7 @@ function delete_user(target_id) {
         'cache': 'default'
     }).then(result => {
         console.log(result);
-        // window.location.assign('http://localhost:3000/sub/manage_content.html');
+        window.location.assign('http://localhost:3000/sub/manage_content.html');
     }).catch(err => {
         console.log(err);
     })
@@ -414,45 +414,45 @@ function add_new_user() {
     }
     var lacking;
 
-    document.querySelector('#rep_password').addEventListener('keyup', (event) => {
-        console.log("get's called onkeyup");
-        if (document.querySelector('#rep_password').value == document.querySelector('#password').value) {
-            document.querySelector('#rep_password').style.border = "3px solid green";
-            document.querySelector('#password').style.border = "3px solid green";
-            lacking = false;
-        } else {
-            document.querySelector('#rep_password').style.border = "3px solid red";
-            document.querySelector('#password').style.border = "3px solid red";
-            lacking = true;
-        }
-    });
+    // document.querySelector('#rep_password').addEventListener('keyup', (event) => {
+    //     console.log("get's called onkeyup");
+    //     if (document.querySelector('#rep_password').value == document.querySelector('#password').value) {
+    //         document.querySelector('#rep_password').style.border = "3px solid green";
+    //         document.querySelector('#password').style.border = "3px solid green";
+    //         lacking = false;
+    //     } else {
+    //         document.querySelector('#rep_password').style.border = "3px solid red";
+    //         document.querySelector('#password').style.border = "3px solid red";
+    //         lacking = true;
+    //     }
+    // });
 
-    document.querySelector('#rep_email').addEventListener('keyup', (event) => {
-        if (document.querySelector('#rep_email').value == document.querySelector('#email').value) {
-            document.querySelector('#rep_email').style.border = "3px solid green";
-            document.querySelector('#email').style.border = "3px solid green";
-            lacking = false;
-        } else {
-            document.querySelector('#rep_email').style.border = "3px solid red";
-            document.querySelector('#rep_email').style.border = "3px solid red";
-            lacking = true;
-        }
-    });
+    // document.querySelector('#rep_email').addEventListener('keyup', (event) => {
+    //     if (document.querySelector('#rep_email').value == document.querySelector('#email').value) {
+    //         document.querySelector('#rep_email').style.border = "3px solid green";
+    //         document.querySelector('#email').style.border = "3px solid green";
+    //         lacking = false;
+    //     } else {
+    //         document.querySelector('#rep_email').style.border = "3px solid red";
+    //         document.querySelector('#rep_email').style.border = "3px solid red";
+    //         lacking = true;
+    //     }
+    // });
 
-    document.querySelector('#phone_number').addEventListener('keyup', (event) => {
-        if (document.querySelector('#phone_number').value.length == 8) {
-            if (!isNaN(document.querySelector('#phone_number').value)) {
-                document.querySelector('#phone_number').style.border = "3px solid green";
-                lacking = false;
-            } else {
-                document.querySelector('#phone_number').style.border = "3px solid red";
-                lacking = true;
-            }
-        } else {
-            document.querySelector('#phone_number').style.border = "3px solid red";
-            lacking = true;
-        }
-    });
+    // document.querySelector('#phone_number').addEventListener('keyup', (event) => {
+    //     if (document.querySelector('#phone_number').value.length == 8) {
+    //         if (!isNaN(document.querySelector('#phone_number').value)) {
+    //             document.querySelector('#phone_number').style.border = "3px solid green";
+    //             lacking = false;
+    //         } else {
+    //             document.querySelector('#phone_number').style.border = "3px solid red";
+    //             lacking = true;
+    //         }
+    //     } else {
+    //         document.querySelector('#phone_number').style.border = "3px solid red";
+    //         lacking = true;
+    //     }
+    // });
 
     document.querySelector('#register_user_btn').addEventListener("click", (event) => {
         event.preventDefault();
@@ -504,7 +504,7 @@ function delete_product(target_id) {
 }
 
 function edit_product(target_id) {
-    
+
     console.log(target_id);
     document.getElementById('edit_div').innerHTML = '';
     fetch('http://localhost:8080/products/' + target_id, {
@@ -533,24 +533,26 @@ function edit_product(target_id) {
                 </p>
                 <p>
                     <label for="vareNr">vareNr</label>
-                    <input type="number" name="Navn" id="vareNr" value="${products[0].vareNr}" minlength="5" maxlength="50" required>
+                    <input type="number" name="vareNr" id="vareNr" value="${products[0].vareNr}" minlength="5" maxlength="50" required>
                 </p>
                 <p>
                     <label for="Pris">Pris</label>
-                    <input type="number" name="Navn" id="Pris" value="${products[0].Pris}" min="1" max="9999999999" value="0" required>
+                    <input type="number" name="Pris" id="Pris" value="${products[0].Pris}" min="1" max="9999999999" value="0" required>
                 </p>
                 <p>
                     <label for="beskrivelse">Beskrivelse</label>
-                    <input type="text" name="Navn" id="beskrivelse" value="${products[0].Beskrivelse}" minlength="5" maxlength="50" required>
+                    <input type="text" name="Beskrivelse" id="beskrivelse" value="${products[0].Beskrivelse}" minlength="5" maxlength="50" required>
                 </p>
                 
                 <p>
-                    <label for="producers">Producenter</label>
-                    <select name="producers" id="producers"></select>
+                    <label for="producers">Producenter
+                    <input name="producers_input" id="producers_input" list="producers"></label>
+                    <datalist name="producers" id="producers"></datalist>
                 </p>
                 <p>
-                    <label for="categories">Kategorier</label>
-                    <select name="categories" id="categories"></select>
+                    <label for="categories">Kategorier
+                    <input name="categories_input" id="categories_input" list="categories"></label>
+                    <datalist name="categories" id="categories"></datalist>
                 </p>
                 <label>Gammelt Billede</label>
                 <img src="http://localhost:8080/images/${products[0].billede}" id="old_pic" alt="billede hentes" width="200" height="75">
@@ -560,49 +562,49 @@ function edit_product(target_id) {
                 <img id="preview" width="200" height="75">
                 <button type="submit" id="update_button">Update</button>
             </form>`;
-            // Array.from(document.querySelector('#product_form').querySelectorAll('input')).forEach(input => {
-            //     console.log(input);
-                        
-            //     input.addEventListener("input", event => {
-            //         if (!input.reportValidity()) {
-            //             console.log("do something!");
-            //             input.setCustomValidity('Please fill out this field');
-            //             input.reportValidity();
-            //         }
-            //         else {
-            //             input.style.boxShadow = "0 0 10px green";   
-            //         }
-            //     });
+        // Array.from(document.querySelector('#product_form').querySelectorAll('input')).forEach(input => {
+        //     console.log(input);
 
-            //     input.addEventListener("change", event => {
-            //         if (!input.reportValidity()) {
-            //             console.log("do something!");
-            //             input.setCustomValidity('Please fill out this field');
-            //             input.reportValidity();
-            //         }
-            //         else {
-            //             input.style.boxShadow = "0 0 10px green";   
-            //         }
-            //     });
-                
-            //     input.addEventListener("focus", event => {
-            //         if (!input.reportValidity()) {
-            //             input.setCustomValidity('Please fill out this field');
-            //             input.reportValidity();
-            //         }
-            //         else {
-            //             input.style.boxShadow = "0 0 10px green";   
-            //         }
-            //     });
+        //     input.addEventListener("input", event => {
+        //         if (!input.reportValidity()) {
+        //             console.log("do something!");
+        //             input.setCustomValidity('Please fill out this field');
+        //             input.reportValidity();
+        //         }
+        //         else {
+        //             input.style.boxShadow = "0 0 10px green";   
+        //         }
+        //     });
 
-            //     // input.addEventListener("valid", event => {
-            //     //     if (!input.checkValidity()) {
-            //     //         console.log("do something!");
-            //     //         // input.setCustomValidity('Please fill out this field');
-            //     //         input.style.boxShadow = "0 0 10px green";
-            //     //     }
-            //     // });
-            // })
+        //     input.addEventListener("change", event => {
+        //         if (!input.reportValidity()) {
+        //             console.log("do something!");
+        //             input.setCustomValidity('Please fill out this field');
+        //             input.reportValidity();
+        //         }
+        //         else {
+        //             input.style.boxShadow = "0 0 10px green";   
+        //         }
+        //     });
+
+        //     input.addEventListener("focus", event => {
+        //         if (!input.reportValidity()) {
+        //             input.setCustomValidity('Please fill out this field');
+        //             input.reportValidity();
+        //         }
+        //         else {
+        //             input.style.boxShadow = "0 0 10px green";   
+        //         }
+        //     });
+
+        //     // input.addEventListener("valid", event => {
+        //     //     if (!input.checkValidity()) {
+        //     //         console.log("do something!");
+        //     //         // input.setCustomValidity('Please fill out this field');
+        //     //         input.style.boxShadow = "0 0 10px green";
+        //     //     }
+        //     // });
+        // })
         document.querySelector('#update_button').addEventListener('click', event => {
             event.preventDefault();
             if (!document.querySelector("#product_form").reportValidity()) {
@@ -620,7 +622,7 @@ function edit_product(target_id) {
                     console.log(result);
                     return result.json();
                 }).then(result => {
-                    // window.location.assign('http://localhost:3000/sub/manage_content.html');
+                    window.location.assign('http://localhost:3000/sub/manage_content.html');
                 }).catch(err => {
                     console.log(err);
                 })
@@ -660,7 +662,7 @@ function edit_product(target_id) {
                 console.log("kategorinavn" + kategorinavn);
                 console.log("innerHTML" + option.innerHTML);
                 if (option.innerHTML.trim() == kategorinavn.trim()) {
-                    option.selected = true;
+                    document.getElementById('categories_input').value = option.innerHTML;
                 }
             })
         }).then(() => {
@@ -686,7 +688,7 @@ function edit_product(target_id) {
                     console.log("producentnavn" + producentnavn);
                     console.log("innerHTML" + option.innerHTML);
                     if (option.innerHTML.trim() == producentnavn.trim()) {
-                        option.selected = true;
+                        document.getElementById('producers_input').value = option.innerHTML;
                     }
                 })
             }).catch(err => {
@@ -714,29 +716,31 @@ function add_new_product() {
             <input type="text" name="Navn" id="produktnavn" placeholder="Navn" minlength="5" maxlength="50" required>
         </p>
         <p>
-        <label for="vareNr">vareNr</label>
-        <input type="number" name="vareNr" id="vareNr" placeholder="vareNr" min="1" max="9999999999" value="0" step="5" required>
-    </p>
-    <p>
-        <label for="Pris">Pris</label>
-        <input type="number" name="Pris" id="Pris" min="1" max="999999999999999999999999999999" value="0" step="5" required>
-    </p>
-    <p>
-        <label for="beskrivelse">Beskrivelse</label>
-        <input type="text" name="Beskrivelse" id="beskrivelse" placeholder="Beskrivelse" minlength="5" maxlength="50" required>
-    </p>
-    <p>
-        <label for="producers">Producers</label>
-        <select name="producers" id="producers" placeholder="Producers"></select>
-    </p>
-    <p>
-        <label for="categories">Kategorier</label>
-        <select name="categories" id="categories"></select>
-    </p>
-    <label>Upload Nyt Billede</label>
-    <input type="file" name="productImage" id="productImage" value="empty">
-    <img id="preview" width="200" height="75">
-    <button type="submit" id="register_product_btn">Register</button>
+            <label for="vareNr">vareNr</label>
+            <input type="number" name="vareNr" id="vareNr" placeholder="vareNr" min="1" max="9999999999" value="0" step="5" required>
+        </p>
+        <p>
+            <label for="Pris">Pris</label>
+            <input type="number" name="Pris" id="Pris" min="1" max="999999999999999999999999999999" value="0" step="5" required>
+        </p>
+        <p>
+            <label for="beskrivelse">Beskrivelse</label>
+            <input type="text" name="Beskrivelse" id="beskrivelse" placeholder="Beskrivelse" minlength="5" maxlength="50" required>
+        </p>
+        <p>
+            <label for="producers">Producenter
+            <input name="producers_input" id="producers_input" list="producers"></label>
+            <datalist name="producers" id="producers"></datalist>
+        </p>
+        <p>
+            <label for="categories">Kategorier
+            <input name="categories_input" id="categories_input" list="categories"></label>
+            <datalist name="categories" id="categories"></datalist>
+        </p>
+        <label>Upload Nyt Billede</label>
+        <input type="file" name="productImage" id="productImage" value="empty">
+        <img id="preview" width="200" height="75">
+        <button type="submit" id="register_product_btn">Register</button>
     </form>
     `;
     document.querySelector('#productImage').addEventListener('change', () => {
@@ -784,6 +788,42 @@ function add_new_product() {
         }).catch(err => {
             console.log(err);
         })
+    }).then(()=> {
+        document.querySelector('#register_product_btn').addEventListener('click', (event) => {
+                event.preventDefault();
+                    // 1. get values 
+                    // 2. validate values on client side
+                    // 3. send values to server
+                    // 4. server validation of values
+                    // 5. server response
+                    // 6. based on response, break and throw error or redirect to profile page
+            
+                    let headers = new Headers();
+                    headers.append('Content-Type', 'application/json');
+            
+                    // grib formularen og håndter indholdet via FormData objektet
+                    let form = document.getElementById('product_form');
+                    let data = new FormData(form);
+                    let init = {
+                        method: 'POST',
+                        body: data,
+                        cache: 'no-cache',
+                        mode: 'cors'
+                    };
+            
+                    console.log(init.body);
+            
+                    let request = new Request('http://localhost:8080/registerProduct', init);
+            
+                    fetch(request)
+                        .then(result => {
+                            window.location.assign('http://localhost:3000/sub/manage_content.html');
+            
+            
+                        }).catch(err => {
+                            console.log(err)
+                        });
+                })
     }).catch(err => {
         console.log(err);
     });
@@ -804,7 +844,7 @@ function add_new_product() {
     //             input.reportValidity();
     //         }
     //     });
-        
+
     //     // input.addEventListener("focus", event => {
     //     //     if (!input.checkValidity()) {
     //     //         input.setCustomValidity('Please fill out this field');
@@ -820,41 +860,6 @@ function add_new_product() {
     //         }
     //     });
     // })
-    document.querySelector('#register_product_btn').addEventListener('click', (event) => {
-
-        // 1. get values 
-        // 2. validate values on client side
-        // 3. send values to server
-        // 4. server validation of values
-        // 5. server response
-        // 6. based on response, break and throw error or redirect to profile page
-
-        let headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-
-        // grib formularen og håndter indholdet via FormData objektet
-        let form = document.getElementById('product_form');
-        let data = new FormData(form);
-        let init = {
-            method: 'POST',
-            body: data,
-            cache: 'no-cache',
-            mode: 'cors'
-        };
-
-        console.log(init.body);
-
-        let request = new Request('http://localhost:8080/registerProduct', init);
-
-        fetch(request)
-            .then(result => {
-                window.location.assign('http://localhost:3000/sub/manage_content.html');
-
-
-            }).catch(err => {
-                console.log(err)
-            });
-    })
 }
 
 //producer
