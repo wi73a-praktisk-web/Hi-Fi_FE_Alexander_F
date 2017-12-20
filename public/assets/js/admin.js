@@ -548,7 +548,7 @@ function edit_product(target_id) {
 
     console.log(target_id);
     document.getElementById('edit_div').innerHTML = '';
-    fetch('http://localhost:8080/products/' + target_id, {
+    fetch('http://localhost:8080/product/' + target_id, {
         'method': 'get',
         'headers': {
             'Authorization': localStorage.getItem('token'),
@@ -754,11 +754,11 @@ function add_new_product() {
         </p>
         <p>
             <label for="vareNr">vareNr</label>
-            <input type="number" name="vareNr" id="vareNr" placeholder="vareNr" min="1" max="9999999999" value="0" step="5" required>
+            <input type="number" name="vareNr" id="vareNr" placeholder="vareNr" min="1" max="99999" value="0" step="5" required>
         </p>
         <p>
             <label for="Pris">Pris</label>
-            <input type="number" name="Pris" id="Pris" min="1" max="999999999999999999999999999999" value="0" step="5" required>
+            <input type="number" name="Pris" id="Pris" min="1" max="99999" value="0" step="5" required>
         </p>
         <p>
             <label for="beskrivelse">Beskrivelse</label>
