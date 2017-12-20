@@ -266,7 +266,7 @@ Arbejds-proces, Praktisk-Web-Produktion Ugentlig Arbejdsplan
 Her betyder et kryds, at opgaven er påbagyndt, og to at den er afsluttet. 
 
 ## CRUD
-### Products [validation and documentation remains]
+### Products
 	view 		                                           [x][x]
 	edit 		                                           [x][x]
     validate input to be updated (client-side) - edit          [x][x]
