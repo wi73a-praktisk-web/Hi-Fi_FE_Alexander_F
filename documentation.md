@@ -365,3 +365,8 @@ Her betyder et kryds, at opgaven er påbagyndt, og to at den er afsluttet.
     Documentation 	                                                [x][]
     Splitting routes and client-side code into seperate files 	[x][]
     Polishing 	                                                [x][]
+
+# Description of Fetching, Routing and Generally how the system is put togetehr
+
+This specific illustration describes the general data flow, rather than a sepcific route
+<img src="assets/img/SysIllu.png" alt="henter billede"/>
