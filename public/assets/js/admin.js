@@ -702,10 +702,6 @@ function edit_product(target_id) {
     })
 }
 
-function update_product(target_id) {
-
-}
-
 function add_new_product() {
     document.getElementById('edit_div').innerHTML = '';
     document.getElementById('edit_div').innerHTML += `
@@ -788,42 +784,46 @@ function add_new_product() {
         }).catch(err => {
             console.log(err);
         })
-    }).then(()=> {
+    }).then(() => {
         document.querySelector('#register_product_btn').addEventListener('click', (event) => {
-                event.preventDefault();
-                    // 1. get values 
-                    // 2. validate values on client side
-                    // 3. send values to server
-                    // 4. server validation of values
-                    // 5. server response
-                    // 6. based on response, break and throw error or redirect to profile page
-            
-                    let headers = new Headers();
-                    headers.append('Content-Type', 'application/json');
-            
-                    // grib formularen og håndter indholdet via FormData objektet
-                    let form = document.getElementById('product_form');
-                    let data = new FormData(form);
-                    let init = {
-                        method: 'POST',
-                        body: data,
-                        cache: 'no-cache',
-                        mode: 'cors'
-                    };
-            
-                    console.log(init.body);
-            
-                    let request = new Request('http://localhost:8080/registerProduct', init);
-            
-                    fetch(request)
-                        .then(result => {
-                            window.location.assign('http://localhost:3000/sub/manage_content.html');
-            
-            
-                        }).catch(err => {
-                            console.log(err)
-                        });
-                })
+            event.preventDefault();
+            if (!document.querySelector("#product_form").reportValidity()) {
+
+            } else {
+                // 1. get values 
+                // 2. validate values on client side
+                // 3. send values to server
+                // 4. server validation of values
+                // 5. server response
+                // 6. based on response, break and throw error or redirect to profile page
+
+                let headers = new Headers();
+                headers.append('Content-Type', 'application/json');
+
+                // grib formularen og håndter indholdet via FormData objektet
+                let form = document.getElementById('product_form');
+                let data = new FormData(form);
+                let init = {
+                    method: 'POST',
+                    body: data,
+                    cache: 'no-cache',
+                    mode: 'cors'
+                };
+
+                console.log(init.body);
+
+                let request = new Request('http://localhost:8080/registerProduct', init);
+
+                fetch(request)
+                    .then(result => {
+                        window.location.assign('http://localhost:3000/sub/manage_content.html');
+
+
+                    }).catch(err => {
+                        console.log(err)
+                    });
+            }
+        })
     }).catch(err => {
         console.log(err);
     });

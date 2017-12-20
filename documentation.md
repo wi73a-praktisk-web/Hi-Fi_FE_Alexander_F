@@ -267,16 +267,16 @@ Her betyder et kryds, at opgaven er påbagyndt, og to at den er afsluttet.
 
 ## CRUD
 ### Products [validation and documentation remains]
-	view 		                                    [x][x]
-	edit 		                                    [x][x]
-    validate input to be updated (client-side) - edit          [x][x] (polishing remains to be done)
-    validate input to be updated (server-side) - edit         [x][x] (polishing remains to be done)
-	edit update 	                                    [x][x]
-	delete 		                                    [x][x]
-	add new view 	                                    [x][x]
-    validate input to be inserted (client-side) - add new        [x][x] (polishing remains to be done)
-    validate input to be inserted (server-side) - add new        [x][x] (polishing remains to be done)
-	add new insert 	                                    [x][x]
+	view 		                                           [x][x]
+	edit 		                                           [x][x]
+    validate input to be updated (client-side) - edit          [x][x]
+    validate input to be updated (server-side) - edit          [x][x]
+	edit update 	                                           [x][x]
+	delete 		                                           [x][x]
+	add new view 	                                           [x][x]
+    validate input to be inserted (client-side) - add new      [x][x]
+    validate input to be inserted (server-side) - add new      [x][x]
+	add new insert 	                                           [x][x]
 ### Users
 	view 		                            [x][x]
 	edit 		                            [x][x]
