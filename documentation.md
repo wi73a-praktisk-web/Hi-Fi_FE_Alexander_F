@@ -265,7 +265,7 @@ Arbejds-proces, Praktisk-Web-Produktion Ugentlig Arbejdsplan
 
 Her betyder et kryds, at opgaven er påbagyndt, og to at den er afsluttet. 
 
-## CRUD
+## CRUD Completement
 ### Products
 	view 		                                           [x][x]
 	edit 		                                           [x][x]
@@ -370,3 +370,7 @@ Her betyder et kryds, at opgaven er påbagyndt, og to at den er afsluttet.
 
 This specific illustration describes the general data flow, rather than a sepcific route
 <img src="public/assets/img/SysIllu.png" alt="henter billede"/>
+
+# DataBase
+Screenshot af database designeren, som viser tabeller og relationer/ER-Diagram
+<img src="public/assets/img/db_designer_prnt_scrn.png" alt="henter billede"/>

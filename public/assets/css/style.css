@@ -547,3 +547,11 @@ input:required {
     box-shadow: 0 0 10px orange, 0 0 10px orange, 0 0 10px orange, 0 0 10px orange, 0 0 10px orange, 0 0 10px orange;
     margin-top: 20px;
 }
+
+#product_form label, #user_form label {
+    width: 80px;
+}
+
+#product_form h1, #user_form h1 {
+    color: orange;
+}

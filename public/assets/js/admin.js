@@ -305,14 +305,28 @@ function edit_user(target_id) {
         return result.json();
     }).then(users => {
         document.getElementById('edit_div').innerHTML += `
-            <h1>Edit User </h1>
             <form id="user_form" method="post" enctype="multipart/form-data">
-                <input name="name" type="text" id="name" value="${users[0].name}"><br/>
-                <input name="username" type="text" id="username" value="${users[0].username}"><br/>
-                <input name="email" type="text" id="email" value="${users[0].email}"><br/>
-                <input name="created" type="text" id="created" value="${users[0].created}"><br/>
-                <input name="adress" type="text" id="adress" value="${users[0].adress}"><br/>
-                <input name="phone" type="text" id="phone" value="${users[0].phone}">
+            <h1>Edit User </h1>
+            <p>
+                <label for="name">Name: </label>
+                <input name="name" type="text" id="name" value="${users[0].name}" minlength="5" maxlength="50" required autofocus>
+            </p>
+            <p>
+                <label for="username">Username: </label>
+                <input name="username" type="text" id="username" value="${users[0].username}" minlength="5" maxlength="50" required>
+            </p>
+            <p>
+                <label for="email">E-mail Adress: </label>
+                <input name="email" type="text" id="email" value="${users[0].email}" required>
+            </p>
+            <p>
+                <label for="adress">Adress: </label>
+                <input name="adress" type="text" id="adress" value="${users[0].adress}" minlength="5" maxlength="50">
+            </p>
+            <p>
+                <label for="phone">Phone number: </label>
+                <input name="phone" type="text" id="phone" value="${users[0].phone}" min="5" max="11">
+            </p>
                 
                 <label>Gammelt Billede</label>
                 <img src="http://localhost:8080/images/${users[0].url}" id="old_pic" alt="billede hentes" width="200" height="75">
@@ -336,8 +350,9 @@ function edit_user(target_id) {
         document.querySelector('#register_user_btn').addEventListener("click", (event) => {
 
             event.preventDefault();
-
-
+            if (!document.querySelector("#user_form").reportValidity()) {
+                document.querySelector("#user_form").reportValidity()
+                } else {
             // grib formularen og håndter indholdet via FormData objektet
             let form = document.querySelector('#user_form');
             let data = new FormData(form);
@@ -358,7 +373,7 @@ function edit_user(target_id) {
                 }).catch(err => {
                     console.log(err)
                 });
-            // }
+            }
         })
     }).catch(err => {
         console.log(err);
@@ -368,16 +383,40 @@ function edit_user(target_id) {
 function add_new_user() {
     document.getElementById('edit_div').innerHTML = '';
     document.getElementById('edit_div').innerHTML += `
-    <h1>Add new User </h1>
     <form id="user_form" method="post" enctype="multipart/form-data">
-        <input name="name" type="text" id="name" placeholder="Name" required autofocus/><br/>
-        <input name="username" type="text" id="username" placeholder="Username" required/><br/>
-        <input name="password" type="password" id="password" placeholder="Password" required/><br/>
-        <input type="password" id="rep_password" placeholder="Repeat Password" required/><br/>
-        <input name="email" type="text" id="email" placeholder="E-mail adress" required/><br/>
-        <input type="text" id="rep_email" placeholder="Repeat E-mail adress" required/><br/>
-        <input name="adress" type="text" id="adress" placeholder="Adress" /><br/>
-        <input name="phone_number" type="text" id="phone_number" placeholder="Phone number" /><br/>
+        <h1>Add new User </h1>
+        <p>
+            <label for="name">Name: </label>
+            <input name="name" type="text" id="name" placeholder="Name" minlength="5" maxlength="50" required autofocus/>
+        </p>
+        <p>
+            <label for="username">Username: </label>
+            <input name="username" type="text" id="username" placeholder="Username" minlength="5" maxlength="50" required/>
+        </p>
+        <p>
+            <label for="password">Password: </label>
+            <input name="password" type="password" id="password" placeholder="Password" minlength="5" maxlength="50" required/>
+        </p>
+        <p>
+            <label for="rep_password">Repeat Password: </label>
+            <input type="password" id="rep_password" placeholder="Repeat Password" minlength="5" maxlength="50" required/>
+        </p>
+        <p>
+            <label for="email">E-mail Adress: </label>
+            <input name="email" type="email" id="email" placeholder="E-mail adress" minlength="5" maxlength="50" required/>
+        </p>
+        <p>
+            <label for="rep_email">Repeat E-mail Adress: </label>
+            <input type="text" id="rep_email" placeholder="Repeat E-mail adress" minlength="5" maxlength="50" required/>
+        </p>
+        <p>
+            <label for="adress">Adress: </label>
+            <input name="adress" type="text" id="adress" placeholder="Adress"  minlength="5" maxlength="50" required/>
+        </p>
+        <p>
+            <label for="phone_number">Phone number: </label>
+            <input name="phone_number" type="text" id="phone_number" placeholder="Phone number"  min="5" max="11" required/>
+        </p>
         <label>Upload Nyt Billede</label>
         <input type="file" name="userImage" id="userImage" value="empty">
         <img id="preview" width="200" height="75">
@@ -456,7 +495,9 @@ function add_new_user() {
 
     document.querySelector('#register_user_btn').addEventListener("click", (event) => {
         event.preventDefault();
-
+        if (!document.querySelector("#user_form").reportValidity()) {
+            document.querySelector("#user_form").reportValidity()
+                        } else {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
 
@@ -480,7 +521,7 @@ function add_new_user() {
             }).catch(err => {
                 console.log(err)
             });
-        // }
+        }
     })
 }
 
@@ -525,8 +566,8 @@ function edit_product(target_id) {
         producentnavn = products[0].prod_navn;
         console.log("product ID = " + products[0].id);
         document.getElementById('edit_div').innerHTML += `
-            <h1>Edit Product </h1>
             <form id="product_form" method="post" enctype="multipart/form-data">
+                <h1>Edit Product </h1>
                 <p>
                     <label for="produktnavn">Navn</label>
                     <input type="text" name="Navn" id="produktnavn" value="${products[0].Navn}" minlength="5" maxlength="50" required>
@@ -608,7 +649,7 @@ function edit_product(target_id) {
         document.querySelector('#update_button').addEventListener('click', event => {
             event.preventDefault();
             if (!document.querySelector("#product_form").reportValidity()) {
-
+                document.querySelector("#user_form").reportValidity()
             } else {
                 let form = document.getElementById('product_form');
                 let data = new FormData(form);
@@ -705,8 +746,8 @@ function edit_product(target_id) {
 function add_new_product() {
     document.getElementById('edit_div').innerHTML = '';
     document.getElementById('edit_div').innerHTML += `
-    <h1>Add new Product </h1>
     <form id="product_form" method="post" enctype="multipart/form-data">
+        <h1>Add new Product </h1>
         <p>
             <label for="produktnavn">Navn</label>
             <input type="text" name="Navn" id="produktnavn" placeholder="Navn" minlength="5" maxlength="50" required>
@@ -788,7 +829,7 @@ function add_new_product() {
         document.querySelector('#register_product_btn').addEventListener('click', (event) => {
             event.preventDefault();
             if (!document.querySelector("#product_form").reportValidity()) {
-
+                document.querySelector("#user_form").reportValidity()
             } else {
                 // 1. get values 
                 // 2. validate values on client side
