@@ -201,7 +201,8 @@ Hi-Fi_API_ALEXANDER_F
 
 ### Det følgende afsnit beskriver, hvilke opgaver der er planlagte, hvilke der er påbegyndte og hvilke der er færdigt afsluttede. 
 
-## Arbejds-proces, Praktisk-Web-Produktion Ugentlig Arbejdsplan
+```
+Arbejds-proces, Praktisk-Web-Produktion Ugentlig Arbejdsplan
 |
 |____uge 1
 |    |
@@ -260,7 +261,7 @@ Hi-Fi_API_ALEXANDER_F
      |....finish prettyfying and polishing the final CRUD, after all functionality is added and tested
      |....changing live search to use datalist, since it has live search partially natively implemented and is much more suitable
      |....? ALWAYS MORE TO DO ?
-
+```
 
 Her betyder et kryds, at opgaven er påbagyndt, og to at den er afsluttet. 
 
