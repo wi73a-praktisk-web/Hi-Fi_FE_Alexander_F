@@ -264,18 +264,18 @@ Arbejds-proces, Praktisk-Web-Produktion Ugentlig Arbejdsplan
 ```
 
 
-## CRUD Completement
+## CRUD Completement [Data is currently being validated both client-side and server-side, however, the server-side validation doesn't yet include the database]
 Her betyder et kryds, at opgaven er påbagyndt, og to at den er afsluttet. 
 ### Products
 	view 		                                           [x][x]
 	edit 		                                           [x][x]
     validate input to be updated (client-side) - edit          [x][x]
-    validate input to be updated (server-side) - edit          [x][x]
+    validate input to be updated (server-side) - edit          [x][x] (could easily be extended)
 	edit update 	                                           [x][x]
 	delete 		                                           [x][x]
 	add new view 	                                           [x][x]
     validate input to be inserted (client-side) - add new      [x][x]
-    validate input to be inserted (server-side) - add new      [x][x]
+    validate input to be inserted (server-side) - add new      [x][x] (could easily be extended
 	add new insert 	                                           [x][x]
 ### Users
 	view 		                            [x][x]
@@ -367,6 +367,28 @@ Her betyder et kryds, at opgaven er påbagyndt, og to at den er afsluttet.
     Polishing 	                                                [x][]
 
 # Description of Fetching, Routing and Generally how the system is put together
+
+This system consists of two parts - a frontend-client, and a backend-server coupled to a database. 
+1. <p>
+        <strong>The Frontend Client</strong> represents the user interface, and is responsible for interacting with the user - receiving input and presenting data. 
+        When the user enters information, it is validated using HTML5 validation before anything further can happen. 
+    </p>
+2. <p>
+        Upon validation, the client converts the entire form (as input is usually entered into one) to a ```FormData``` object, and sends that to the server using ```fetch()```. 
+    </p>
+3.  <p>
+        <strong>The Backend Server</strong> operates through a series of routes made available through an API. It receives requests concerning the retrieval or manipulation of data persisted by the database. 
+    </p>
+4. <p>
+        If the server was sent a request to store or change data, it then grabs this ```FormData``` object and validates the input, making sure that only correct data is being entered into the database. <br/>
+        Otherwise it just retrieves the requested data and sends it back the frontend client. 
+    </p>
+5.  <p>
+        The frontend client then grabs the returned data, and presents it to the user. Or just sends out a confirmation of data successfully being manipulated. 
+    </p>
+6.  <p>
+        Either way, that circle describes the general way the system is set up, and the way the routing works. From the user through the user interface, through frontend- and backend validation, pending server-side manipulation, and back to the client, where the user is at the very least being informed of whether or not the request was successfull. 
+    </p>
 
 This specific illustration describes the general data flow, rather than a sepcific route
 <img src="public/assets/img/SysIllu.png" alt="henter billede"/>
