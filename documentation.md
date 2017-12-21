@@ -373,7 +373,7 @@ This system consists of two parts - a frontend-client, and a backend-server coup
         <strong>The Frontend Client</strong> represents the user interface, and is responsible for interacting with the user - receiving input and presenting data. 
         When the user enters information, it is validated using HTML5 validation before anything further can happen. 
     </p>
-2. <p>
+2. <p>  
         Upon validation, the client converts the entire form (as input is usually entered into one) to a ```FormData``` object, and sends that to the server using ```fetch()```. 
     </p>
 3.  <p>

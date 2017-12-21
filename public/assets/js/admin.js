@@ -24,8 +24,6 @@ document.getElementById('products').addEventListener('click', (event) => {
             element.className = "";
         }
     });
-    document.getElementById('categories_list').innerHTML = '';
-    document.getElementById('producers_list').innerHTML = '';
     document.getElementById('edit_div').innerHTML = '';
     console.log("something, happens!");
     document.getElementById('content_div').innerHTML = '';
@@ -87,6 +85,16 @@ document.getElementById('products').addEventListener('click', (event) => {
                 .then(result => {
                     return result.json();
                 }).then(categories => {
+                    document.getElementById('check_div').innerHTML = `
+                    <a>Producers: 
+                        <ul id="producers_list">
+                        </ul>
+                    </a>
+                    <a>Categories: 
+                        <ul id="categories_list">
+                        </ul>
+                    </a>
+                    `;
                     categories.forEach(category => {
                         document.getElementById('categories_list').innerHTML += `
                     <li>
@@ -117,6 +125,7 @@ document.getElementById('products').addEventListener('click', (event) => {
 })
 
 document.getElementById('categories_button').addEventListener('click', (event) => {
+    document.getElementById('check_div').innerHTML = '';
     Array.from(document.getElementById('ctrl_panel_btn_div').getElementsByTagName('button')).forEach(element => {
         if (element.innerHTML == "Categories") {
             element.className = element.className + " active";
@@ -124,8 +133,7 @@ document.getElementById('categories_button').addEventListener('click', (event) =
             element.className = "";
         }
     });
-    document.getElementById('categories_list').innerHTML = '';
-    document.getElementById('producers_list').innerHTML = '';
+    document.getElementById('check_div').innerHTML = '';
     document.getElementById('edit_div').innerHTML = '';
     console.log("something, happens!");
     document.getElementById('content_div').innerHTML = '';
@@ -171,8 +179,7 @@ document.getElementById('producers_button').addEventListener('click', (event) =>
             element.className = "";
         }
     });
-    document.getElementById('categories_list').innerHTML = '';
-    document.getElementById('producers_list').innerHTML = '';
+    document.getElementById('check_div').innerHTML = '';
     document.getElementById('edit_div').innerHTML = '';
     console.log("something, happens!");
     document.getElementById('content_div').innerHTML = '';
@@ -215,8 +222,7 @@ document.getElementById('users').addEventListener('click', (event) => {
             element.className = "";
         }
     });
-    document.getElementById('categories_list').innerHTML = '';
-    document.getElementById('producers_list').innerHTML = '';
+    document.getElementById('check_div').innerHTML = '';
     document.getElementById('edit_div').innerHTML = '';
     document.getElementById('content_div').innerHTML = '';
     fetch('http://localhost:8080/allUsers', {

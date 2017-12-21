@@ -51,23 +51,23 @@ const getUserByID = (param) => {
                             <button id="edit_btn" class="glyphicon glyphicon-edit"></button><br/>
                             <p>
                                 <label for="name">Name: </label>
-                                <input type="text" name="name" id="name" value="${response[0].name}"><br/>
+                                <input type="text" name="name" id="name" value="${response[0].name}" minlength="5" maxlength="50" required autofocus readonly><br/>
                             </p>
                             <p>
                                 <label for="username">Username: </label>
-                                <input name="username" type="text" id="username" value="${response[0].username}" readonly><br/>
+                                <input name="username" type="text" id="username" value="${response[0].username}" minlength="5" maxlength="50" required readonly><br/>
                             </p>
                             <p>
                                 <label for="email">E-mail Adress: </label>
-                                <input name="email" type="text" id="email" value="${response[0].email}" readonly><br/>
+                                <input name="email" type="text" id="email" value="${response[0].email}" minlength="5" maxlength="50" required required readonly><br/>
                             </p>
                             <p>
                                 <label for="adress">Adress: </label>
-                                <input name="adress" type="text" id="adress" value="${response[0].adress}" readonly><br/>
+                                <input name="adress" type="text" id="adress" value="${response[0].adress}" minlength="5" maxlength="50" readonly><br/>
                             </p>
                             <p>
                                 <label for="phone">Phone number: </label>
-                                <input name="phone" type="text" id="phone" value="${response[0].phone}" readonly><br/>
+                                <input name="phone" type="text" id="phone" value="${response[0].phone}" minlength="5" maxlength="50" readonly><br/>
                             </p>
                             <p>
                                 <label for="created">Created: </label>

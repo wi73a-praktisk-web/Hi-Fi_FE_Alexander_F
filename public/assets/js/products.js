@@ -470,9 +470,10 @@
 
                     //create a wrapper_div
                     const wrapperDiv = document.createElement('DIV');
-                    wrapperDiv.style.outline = "2px solid black";
+                    wrapperDiv.style.border = "2px solid orange";
+                    wrapperDiv.style.borderRadius = "5px";
                     wrapperDiv.setAttribute('class', "col-xs-12");
-                    wrapperDiv.style.backgroundColor = "rgba(34,34,34,.5)";
+                    wrapperDiv.style.backgroundColor = "rgba(34,34,34,1)";
                     wrapperDiv.style.padding = "10px";
                     wrapperDiv.style.margin = "10px";
 

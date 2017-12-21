@@ -555,3 +555,7 @@ input:required {
 #product_form h1, #user_form h1 {
     color: orange;
 }
+
+main {
+    background-color: rgba(74,74,74,1);
+}
