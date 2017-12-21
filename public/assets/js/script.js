@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
 document.querySelector('#messaging_btn').addEventListener('click', (event) => {
     event.preventDefault();
-    window.location.assign('http://localhost:3000/sub/messaging.html');
+    window.location.assign('http://95.85.49.133:3000/sub/messaging.html');
 });
     if (localStorage.getItem('token') != null) {
         document.querySelector('#log_in').style.display = "none";

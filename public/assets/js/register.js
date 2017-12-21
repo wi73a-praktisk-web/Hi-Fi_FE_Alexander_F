@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             fetch(request)
                 .then(result => {
-                    window.location.assign('http://localhost:3000/sub/manage_content.html');
+                    window.location.assign('http://95.85.49.133:3000/sub/manage_content.html');
                 }).catch(err => {
                     console.log(err)
                 });

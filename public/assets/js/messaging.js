@@ -85,7 +85,7 @@ document.querySelector('#new_message_btn').addEventListener('click', (event) => 
             };
             fetch('http://95.85.49.133:3000/sendMessage/' + localStorage.getItem('userid'), init)
                 .then(() => {
-                    window.location.assign('http://localhost:3000/sub/messaging.html');
+                    window.location.assign('http://95.85.49.133:3000/sub/messaging.html');
                 }).catch(err => {
                     console.log(err);
                 });
@@ -484,7 +484,7 @@ function viewSingleInboxMessage(target_id) {
                                 };
                                 fetch('http://95.85.49.133:3000/sendMessage/' + localStorage.getItem('userid'), init)
                                     .then(() => {
-                                        window.location.assign('http://localhost:3000/sub/messaging.html');
+                                        window.location.assign('http://95.85.49.133:3000/sub/messaging.html');
                                     }).catch(err => {
                                         console.log(err);
                                     });
@@ -562,7 +562,7 @@ function viewSingleInboxMessage(target_id) {
                                 };
                                 fetch('http://95.85.49.133:3000/sendMessage/' + localStorage.getItem('userid'), init)
                                     .then(() => {
-                                        window.location.assign('http://localhost:3000/sub/messaging.html');
+                                        window.location.assign('http://95.85.49.133:3000/sub/messaging.html');
                                     }).catch(err => {
                                         console.log(err);
                                     });
@@ -773,7 +773,7 @@ function viewSingleOutboxMessage(target_id) {
                                     fetch('http://95.85.49.133:3000/sendMessage/' + localStorage.getItem('userid'), init)
                                         .then(result => {
                                             console.log("sunovabitch");
-                                            window.location.assign('http://localhost:3000/sub/messaging.html');
+                                            window.location.assign('http://95.85.49.133:3000/sub/messaging.html');
                                         }).catch(err => {
                                             console.log(err);
                                         });
@@ -808,7 +808,7 @@ function deleteMessage(target_id) {
             'cache': 'default'
         })
         .then(response => {
-            window.location.assign('http://localhost:3000/sub/messaging.html');
+            window.location.assign('http://95.85.49.133:3000/sub/messaging.html');
         })
         .catch(err => {
             console.log(err);

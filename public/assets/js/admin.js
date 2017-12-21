@@ -287,7 +287,7 @@ function delete_user(target_id) {
         'cache': 'default'
     }).then(result => {
         console.log(result);
-        window.location.assign('http://localhost:3000/sub/manage_content.html');
+        window.location.assign('http://95.85.49.133:3000/sub/manage_content.html');
     }).catch(err => {
         console.log(err);
     })
@@ -375,7 +375,7 @@ function edit_user(target_id) {
 
             fetch(request)
                 .then(result => {
-                    window.location.assign('http://localhost:3000/sub/manage_content.html');
+                    window.location.assign('http://95.85.49.133:3000/sub/manage_content.html');
                 }).catch(err => {
                     console.log(err)
                 });
@@ -523,7 +523,7 @@ function add_new_user() {
 
         fetch(request)
             .then(result => {
-                window.location.assign('http://localhost:3000/sub/manage_content.html');
+                window.location.assign('http://95.85.49.133:3000/sub/manage_content.html');
             }).catch(err => {
                 console.log(err)
             });
@@ -544,7 +544,7 @@ function delete_product(target_id) {
         'cache': 'default'
     }).then(result => {
         console.log(result);
-        window.location.assign('http://localhost:3000/sub/manage_content.html');
+        window.location.assign('http://95.85.49.133:3000/sub/manage_content.html');
     }).catch(err => {
         console.log(err);
     })
@@ -669,7 +669,7 @@ function edit_product(target_id) {
                     console.log(result);
                     return result.json();
                 }).then(result => {
-                    window.location.assign('http://localhost:3000/sub/manage_content.html');
+                    window.location.assign('http://95.85.49.133:3000/sub/manage_content.html');
                 }).catch(err => {
                     console.log(err);
                 })
@@ -863,7 +863,7 @@ function add_new_product() {
 
                 fetch(request)
                     .then(result => {
-                        window.location.assign('http://localhost:3000/sub/manage_content.html');
+                        window.location.assign('http://95.85.49.133:3000/sub/manage_content.html');
 
 
                     }).catch(err => {
@@ -922,7 +922,7 @@ function delete_producer(target_id) {
         'cache': 'default'
     }).then(result => {
         console.log(result);
-        window.location.assign('http://localhost:3000/sub/manage_content.html');
+        window.location.assign('http://95.85.49.133:3000/sub/manage_content.html');
     }).catch(err => {
         console.log(err);
     })
@@ -971,7 +971,7 @@ function update_producer(target_id) {
     }).then(result => {
         console.log(result);
     }).then(result => {
-        window.location.assign('http://localhost:3000/sub/manage_content.html');
+        window.location.assign('http://95.85.49.133:3000/sub/manage_content.html');
     }).catch(err => {
         console.log(err);
     })
@@ -1016,7 +1016,7 @@ function add_new_producer() {
 
         fetch(request)
             .then(result => {
-                window.location.assign('http://localhost:3000/sub/manage_content.html');
+                window.location.assign('http://95.85.49.133:3000/sub/manage_content.html');
 
 
             }).catch(err => {
@@ -1039,7 +1039,7 @@ function delete_category(target_id) {
         'cache': 'default'
     }).then(result => {
         console.log(result);
-        window.location.assign('http://localhost:3000/sub/manage_content.html');
+        window.location.assign('http://95.85.49.133:3000/sub/manage_content.html');
     }).catch(err => {
         console.log(err);
     })
@@ -1086,7 +1086,7 @@ function update_category(target_id) {
     }).then(result => {
         console.log(result);
     }).then(result => {
-        window.location.assign('http://localhost:3000/sub/manage_content.html');
+        window.location.assign('http://95.85.49.133:3000/sub/manage_content.html');
     }).catch(err => {
         console.log(err);
     })
@@ -1123,7 +1123,7 @@ function add_new_category() {
 
         fetch(request)
             .then(result => {
-                window.location.assign('http://localhost:3000/sub/manage_content.html');
+                window.location.assign('http://95.85.49.133:3000/sub/manage_content.html');
 
 
             }).catch(err => {
@@ -1216,7 +1216,7 @@ function handleClick(sender) {
                     </tr>`;
 
             });
-            // window.location.assign('http://localhost:3000/sub/manage_content.html');
+            // window.location.assign('http://95.85.49.133:3000/sub/manage_content.html');
         }).catch(err => {
             console.log(err)
         });

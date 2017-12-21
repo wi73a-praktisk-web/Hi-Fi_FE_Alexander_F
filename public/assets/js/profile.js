@@ -129,7 +129,7 @@ const getUserByID = (param) => {
 
                 fetch(request)
                     .then(result => {
-                        window.location.assign('http://localhost:3000/sub/profile_page.html?user=' + response[0].id);
+                        window.location.assign('http://95.85.49.133:3000/sub/profile_page.html?user=' + response[0].id);
                     }).catch(err => {
                         console.log(err)
                     });

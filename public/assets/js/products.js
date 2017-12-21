@@ -634,36 +634,36 @@
     document.addEventListener('DOMContentLoaded', function () {
 
         $("input#name").removeAttr('readonly');
-        if (window.location.href == "http://localhost:3000/index.html") {
+        if (window.location.href == "http://95.85.49.133:3000/index.html") {
             fyldForside();
         }
-        if (window.location.href == "http://localhost:3000/sub/forstaerkere/effekt_forstaerkere.html") {
+        if (window.location.href == "http://95.85.49.133:3000/sub/forstaerkere/effekt_forstaerkere.html") {
             getCategory(3);
         }
-        if (window.location.href == "http://localhost:3000/sub/forstaerkere/for_forstaerkere.html") {
+        if (window.location.href == "http://95.85.49.133:3000/sub/forstaerkere/for_forstaerkere.html") {
             getCategory(4);
         }
-        if (window.location.href == "http://localhost:3000/sub/forstaerkere/interne_forstaerkere.html") {
+        if (window.location.href == "http://95.85.49.133:3000/sub/forstaerkere/interne_forstaerkere.html") {
             getCategory(6);
         }
-        if (window.location.href == "http://localhost:3000/sub/forstaerkere/roer_forstaerkere.html") {
+        if (window.location.href == "http://95.85.49.133:3000/sub/forstaerkere/roer_forstaerkere.html") {
             getCategory(8);
         }
-        if (window.location.href == "http://localhost:3000/sub/afspillere/cd_afspillere.html") {
+        if (window.location.href == "http://95.85.49.133:3000/sub/afspillere/cd_afspillere.html") {
             getCategory(1);
         }
-        if (window.location.href == "http://localhost:3000/sub/afspillere/dvd_afspillere.html") {
+        if (window.location.href == "http://95.85.49.133:3000/sub/afspillere/dvd_afspillere.html") {
             getCategory(2);
         }
-        if (window.location.href == "http://localhost:3000/sub/afspillere/plade_afspillere.html") {
+        if (window.location.href == "http://95.85.49.133:3000/sub/afspillere/plade_afspillere.html") {
             getCategory(7);
         }
-        if (window.location.href == "http://localhost:3000/sub/hoejtalere/hoejtalere.html") {
+        if (window.location.href == "http://95.85.49.133:3000/sub/hoejtalere/hoejtalere.html") {
             getCategory(5);
         }
         if (getUrlParameter('search')) {
             go_fetch(getUrlParameter('search'));
-        } else if (window.location.href == "http://localhost:3000/sub/products.html") {
+        } else if (window.location.href == "http://95.85.49.133:3000/sub/products.html") {
             visAlleProdukter();
         }
         document.getElementById('search_bar').addEventListener("keyup", function (event) {
