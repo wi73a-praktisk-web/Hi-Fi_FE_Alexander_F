@@ -10,7 +10,7 @@ document.querySelector('#messaging_btn').addEventListener('click', (event) => {
         document.getElementById('state_div').style.visibility = "visible";
         document.getElementById('state_div').style.color = "black";
         console.log(document.getElementById('profile_page_a').href += "?user=" + localStorage.getItem('userid'));
-        fetch('http://95.85.49.133:3000/user', {
+        fetch('http://95.85.49.133:8080/user', {
             'method': 'post',
             'headers': {
                 'Authorization': localStorage.getItem('token'),
@@ -25,7 +25,7 @@ document.querySelector('#messaging_btn').addEventListener('click', (event) => {
             console.log(result);
             return result.json();
         }).then(user => {
-            document.querySelector('#profile_img').src = `http://95.85.49.133:3000/images/${user[0].url}`;
+            document.querySelector('#profile_img').src = `http://95.85.49.133:8080/images/${user[0].url}`;
         }).catch(err => {
             console.log(err);
         })

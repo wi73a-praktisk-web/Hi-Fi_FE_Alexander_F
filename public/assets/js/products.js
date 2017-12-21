@@ -24,7 +24,7 @@
 
     const go_fetch = function (param) {
         console.log("gofetch = " + param);
-        fetch('http://95.85.49.133:3000/products/' + param)
+        fetch('http://95.85.49.133:8080/products/' + param)
             .then(function (result) {
                 return result.json();
             })
@@ -164,7 +164,7 @@
         ul.style.listStyleType = "none";
         ul.style.color = "white";
         ul.style.backgroundColor = "rgba(34,34,34,0.7)";
-        fetch('http://95.85.49.133:3000/products')
+        fetch('http://95.85.49.133:8080/products')
             .then(function (result) {
                 return result.json();
             })
@@ -293,7 +293,7 @@
 
     const fyldForside = function () {
         console.log("hello forside!");
-        fetch('http://95.85.49.133:3000/index')
+        fetch('http://95.85.49.133:8080/index')
             .then(function (result) {
                 return result.json();
             })
@@ -387,7 +387,7 @@
 
     const getCategory = function (param) {
         console.log("hello this is finally working getCateory by id!");
-        fetch('http://95.85.49.133:3000/getProductsByCategory/' + param)
+        fetch('http://95.85.49.133:8080/getProductsByCategory/' + param)
             .then(function (result) {
                 return result.json();
             })
@@ -510,7 +510,7 @@
     }
 
     const visAlleProdukter = function () {
-        fetch('http://95.85.49.133:3000/products')
+        fetch('http://95.85.49.133:8080/products')
             .then(function (result) {
                 return result.json();
             })
@@ -634,36 +634,36 @@
     document.addEventListener('DOMContentLoaded', function () {
 
         $("input#name").removeAttr('readonly');
-        if (window.location.href == "http://95.85.49.133:3000/index.html") {
+        if (window.location.href == "http://95.85.49.133:8080/index.html") {
             fyldForside();
         }
-        if (window.location.href == "http://95.85.49.133:3000/sub/forstaerkere/effekt_forstaerkere.html") {
+        if (window.location.href == "http://95.85.49.133:8080/sub/forstaerkere/effekt_forstaerkere.html") {
             getCategory(3);
         }
-        if (window.location.href == "http://95.85.49.133:3000/sub/forstaerkere/for_forstaerkere.html") {
+        if (window.location.href == "http://95.85.49.133:8080/sub/forstaerkere/for_forstaerkere.html") {
             getCategory(4);
         }
-        if (window.location.href == "http://95.85.49.133:3000/sub/forstaerkere/interne_forstaerkere.html") {
+        if (window.location.href == "http://95.85.49.133:8080/sub/forstaerkere/interne_forstaerkere.html") {
             getCategory(6);
         }
-        if (window.location.href == "http://95.85.49.133:3000/sub/forstaerkere/roer_forstaerkere.html") {
+        if (window.location.href == "http://95.85.49.133:8080/sub/forstaerkere/roer_forstaerkere.html") {
             getCategory(8);
         }
-        if (window.location.href == "http://95.85.49.133:3000/sub/afspillere/cd_afspillere.html") {
+        if (window.location.href == "http://95.85.49.133:8080/sub/afspillere/cd_afspillere.html") {
             getCategory(1);
         }
-        if (window.location.href == "http://95.85.49.133:3000/sub/afspillere/dvd_afspillere.html") {
+        if (window.location.href == "http://95.85.49.133:8080/sub/afspillere/dvd_afspillere.html") {
             getCategory(2);
         }
-        if (window.location.href == "http://95.85.49.133:3000/sub/afspillere/plade_afspillere.html") {
+        if (window.location.href == "http://95.85.49.133:8080/sub/afspillere/plade_afspillere.html") {
             getCategory(7);
         }
-        if (window.location.href == "http://95.85.49.133:3000/sub/hoejtalere/hoejtalere.html") {
+        if (window.location.href == "http://95.85.49.133:8080/sub/hoejtalere/hoejtalere.html") {
             getCategory(5);
         }
         if (getUrlParameter('search')) {
             go_fetch(getUrlParameter('search'));
-        } else if (window.location.href == "http://95.85.49.133:3000/sub/products.html") {
+        } else if (window.location.href == "http://95.85.49.133:8080/sub/products.html") {
             visAlleProdukter();
         }
         document.getElementById('search_bar').addEventListener("keyup", function (event) {
@@ -724,7 +724,7 @@ document.querySelector('#send').addEventListener('click', (event) => {
         mode: 'cors'
     };
 
-    let request = new Request('http://95.85.49.133:3000/create', init);
+    let request = new Request('http://95.85.49.133:8080/create', init);
 
     fetch(request)
         .then(response => {
