@@ -24,7 +24,7 @@
 
     const go_fetch = function (param) {
         console.log("gofetch = " + param);
-        fetch('http://localhost:8080/products/' + param)
+        fetch('http://95.85.49.133:3000/products/' + param)
             .then(function (result) {
                 return result.json();
             })
@@ -164,7 +164,7 @@
         ul.style.listStyleType = "none";
         ul.style.color = "white";
         ul.style.backgroundColor = "rgba(34,34,34,0.7)";
-        fetch('http://localhost:8080/products')
+        fetch('http://95.85.49.133:3000/products')
             .then(function (result) {
                 return result.json();
             })
@@ -293,7 +293,7 @@
 
     const fyldForside = function () {
         console.log("hello forside!");
-        fetch('http://localhost:8080/index')
+        fetch('http://95.85.49.133:3000/index')
             .then(function (result) {
                 return result.json();
             })
@@ -387,7 +387,7 @@
 
     const getCategory = function (param) {
         console.log("hello this is finally working getCateory by id!");
-        fetch('http://localhost:8080/getProductsByCategory/' + param)
+        fetch('http://95.85.49.133:3000/getProductsByCategory/' + param)
             .then(function (result) {
                 return result.json();
             })
@@ -510,7 +510,7 @@
     }
 
     const visAlleProdukter = function () {
-        fetch('http://localhost:8080/products')
+        fetch('http://95.85.49.133:3000/products')
             .then(function (result) {
                 return result.json();
             })
@@ -724,7 +724,7 @@ document.querySelector('#send').addEventListener('click', (event) => {
         mode: 'cors'
     };
 
-    let request = new Request('http://localhost:8080/create', init);
+    let request = new Request('http://95.85.49.133:3000/create', init);
 
     fetch(request)
         .then(response => {

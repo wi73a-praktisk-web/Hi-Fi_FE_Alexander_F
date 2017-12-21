@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             console.log(init.body);
 
-            let request = new Request('http://localhost:8080/registerUser', init);
+            let request = new Request('http://95.85.49.133:3000/registerUser', init);
 
             fetch(request)
                 .then(result => {
@@ -240,7 +240,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 //         console.log(init.body);
 
-//         let request = new Request('http://localhost:8080/registerUser', init);
+//         let request = new Request('http://95.85.49.133:3000/registerUser', init);
 
 //         fetch(request)
 //             .then(response => {

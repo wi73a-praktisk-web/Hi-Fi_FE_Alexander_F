@@ -17,7 +17,7 @@ const getUserByID = (param) => {
 
     console.log(param);
 
-    let request = new Request('http://localhost:8080/user', {
+    let request = new Request('http://95.85.49.133:3000/user', {
         'method': 'POST',
         'headers': {
             'Authorization': localStorage.getItem('token'),
@@ -45,7 +45,7 @@ const getUserByID = (param) => {
                                 <h1>${response[0].name}</h1>
                             </div>
                             <div id="profile_img_div" class="col-xs-4">
-                                <img src="http://localhost:8080/images/${response[0].url}" class="img-responsive">
+                                <img src="http://95.85.49.133:3000/images/${response[0].url}" class="img-responsive">
                             </div>
                             <div class="col-xs-12">
                             <button id="edit_btn" class="glyphicon glyphicon-edit"></button><br/>
@@ -125,7 +125,7 @@ const getUserByID = (param) => {
 
                 console.log(init.body);
 
-                let request = new Request(`http://localhost:8080/updateUser/${response[0].id}`, init);
+                let request = new Request(`http://95.85.49.133:3000/updateUser/${response[0].id}`, init);
 
                 fetch(request)
                     .then(result => {

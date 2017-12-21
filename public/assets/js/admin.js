@@ -27,7 +27,7 @@ document.getElementById('products').addEventListener('click', (event) => {
     document.getElementById('edit_div').innerHTML = '';
     console.log("something, happens!");
     document.getElementById('content_div').innerHTML = '';
-    fetch('http://localhost:8080/products')
+    fetch('http://95.85.49.133:3000/products')
         .then(function (result) {
             return result.json();
         }).then(products => {
@@ -64,7 +64,7 @@ document.getElementById('products').addEventListener('click', (event) => {
                         </button>
                     </td>
                     <td>
-                        <img src='http://localhost:8080/images/${product.billede}' height="75" width="200 "alt="henter billede">
+                        <img src='http://95.85.49.133:3000/images/${product.billede}' height="75" width="200 "alt="henter billede">
                     </td>
                     <td>${product.Navn}
                     </td>
@@ -81,7 +81,7 @@ document.getElementById('products').addEventListener('click', (event) => {
                 </tr>`;
 
             });
-            fetch('http://localhost:8080/getAllCategories')
+            fetch('http://95.85.49.133:3000/getAllCategories')
                 .then(result => {
                     return result.json();
                 }).then(categories => {
@@ -105,7 +105,7 @@ document.getElementById('products').addEventListener('click', (event) => {
                 }).catch(err => {
                     console.log(err);
                 });
-            fetch('http://localhost:8080/getAllProducers')
+            fetch('http://95.85.49.133:3000/getAllProducers')
                 .then(result => {
                     return result.json();
                 }).then(producers => {
@@ -137,7 +137,7 @@ document.getElementById('categories_button').addEventListener('click', (event) =
     document.getElementById('edit_div').innerHTML = '';
     console.log("something, happens!");
     document.getElementById('content_div').innerHTML = '';
-    fetch('http://localhost:8080/getAllCategories')
+    fetch('http://95.85.49.133:3000/getAllCategories')
         .then(function (result) {
             return result.json();
         }).then(categories => {
@@ -183,7 +183,7 @@ document.getElementById('producers_button').addEventListener('click', (event) =>
     document.getElementById('edit_div').innerHTML = '';
     console.log("something, happens!");
     document.getElementById('content_div').innerHTML = '';
-    fetch('http://localhost:8080/getAllProducers')
+    fetch('http://95.85.49.133:3000/getAllProducers')
         .then(function (result) {
             return result.json();
         }).then(producers => {
@@ -225,7 +225,7 @@ document.getElementById('users').addEventListener('click', (event) => {
     document.getElementById('check_div').innerHTML = '';
     document.getElementById('edit_div').innerHTML = '';
     document.getElementById('content_div').innerHTML = '';
-    fetch('http://localhost:8080/allUsers', {
+    fetch('http://95.85.49.133:3000/allUsers', {
         'method': 'post',
         'headers': {
             'Authorization': localStorage.getItem('token'),
@@ -261,7 +261,7 @@ document.getElementById('users').addEventListener('click', (event) => {
                     <button id="${user.id}" onclick="delete_user(this.id)">delete</button>
                 </td>
                 <td>
-                    <img src='http://localhost:8080/images/${user.url}' height="75" width="200 "alt="henter billede">
+                    <img src='http://95.85.49.133:3000/images/${user.url}' height="75" width="200 "alt="henter billede">
                 </td>
                 <td>${user.name}</td>
                 <td>${user.username}</td>
@@ -276,7 +276,7 @@ document.getElementById('users').addEventListener('click', (event) => {
 
 //user
 function delete_user(target_id) {
-    fetch('http://localhost:8080/deleteUser/' + target_id, {
+    fetch('http://95.85.49.133:3000/deleteUser/' + target_id, {
         'method': 'post',
         'headers': {
             'Authorization': localStorage.getItem('token'),
@@ -295,7 +295,7 @@ function delete_user(target_id) {
 
 function edit_user(target_id) {
     document.getElementById('edit_div').innerHTML = '';
-    fetch('http://localhost:8080/user', {
+    fetch('http://95.85.49.133:3000/user', {
         'method': 'post',
         'headers': {
             'Authorization': localStorage.getItem('token'),
@@ -335,7 +335,7 @@ function edit_user(target_id) {
             </p>
                 
                 <label>Gammelt Billede</label>
-                <img src="http://localhost:8080/images/${users[0].url}" id="old_pic" alt="billede hentes" width="200" height="75">
+                <img src="http://95.85.49.133:3000/images/${users[0].url}" id="old_pic" alt="billede hentes" width="200" height="75">
                 <label>Upload Nyt Billede</label>
                 <input type="hidden" name="oldUserImage" id="olduserImage" value="${users[0].url}">
                 <input type="file" name="userImage" id="userImage" value="empty">
@@ -371,7 +371,7 @@ function edit_user(target_id) {
 
             console.log(init.body);
 
-            let request = new Request(`http://localhost:8080/updateUser/${target_id}`, init);
+            let request = new Request(`http://95.85.49.133:3000/updateUser/${target_id}`, init);
 
             fetch(request)
                 .then(result => {
@@ -519,7 +519,7 @@ function add_new_user() {
 
         console.log(init.body);
 
-        let request = new Request('http://localhost:8080/registerUser', init);
+        let request = new Request('http://95.85.49.133:3000/registerUser', init);
 
         fetch(request)
             .then(result => {
@@ -533,7 +533,7 @@ function add_new_user() {
 
 //product
 function delete_product(target_id) {
-    fetch('http://localhost:8080/deleteProduct/' + target_id, {
+    fetch('http://95.85.49.133:3000/deleteProduct/' + target_id, {
         'method': 'post',
         'headers': {
             'Authorization': localStorage.getItem('token'),
@@ -554,7 +554,7 @@ function edit_product(target_id) {
 
     console.log(target_id);
     document.getElementById('edit_div').innerHTML = '';
-    fetch('http://localhost:8080/product/' + target_id, {
+    fetch('http://95.85.49.133:3000/product/' + target_id, {
         'method': 'get',
         'headers': {
             'Authorization': localStorage.getItem('token'),
@@ -602,7 +602,7 @@ function edit_product(target_id) {
                     <datalist name="categories" id="categories"></datalist>
                 </p>
                 <label>Gammelt Billede</label>
-                <img src="http://localhost:8080/images/${products[0].billede}" id="old_pic" alt="billede hentes" width="200" height="75">
+                <img src="http://95.85.49.133:3000/images/${products[0].billede}" id="old_pic" alt="billede hentes" width="200" height="75">
                 <label>Upload Nyt Billede</label>
                 <input type="hidden" name="oldProductImage" id="oldProductImage" value="${products[0].billede}">
                 <input type="file" name="productImage" id="productImage" value="empty">
@@ -661,7 +661,7 @@ function edit_product(target_id) {
                 let data = new FormData(form);
 
                 console.log("undefined? = " + target_id);
-                fetch('http://localhost:8080/updateProduct/' + target_id, {
+                fetch('http://95.85.49.133:3000/updateProduct/' + target_id, {
                     "method": 'put',
                     "body": data,
                     'cache': 'no-cache'
@@ -687,7 +687,7 @@ function edit_product(target_id) {
             }
         });
     }).then(() => {
-        fetch('http://localhost:8080/getAllCategories', {
+        fetch('http://95.85.49.133:3000/getAllCategories', {
             'method': 'get',
             'headers': {
                 'Authorization': localStorage.getItem('token'),
@@ -713,7 +713,7 @@ function edit_product(target_id) {
                 }
             })
         }).then(() => {
-            fetch('http://localhost:8080/getAllProducers', {
+            fetch('http://95.85.49.133:3000/getAllProducers', {
                 'method': 'get',
                 'headers': {
                     'Authorization': localStorage.getItem('token'),
@@ -797,7 +797,7 @@ function add_new_product() {
             reader.readAsDataURL(file);
         }
     });
-    fetch('http://localhost:8080/getAllCategories', {
+    fetch('http://95.85.49.133:3000/getAllCategories', {
         'method': 'get',
         'headers': {
             'Authorization': localStorage.getItem('token'),
@@ -813,7 +813,7 @@ function add_new_product() {
             document.getElementById('categories').innerHTML += `<option class="cat_option"> ${category.navn}</option>`;
         })
     }).then(() => {
-        fetch('http://localhost:8080/getAllProducers', {
+        fetch('http://95.85.49.133:3000/getAllProducers', {
             'method': 'get',
             'headers': {
                 'Authorization': localStorage.getItem('token'),
@@ -859,7 +859,7 @@ function add_new_product() {
 
                 console.log(init.body);
 
-                let request = new Request('http://localhost:8080/registerProduct', init);
+                let request = new Request('http://95.85.49.133:3000/registerProduct', init);
 
                 fetch(request)
                     .then(result => {
@@ -911,7 +911,7 @@ function add_new_product() {
 
 //producer
 function delete_producer(target_id) {
-    fetch('http://localhost:8080/deleteProducer/' + target_id, {
+    fetch('http://95.85.49.133:3000/deleteProducer/' + target_id, {
         'method': 'post',
         'headers': {
             'Authorization': localStorage.getItem('token'),
@@ -931,7 +931,7 @@ function delete_producer(target_id) {
 function edit_producer(target_id) {
     var kategorinavn, producentnavn;
     document.getElementById('edit_div').innerHTML = '';
-    fetch('http://localhost:8080/producer/' + target_id, {
+    fetch('http://95.85.49.133:3000/producer/' + target_id, {
         'method': 'get',
         'headers': {
             'Authorization': localStorage.getItem('token'),
@@ -956,7 +956,7 @@ function edit_producer(target_id) {
 }
 
 function update_producer(target_id) {
-    fetch('http://localhost:8080/updateProducer/' + target_id, {
+    fetch('http://95.85.49.133:3000/updateProducer/' + target_id, {
         'method': 'post',
         'headers': {
             'Authorization': localStorage.getItem('token'),
@@ -1012,7 +1012,7 @@ function add_new_producer() {
 
         console.log(init.body);
 
-        let request = new Request('http://localhost:8080/registerProducer', init);
+        let request = new Request('http://95.85.49.133:3000/registerProducer', init);
 
         fetch(request)
             .then(result => {
@@ -1028,7 +1028,7 @@ function add_new_producer() {
 
 //category
 function delete_category(target_id) {
-    fetch('http://localhost:8080/deleteCategory/' + target_id, {
+    fetch('http://95.85.49.133:3000/deleteCategory/' + target_id, {
         'method': 'post',
         'headers': {
             'Authorization': localStorage.getItem('token'),
@@ -1047,7 +1047,7 @@ function delete_category(target_id) {
 
 function edit_category(target_id) {
     document.getElementById('edit_div').innerHTML = '';
-    fetch('http://localhost:8080/category/' + target_id, {
+    fetch('http://95.85.49.133:3000/category/' + target_id, {
         'method': 'get',
         'headers': {
             'Authorization': localStorage.getItem('token'),
@@ -1071,7 +1071,7 @@ function edit_category(target_id) {
 }
 
 function update_category(target_id) {
-    fetch('http://localhost:8080/updateCategory/' + target_id, {
+    fetch('http://95.85.49.133:3000/updateCategory/' + target_id, {
         'method': 'post',
         'headers': {
             'Authorization': localStorage.getItem('token'),
@@ -1119,7 +1119,7 @@ function add_new_category() {
 
         console.log(init.body);
 
-        let request = new Request('http://localhost:8080/registerCategory', init);
+        let request = new Request('http://95.85.49.133:3000/registerCategory', init);
 
         fetch(request)
             .then(result => {
@@ -1173,7 +1173,7 @@ function handleClick(sender) {
 
     console.log("body" + init.body);
 
-    let request = new Request('http://localhost:8080/getFilteredProducts', init);
+    let request = new Request('http://95.85.49.133:3000/getFilteredProducts', init);
 
     fetch(request)
         .then(function (result) {

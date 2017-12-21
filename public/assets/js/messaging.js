@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
         window.location.assign('./log_in.html');
     }
 
-    fetch('http://localhost:8080/checkFlags/' + localStorage.getItem('userid'), {
+    fetch('http://95.85.49.133:3000/checkFlags/' + localStorage.getItem('userid'), {
             'method': 'get',
             'headers': {
                 'Authorization': localStorage.getItem('token'),
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
 document.querySelector('#new_message_btn').addEventListener('click', (event) => {
     event.preventDefault();
     document.querySelector('#content_div').innerHTML = '';
-    fetch('http://localhost:8080/user', {
+    fetch('http://95.85.49.133:3000/user', {
         'method': 'post',
         'headers': {
             'Authorization': localStorage.getItem('token'),
@@ -83,7 +83,7 @@ document.querySelector('#new_message_btn').addEventListener('click', (event) => 
                 cache: 'no-cache',
                 mode: 'cors'
             };
-            fetch('http://localhost:8080/sendMessage/' + localStorage.getItem('userid'), init)
+            fetch('http://95.85.49.133:3000/sendMessage/' + localStorage.getItem('userid'), init)
                 .then(() => {
                     window.location.assign('http://localhost:3000/sub/messaging.html');
                 }).catch(err => {
@@ -93,7 +93,7 @@ document.querySelector('#new_message_btn').addEventListener('click', (event) => 
     }).catch(err => {
         console.log(err);
     });
-    fetch('http://localhost:8080/allUsers', {
+    fetch('http://95.85.49.133:3000/allUsers', {
         'method': 'post',
         'headers': {
             'Authorization': localStorage.getItem('token'),
@@ -119,7 +119,7 @@ document.querySelector('#new_message_btn').addEventListener('click', (event) => 
 document.querySelector('#inbox_btn').addEventListener('click', (event) => {
     event.preventDefault();
     document.querySelector('#content_div').innerHTML = '';
-    fetch('http://localhost:8080/allInboxMessages/' + localStorage.getItem('userid'), {
+    fetch('http://95.85.49.133:3000/allInboxMessages/' + localStorage.getItem('userid'), {
         'method': 'get',
         'headers': {
             'Authorization': localStorage.getItem('token'),
@@ -159,7 +159,7 @@ document.querySelector('#inbox_btn').addEventListener('click', (event) => {
         console.log("messages" + messages.length);
         messages.forEach(message => {
             let send_url;
-            fetch('http://localhost:8080/getUserImage/' + message.sender, {
+            fetch('http://95.85.49.133:3000/getUserImage/' + message.sender, {
                     'method': 'get',
                     'headers': {
                         'Authorization': localStorage.getItem('token'),
@@ -190,7 +190,7 @@ document.querySelector('#inbox_btn').addEventListener('click', (event) => {
                             <a id="${message.id}" onclick="viewSingleInboxMessage(this.id)" href="#">
                                 <row>
                                     <div>
-                                        <label>From:</label> <img src='http://localhost:8080/images/${send_url}' height="20" alt="henter billede"> <strong>${message.name}</strong> <br/>
+                                        <label>From:</label> <img src='http://95.85.49.133:3000/images/${send_url}' height="20" alt="henter billede"> <strong>${message.name}</strong> <br/>
                                         <label>Subject: </label> <strong> ${message.subject}</strong>
                                     </div>
                                 </row>
@@ -222,7 +222,7 @@ document.querySelector('#inbox_btn').addEventListener('click', (event) => {
 document.querySelector('#outbox_btn').addEventListener('click', (event) => {
     event.preventDefault();
     document.querySelector('#content_div').innerHTML = '';
-    fetch('http://localhost:8080/allOutboxMessages/' + localStorage.getItem('userid'), {
+    fetch('http://95.85.49.133:3000/allOutboxMessages/' + localStorage.getItem('userid'), {
         'method': 'get',
         'headers': {
             'Authorization': localStorage.getItem('token'),
@@ -263,7 +263,7 @@ document.querySelector('#outbox_btn').addEventListener('click', (event) => {
         console.log("messages" + messages.length);
         messages.forEach(message => {
             let send_url;
-            fetch('http://localhost:8080/getUserImage/' + message.sender, {
+            fetch('http://95.85.49.133:3000/getUserImage/' + message.sender, {
                     'method': 'get',
                     'headers': {
                         'Authorization': localStorage.getItem('token'),
@@ -293,7 +293,7 @@ document.querySelector('#outbox_btn').addEventListener('click', (event) => {
                             <a id="${message.id}" onclick="viewSingleOutboxMessage(this.id)" href="#">
                                 <row>
                                     <div>
-                                        <label>From:</label> <img src='http://localhost:8080/images/${send_url}' height="20" alt="henter billede"> <strong>${message.name}</strong> <br/>
+                                        <label>From:</label> <img src='http://95.85.49.133:3000/images/${send_url}' height="20" alt="henter billede"> <strong>${message.name}</strong> <br/>
                                         <label>Sent: </label> <strong> ${message.created}</strong>
                                     </div>
                                 </row>
@@ -325,7 +325,7 @@ function viewSingleInboxMessage(target_id) {
     document.getElementById('div' + target_id).style.backgroundColor = "none";
     document.getElementById('view_message').innerHTML = '';
     //fetch that single message
-    fetch('http://localhost:8080/singleInboxMessage/' + target_id, {
+    fetch('http://95.85.49.133:3000/singleInboxMessage/' + target_id, {
             'method': 'get',
             'headers': {
                 'Authorization': localStorage.getItem('token'),
@@ -342,7 +342,7 @@ function viewSingleInboxMessage(target_id) {
             console.log("message[0].receiver = " + message[0].receiver);
             console.log("message[0].sender = " + message[0].sender);
 
-            fetch('http://localhost:8080/getUserImage/ ' + message[0].receiver, {
+            fetch('http://95.85.49.133:3000/getUserImage/ ' + message[0].receiver, {
                 'method': 'get',
                 'headers': {
                     'Authorization': localStorage.getItem('token'),
@@ -359,7 +359,7 @@ function viewSingleInboxMessage(target_id) {
             }).catch(err => {
                 console.log(err);
             });
-            fetch('http://localhost:8080/getUserImage/' + message[0].sender, {
+            fetch('http://95.85.49.133:3000/getUserImage/' + message[0].sender, {
                 'method': 'get',
                 'headers': {
                     'Authorization': localStorage.getItem('token'),
@@ -390,15 +390,15 @@ function viewSingleInboxMessage(target_id) {
                     <div class="wrapper_div">
                         <div class="label_div">
                             <label>Subject: </label> <span>${message[0].subject}</span> <br/>
-                            <label>From: <img src='http://localhost:8080/images/${send_url}' height="20" alt="henter billede"> </label> <span>${message[0].send}</span> <br/>
-                            <label>To: <img src='http://localhost:8080/images/${rec_url}' height="20" alt="henter billede"> </label> <span>${message[0].rec}</span> <br/>
+                            <label>From: <img src='http://95.85.49.133:3000/images/${send_url}' height="20" alt="henter billede"> </label> <span>${message[0].send}</span> <br/>
+                            <label>To: <img src='http://95.85.49.133:3000/images/${rec_url}' height="20" alt="henter billede"> </label> <span>${message[0].rec}</span> <br/>
                         </div>
                         <p>
                             ${message[0].message}
                         </p>
                     </div>
                    `;
-                fetch('http://localhost:8080/user', {
+                fetch('http://95.85.49.133:3000/user', {
                         'method': 'post',
                         'headers': {
                             'Authorization': localStorage.getItem('token'),
@@ -438,7 +438,7 @@ function viewSingleInboxMessage(target_id) {
                         `;
                         document.querySelector('#respond_message').style.border = "2px solid white";
                         document.querySelector('#respond_message').style.backgroundColor = "rgba(44,44,44,1)";
-                            fetch('http://localhost:8080/allUsers', {
+                            fetch('http://95.85.49.133:3000/allUsers', {
                                 'method': 'post',
                                 'headers': {
                                     'Authorization': localStorage.getItem('token'),
@@ -482,7 +482,7 @@ function viewSingleInboxMessage(target_id) {
                                     cache: 'no-cache',
                                     mode: 'cors'
                                 };
-                                fetch('http://localhost:8080/sendMessage/' + localStorage.getItem('userid'), init)
+                                fetch('http://95.85.49.133:3000/sendMessage/' + localStorage.getItem('userid'), init)
                                     .then(() => {
                                         window.location.assign('http://localhost:3000/sub/messaging.html');
                                     }).catch(err => {
@@ -516,7 +516,7 @@ function viewSingleInboxMessage(target_id) {
                         `;
                         document.querySelector('#respond_message').style.border = "2px solid white";
                         document.querySelector('#respond_message').style.backgroundColor = "rgba(44,44,44,1)";
-                            fetch('http://localhost:8080/allUsers', {
+                            fetch('http://95.85.49.133:3000/allUsers', {
                                 'method': 'post',
                                 'headers': {
                                     'Authorization': localStorage.getItem('token'),
@@ -560,7 +560,7 @@ function viewSingleInboxMessage(target_id) {
                                     cache: 'no-cache',
                                     mode: 'cors'
                                 };
-                                fetch('http://localhost:8080/sendMessage/' + localStorage.getItem('userid'), init)
+                                fetch('http://95.85.49.133:3000/sendMessage/' + localStorage.getItem('userid'), init)
                                     .then(() => {
                                         window.location.assign('http://localhost:3000/sub/messaging.html');
                                     }).catch(err => {
@@ -578,7 +578,7 @@ function viewSingleInboxMessage(target_id) {
             //////////////////////////////////////////
 
         }).then(() => {
-            fetch('http://localhost:8080/checkFlags/' + localStorage.getItem('userid'), {
+            fetch('http://95.85.49.133:3000/checkFlags/' + localStorage.getItem('userid'), {
                     'method': 'get',
                     'headers': {
                         'Authorization': localStorage.getItem('token'),
@@ -612,7 +612,7 @@ function viewSingleOutboxMessage(target_id) {
     document.getElementById('respond_message').innerHTML = '';
     document.getElementById('view_message').innerHTML = '';
     //fetch that single message
-    fetch('http://localhost:8080/singleOutboxMessage/' + target_id, {
+    fetch('http://95.85.49.133:3000/singleOutboxMessage/' + target_id, {
             'method': 'get',
             'headers': {
                 'Authorization': localStorage.getItem('token'),
@@ -629,7 +629,7 @@ function viewSingleOutboxMessage(target_id) {
             console.log("message[0].receiver = " + message[0].receiver);
             console.log("message[0].sender = " + message[0].sender);
 
-            fetch('http://localhost:8080/getUserImage/ ' + message[0].receiver, {
+            fetch('http://95.85.49.133:3000/getUserImage/ ' + message[0].receiver, {
                 'method': 'get',
                 'headers': {
                     'Authorization': localStorage.getItem('token'),
@@ -646,7 +646,7 @@ function viewSingleOutboxMessage(target_id) {
             }).catch(err => {
                 console.log(err);
             });
-            fetch('http://localhost:8080/getUserImage/' + message[0].sender, {
+            fetch('http://95.85.49.133:3000/getUserImage/' + message[0].sender, {
                     'method': 'get',
                     'headers': {
                         'Authorization': localStorage.getItem('token'),
@@ -674,15 +674,15 @@ function viewSingleOutboxMessage(target_id) {
                     <div class="wrapper_div">
                         <div class="label_div">
                             <label>Subject: </label> <span>${message[0].subject}</span>  <br/>
-                            <label>From: <img src='http://localhost:8080/images/${send_url}' height="20" alt="henter billede"> </label> <span>${message[0].send}</span> <br/>
-                            <label>To: <img src='http://localhost:8080/images/${rec_url}' height="20" alt="henter billede"> </label>  <span>${message[0].rec}</span> <br/>
+                            <label>From: <img src='http://95.85.49.133:3000/images/${send_url}' height="20" alt="henter billede"> </label> <span>${message[0].send}</span> <br/>
+                            <label>To: <img src='http://95.85.49.133:3000/images/${rec_url}' height="20" alt="henter billede"> </label>  <span>${message[0].rec}</span> <br/>
                         </div>
                         <p>
                             ${message[0].message}
                         </p>
                     </div>`;
                 }).then(() => {
-                    fetch('http://localhost:8080/user', {
+                    fetch('http://95.85.49.133:3000/user', {
                             'method': 'post',
                             'headers': {
                                 'Authorization': localStorage.getItem('token'),
@@ -726,7 +726,7 @@ function viewSingleOutboxMessage(target_id) {
                                     document.querySelector('#respond_message').style.border = "2px solid white";
                                     document.querySelector('#respond_message').style.backgroundColor = "rgba(44,44,44,1)";
                                     
-                                fetch('http://localhost:8080/allUsers', {
+                                fetch('http://95.85.49.133:3000/allUsers', {
                                     'method': 'post',
                                     'headers': {
                                         'Authorization': localStorage.getItem('token'),
@@ -770,7 +770,7 @@ function viewSingleOutboxMessage(target_id) {
                                         cache: 'no-cache',
                                         mode: 'cors'
                                     };
-                                    fetch('http://localhost:8080/sendMessage/' + localStorage.getItem('userid'), init)
+                                    fetch('http://95.85.49.133:3000/sendMessage/' + localStorage.getItem('userid'), init)
                                         .then(result => {
                                             console.log("sunovabitch");
                                             window.location.assign('http://localhost:3000/sub/messaging.html');
@@ -797,7 +797,7 @@ function viewSingleOutboxMessage(target_id) {
 
 function deleteMessage(target_id) {
     console.log("target_id" + target_id);
-    fetch('http://localhost:8080/deleteMessage/' + target_id, {
+    fetch('http://95.85.49.133:3000/deleteMessage/' + target_id, {
             'method': 'post',
             'headers': {
                 'Authorization': localStorage.getItem('token'),
